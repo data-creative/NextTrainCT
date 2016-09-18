@@ -1,0 +1,3 @@
+rootProject.name = 'NextTrainCT'
+
+include ':app'
