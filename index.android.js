@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {AppRegistry, Navigator} from 'react-native';
 
-import QueriesIndexPage from "./components/Queries";
+import SearchesIndex from "./components/searches/Index";
 
 class App extends Component {
   componentWillMount(){  console.log("APP WILL MOUNT")  }
@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Navigator
         style={{ flex:1 }}
-        initialRoute={{ name: 'Queries' }}
+        initialRoute={{ name: 'SearchesIndex' }}
         renderScene={ this.renderScene }
         configureScene={ this.configureScene }
       />
@@ -24,21 +24,21 @@ class App extends Component {
 
   renderScene(route, navigator) {
     switch (route.name) {
-      case 'Queries':
-        return <QueriesIndexPage navigator={navigator} {...route.passProps}  />
+      case 'SearchesIndex':
+        return <SearchesIndex navigator={navigator} {...route.passProps}  />
         break;
     };
   }
 
-  configureScene(route, routeStack){
-    switch (route.type) {
-      case 'Back':
-        return Navigator.SceneConfigs.FloatFromLeft;
-        break;
-      default:
-        return Navigator.SceneConfigs.PushFromRight;
-      };
-  }
+  //configureScene(route, routeStack){
+  //  switch (route.type) {
+  //    case 'Back':
+  //      return Navigator.SceneConfigs.FloatFromLeft;
+  //      break;
+  //    default:
+  //      return Navigator.SceneConfigs.PushFromRight;
+  //    };
+  //}
 
 }
 

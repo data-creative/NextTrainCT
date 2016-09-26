@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Text} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon} from 'native-base';
 
-import styles from "../styles/android"
+import styles from "../../styles/android"
 
-class Queries extends Component {
+export default class Queries extends Component {
   render() {
     return (
       <Container>
@@ -13,7 +13,7 @@ class Queries extends Component {
         </Header>
 
         <Content style={styles.content}>
-          <Text style={styles.text}>Press the button below to create a new Favorite Transit Schedule Search.</Text>
+          <Text style={styles.text}>Press the button below to search train schedules.</Text>
         </Content>
 
         <Footer transparent style={styles.footer}>
@@ -24,6 +24,4 @@ class Queries extends Component {
       </Container>
     );
   }
-}
-
-module.exports = Queries;
+};
