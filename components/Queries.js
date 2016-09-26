@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native'
-import {Container, Header, Footer, Content, Title} from 'native-base';
+import {Container, Header, Title, Content, Footer, Button, Icon} from 'native-base';
+
+import styles from "../styles/android"
 
 class Queries extends Component {
   render() {
@@ -10,19 +12,16 @@ class Queries extends Component {
           <Title>NextTrain CT</Title>
         </Header>
 
-        <Content>
-          <Text>
-            Welcome to React Native!
-          </Text>
-          <Text>
-            To get started, edit index.android.js
-          </Text>
-          <Text>
-            Double tap R on your keyboard to reload,{'\n'}
-            Shake or press menu button for dev menu
-          </Text>
+        <Content style={styles.content}>
+          <Text style={styles.text}>Press the button below to create a new Favorite Transit Schedule Search.</Text>
         </Content>
-    </Container>
+
+        <Footer transparent style={styles.footer}>
+          <Button rounded style={styles.button}>
+            <Icon name="md-add" />
+          </Button>
+        </Footer>
+      </Container>
     );
   }
 }

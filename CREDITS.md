@@ -24,3 +24,7 @@
 
   + https://github.com/facebook/react-native/pull/5233#discussion_r49682279
   + https://github.com/facebook/react-native/issues/2303
+
+### Styling
+
+  + https://facebook.github.io/react-native/docs/flexbox.html
