@@ -3,8 +3,9 @@ import {Text} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon} from 'native-base';
 
 import styles from "../../styles/android"
+import SearchesList from "./List"
 
-export default class Queries extends Component {
+export default class SearchesIndex extends Component {
   render() {
     return (
       <Container>
@@ -14,6 +15,7 @@ export default class Queries extends Component {
 
         <Content style={styles.content}>
           <Text style={styles.text}>Press the button below to search train schedules.</Text>
+          <SearchesList searches={ [{"id":101, "title":"New Haven to Guilford"}, {"id":202, "title":"Guilford to New Haven"}] } />
         </Content>
 
         <Footer transparent style={styles.footer}>
