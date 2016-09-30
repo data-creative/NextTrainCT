@@ -16,6 +16,8 @@
 
 ## React Native
 
+  + https://toddmotto.com/react-create-class-versus-component/
+
 ### Native Base
 
   + http://nativebase.io/docs/v0.5.7/getting-started
