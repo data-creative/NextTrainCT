@@ -28,6 +28,12 @@ Build the application onto the device:
 react-native run-android
 ````
 
+Check console logs:
+
+```` sh
+react-native log-android
+````
+
 ### On iOS
 
 Build the application onto the device:

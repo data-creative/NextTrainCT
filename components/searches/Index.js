@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {Alert, Text} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon} from 'native-base';
 
+import searches from "../../data/searches"
 import styles from "../../styles/android"
+
 import SearchesList from "./List"
 
 export default class SearchesIndex extends Component {
@@ -38,14 +40,6 @@ export default class SearchesIndex extends Component {
 
   handlePress(){
     //Alert.alert("Hello there.");
-    this.setState({
-      searches:[
-        {"sort":1, "id":999, "title":"Branford (BNF) to New Haven Union (NHV)",               "day":"thursday"},
-        {"sort":2, "id":202, "title":"New Haven Union (NHV) to Grand Central Terminal (GCT)", "day":"thursday"},
-        {"sort":3, "id":777, "title":"Branford (BNF) to Madison (MAD)",                       "day":"today"},
-        {"sort":4, "id":232, "title":"Guilford (GLF) to Old Saybrook (OSB)",                  "day":"tomorrow"},
-        {"sort":5, "id":505, "title":"Branford (BNF) to Madison (New Haven)",                 "day":"2016-09-29"}
-      ]
-    })
+    this.setState({searches:searches})
   }
 };

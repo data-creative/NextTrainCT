@@ -16,8 +16,6 @@
 
 ## React Native
 
-  + https://toddmotto.com/react-create-class-versus-component/
-
 ### Native Base
 
   + http://nativebase.io/docs/v0.5.7/getting-started
@@ -30,3 +28,11 @@
 ### Styling
 
   + https://facebook.github.io/react-native/docs/flexbox.html
+
+### JavaScript
+
+  + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+
+### React
+
+  + https://toddmotto.com/react-create-class-versus-component/
