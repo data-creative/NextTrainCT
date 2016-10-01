@@ -1,22 +1,16 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native'
-import {List, ListItem} from 'native-base';
-
+import {List} from 'native-base';
 import SearchesListItem from "./ListItem"
 
 export default class SearchesList extends Component {
   render() {
-    var searches = this.props.searches;
-
+    const searches = this.props.searches
+    const navigator = this.props.navigator
     return (
       <List>
-        <ListItem key="list-header" itemDivider>
-          <Text>SEARCHES ({searches.length})</Text>
-        </ListItem>
-
         {searches.map(function(search){
           return (
-            <SearchesListItem key={search.id} search={search}/>
+            <SearchesListItem key={search.id} search={search} searches={searches} navigator={navigator}/>
           )
         })}
       </List>
