@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Alert, Text} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon} from 'native-base';
 
-import searches from "../../data/searches"
+import {searches} from "../../data/searches"
 import styles from "../../styles/android"
 
 import SearchesList from "./List"
