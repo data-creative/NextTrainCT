@@ -20,6 +20,7 @@ export default class SearchesIndex extends Component {
     const welcomeMessage = "Search trains using the button below."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
     const searchesList = <SearchesList searches={ searches } navigator={this.props.navigator}/>
+    const navigator = this.props.navigator;
     return (
       <Container>
         <Header>
@@ -42,8 +43,10 @@ export default class SearchesIndex extends Component {
   visitNewSearchPage(){
     console.log("VISIT NEW SEARCH PAGE")
     this.props.navigator.push({
-      name: 'NewSearch',
-      passProps:{}
+      name: 'NewSearch' //,
+      //passProps:{
+      //  navigator:navigator,
+      //}
     })
   }
 };

@@ -8,11 +8,11 @@ export default class SearchesListItem extends Component {
   render() {
     const search = this.props.search;
     const searches = this.props.searches;
-    const navigator = this.props.navigator
-    const visitResultsPage = this.visitResultsPage;
+    const navigator = this.props.navigator;
+    const showResults = this.showResults;
     return (
       <ListItem style={{height:85}}>
-        <Button transparent onPress={function(){visitResultsPage(navigator, searches, search)}}>
+        <Button transparent onPress={function(){showResults(navigator, searches, search)}}>
           <Icon name='md-search' style={{left:5, top:10}}/>
           <Text style={{left:10}}>{ abbrevSearchTitle(search) }</Text>
           <Text>{ search.day }</Text>
@@ -22,8 +22,8 @@ export default class SearchesListItem extends Component {
     );
   }
 
-  visitResultsPage(navigator, searches, search){
-    console.log("VISIT RESULTS PAGE", search)
+  showResults(navigator, searches, search){
+    console.log("VISIT SEARCH RESULTS PAGE", search)
     navigator.push({
       name: 'SearchResults',
       passProps:{

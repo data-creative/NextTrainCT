@@ -3,7 +3,7 @@ import {AppRegistry, Navigator} from 'react-native';
 
 import SearchesIndex from "./components/searches/Index";
 import SearchesNew from "./components/searches/New";
-import ResultsIndex from "./components/results/Index";
+import SearchesShow from "./components/searches/Show";
 
 class App extends Component {
   render(){
@@ -26,20 +26,20 @@ class App extends Component {
         return <SearchesNew navigator={navigator} {...route.passProps}  />
         break;
       case 'SearchResults':
-        return <ResultsIndex navigator={navigator} {...route.passProps}  />
+        return <SearchesShow navigator={navigator} {...route.passProps}  />
         break;
     };
   }
 
-  //configureScene(route, routeStack){
-  //  switch (route.type) {
-  //    case 'Back':
-  //      return Navigator.SceneConfigs.FloatFromLeft;
-  //      break;
-  //    default:
-  //      return Navigator.SceneConfigs.PushFromRight;
-  //    };
-  //}
+  configureScene(route, routeStack){
+    switch (route.type) {
+      case 'Back':
+        return Navigator.SceneConfigs.FloatFromLeft;
+        break;
+      default:
+        return Navigator.SceneConfigs.PushFromRight;
+      };
+  }
 
   componentWillMount(){  console.log("APP WILL MOUNT")  }
   componentDidMount(){  console.log("APP DID MOUNT")  }
