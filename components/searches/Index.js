@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
-import {Container, Header, Title, Content, Footer, Button, Icon} from 'native-base';
+import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
 import {searches} from "../../data/searches"
 import SearchesList from "./List"
+import SearchesCardList from "./CardList"
 
 const styles = StyleSheet.create({
   text:{
@@ -36,6 +37,8 @@ export default class SearchesIndex extends Component {
     const welcomeMessage = "Search trains using the button below."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
     const searchesList = <SearchesList searches={ searches } navigator={this.props.navigator}/>
+    const searchesCardList = <SearchesCardList searches={searches} navigator={this.props.navigator}/>
+
     const navigator = this.props.navigator;
     return (
       <Container>
@@ -44,7 +47,7 @@ export default class SearchesIndex extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          { searches.length > 0 ? searchesList : welcomeText }
+          { searches.length > 0 ? searchesCardList : welcomeText }
         </Content>
 
         <Footer transparent style={styles.footer}>
