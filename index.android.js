@@ -20,13 +20,13 @@ class App extends Component {
   renderScene(route, navigator) {
     switch (route.name) {
       case 'Searches':
-        return <SearchesIndex navigator={navigator} {...route.passProps}  />
+        return <SearchesIndex navigator={navigator} {...route.params}  />
         break;
       case 'NewSearch':
-        return <SearchesNew navigator={navigator} {...route.passProps}  />
+        return <SearchesNew navigator={navigator} {...route.params}  />
         break;
       case 'SearchResults':
-        return <SearchesShow navigator={navigator} {...route.passProps}  />
+        return <SearchesShow navigator={navigator} {...route.params}  />
         break;
     };
   }
@@ -36,8 +36,11 @@ class App extends Component {
       case 'Back':
         return Navigator.SceneConfigs.FloatFromLeft;
         break;
+      case 'Modal':
+        return Navigator.SceneConfigs.FloatFromBottomAndroid;
+        break;
       default:
-        return Navigator.SceneConfigs.PushFromRight;
+        return Navigator.SceneConfigs.FadeAndroid;
       };
   }
 

@@ -3,11 +3,14 @@
 import {stationTitle, findStationByAbbrev} from "./stations"
 
 const searches = [
-  {"id":9996, "sort":1, "origin":"BNF", "destination":"NHV", "day":"thursday"},
-  {"id":7274, "sort":2, "origin":"NHV", "destination":"BOS", "day":"thursday"},
-  {"id":2345, "sort":3, "origin":"BNF", "destination":"NHV", "day":"today"},
-  {"id":3454, "sort":4, "origin":"GLF", "destination":"OSB", "day":"tomorrow"},
-  {"id":1123, "sort":5, "origin":"BNF", "destination":"MAD", "day":"2016-09-29"}
+  {"id":1111, "origin":"BNF", "destination":"NHV", "day":"today"},
+  {"id":2222, "origin":"BNF", "destination":"NHV", "day":"today"},
+  {"id":3333, "origin":"GLF", "destination":"OSB", "day":"tomorrow"},
+  {"id":4444, "origin":"BNF", "destination":"NHV", "day":"thursdays"},
+  {"id":5555, "origin":"NHV", "destination":"BOS", "day":"thursdays"},
+  {"id":6666, "origin":"BNF", "destination":"MAD", "day":"2016-09-29"},
+  {"id":7777, "origin":"BNF", "destination":"GLF", "day":"2016-09-29"},
+  {"id":8888, "origin":"NHV", "destination":"GCT", "day":"tomorrow"}
 ];
 
 function searchTitleAbbrevs(search){

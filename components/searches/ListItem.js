@@ -10,18 +10,19 @@ export default class SearchesListItem extends Component {
     const searches = this.props.searches;
     const navigator = this.props.navigator;
     const goShow = this.goShow;
+    const arrowIcon = <Icon name='md-arrow-forward' style={{left:5, top:10}}/>
 
     return (
-      <ListItem style={{height:85}}>
+      <ListItem iconRight style={{height:85}}>
         <Button transparent onPress={function(){goShow(navigator, searches, search)}}>
-          <Text style={{left:10}}>{ searchTitleNames(search) }</Text>
-          <Icon name='md-arrow-forward' style={{left:5, top:10}}/>
+          <Text style={{left:10, fontSize:56}}>{ searchTitleNames(search) }</Text>
+          {arrowIcon}
         </Button>
       </ListItem>
     );
   }
 
   goShow(navigator, searches, search){
-    navigator.push({name: 'SearchResults', passProps:{searches: searches, search: search}})
+    navigator.push({name: 'SearchResults', params:{searches: searches, search: search}})
   }
 };
