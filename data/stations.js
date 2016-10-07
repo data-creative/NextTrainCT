@@ -10,17 +10,19 @@ const stations = [
   {"id":7, "abbrev":"MAD", "name":"Madison"}
 ];
 
-function findStation(stationAbbrev){
+function findStationByAbbrev(stationAbbrev){
   var station = stations.find(function(station){ return station.abbrev == stationAbbrev})
   console.log("FIND", stationAbbrev, station)
   return station
 }
-function stationTitle(stationAbbrev){
-  var station = findStation(stationAbbrev)
+
+function stationTitleFull(stationAbbrev){
+  var station = findStationByAbbrev(stationAbbrev)
   return station.name + " (" + station.abbrev + ")"
 }
 
 module.exports = {
   stations,
-  stationTitle
+  findStationByAbbrev,
+  stationTitleFull
 }

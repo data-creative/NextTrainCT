@@ -1,5 +1,7 @@
 "use strict";
 
+import {stationTitle, findStationByAbbrev} from "./stations"
+
 const searches = [
   {"id":9996, "sort":1, "origin":"BNF", "destination":"NHV", "day":"thursday"},
   {"id":7274, "sort":2, "origin":"NHV", "destination":"BOS", "day":"thursday"},
@@ -8,16 +10,29 @@ const searches = [
   {"id":1123, "sort":5, "origin":"BNF", "destination":"MAD", "day":"2016-09-29"}
 ];
 
-function abbrevSearchTitle(search){
-  //console.log (typeof(search.origin), search.origin, typeof(search.destination), search.destination)
+function searchTitleAbbrevs(search){
   return search.origin + " to " + search.destination
 };
 
-function searchTitle(search){
-  return this.stationTitle(search.origin) + " to " + this.stationTitle(search.destination)
+function searchTitleFull(search){
+  return stationTitle(search.origin) + " to " + stationTitle(search.destination)
 };
 
-module.exports = {searches,
-  abbrevSearchTitle,
-  searchTitle
+function searchTitleNames(search){
+  return originStation(search).name + " to " + destinationStation(search).name
+};
+
+function originStation(search){
+  return findStationByAbbrev(search.origin)
+}
+
+function destinationStation(search){
+  return findStationByAbbrev(search.destination)
+}
+
+module.exports = {
+  searches,
+  searchTitleAbbrevs,
+  searchTitleNames,
+  searchTitleFull
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon} from 'native-base';
-import {abbrevSearchTitle} from "../../data/searches"
+import {searchTitleAbbrevs} from "../../data/searches"
 
 export default class SearchesShow extends Component {
   render() {
@@ -19,7 +19,7 @@ export default class SearchesShow extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          <Text>{abbrevSearchTitle(search)}</Text>
+          <Text>{searchTitleAbbrevs(search)}</Text>
           <Text>todo: list trains</Text>
         </Content>
       </Container>
