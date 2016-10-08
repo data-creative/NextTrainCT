@@ -22,7 +22,7 @@ function searchTitleFull(search){
 };
 
 function searchTitleNames(search){
-  return originStation(search).name + " to " + destinationStation(search).name
+  return originStation(search).name.toUpperCase() + " to " + destinationStation(search).name.toUpperCase()
 };
 
 function originStation(search){
