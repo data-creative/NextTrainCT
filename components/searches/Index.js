@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
-import {searches} from "../../app/models/route"
-import SearchesList from "./List"
 import SearchesCardList from "./CardList"
+
+const myRoutes = [
+  {"id":1111, "origin":"BNF", "destination":"NHV"},
+  {"id":2222, "origin":"NHV", "destination":"BNF"},
+  {"id":3333, "origin":"GLF", "destination":"OSB"}
+];
 
 const styles = StyleSheet.create({
   text:{
@@ -26,18 +30,17 @@ export default class SearchesIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searches: searches, //[],
+      routes: myRoutes, //[],
       title:"NextTrain CT"
     }
     this.goNew = this.goNew.bind(this);
   }
 
   render() {
-    const searches = this.state.searches
+    const routes = this.state.routes
     const welcomeMessage = "Search trains using the button below."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    const searchesList = <SearchesList searches={ searches } navigator={this.props.navigator}/>
-    const searchesCardList = <SearchesCardList searches={searches} navigator={this.props.navigator}/>
+    const searchesCardList = <SearchesCardList routes={routes} navigator={this.props.navigator}/>
 
     const navigator = this.props.navigator;
     return (
@@ -47,7 +50,7 @@ export default class SearchesIndex extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          { searches.length > 0 ? searchesCardList : welcomeText }
+          { routes.length > 0 ? searchesCardList : welcomeText }
         </Content>
 
         <Footer transparent style={styles.footer}>

@@ -5,8 +5,8 @@ import {searchTitleAbbrevs} from "../../app/models/route"
 
 export default class SearchesShow extends Component {
   render() {
-    const search = this.props.search;
-    const searches = this.props.searches;
+    const route = this.props.route;
+    const routes = this.props.routes;
     const navigator = this.props.navigator;
     const goBack = this.goBack;
     return (
@@ -19,7 +19,7 @@ export default class SearchesShow extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          <Text>{searchTitleAbbrevs(search)}</Text>
+          <Text>{searchTitleAbbrevs(route)}</Text>
           <Text>todo: list trains</Text>
         </Content>
       </Container>

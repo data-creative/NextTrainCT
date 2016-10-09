@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, ScrollView} from 'react-native';
 import {Card, CardItem, Icon, Button, Thumbnail} from 'native-base';
-import SearchesListItem from "./ListItem"
 import {findStationByAbbrev} from "../../app/models/station"
 
 const styles = StyleSheet.create({
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
 export default class SearchesList extends Component {
   render() {
     const goShow = this.goShow
-    const routes = this.props.searches
+    const routes = this.props.routes
     const navigator = this.props.navigator
     return (
       <Card>
@@ -78,7 +77,7 @@ export default class SearchesList extends Component {
 
 
 
-  goShow(navigator, searches, search){
-    navigator.push({name: 'SearchResults', params:{searches: searches, search: search}})
+  goShow(navigator, routes, route){
+    navigator.push({name: 'SearchResults', params:{routes: routes, route: route}})
   }
 };

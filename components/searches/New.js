@@ -12,7 +12,7 @@ export default class SearchesNew extends Component {
           <Button transparent onPress={function(){ goBack(navigator) }}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>{"New Search"}</Title>
+          <Title>{"Choose a favorite route"}</Title>
         </Header>
 
         <Content style={{margin:20}}>
