@@ -7,7 +7,8 @@ const stations = [
   {"id":4, "abbrev":"GLF", "name":"Guilford"},
   {"id":5, "abbrev":"BOS", "name":"Boston South"},
   {"id":6, "abbrev":"OSB", "name":"Old Saybrook"},
-  {"id":7, "abbrev":"MAD", "name":"Madison"}
+  {"id":7, "abbrev":"MAD", "name":"Madison"},
+  {"id":8, "abbrev":"NHS", "name":"New Haven State"}
 ];
 
 function findStationByAbbrev(stationAbbrev){
