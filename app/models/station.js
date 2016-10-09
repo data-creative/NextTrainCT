@@ -13,7 +13,7 @@ const stations = [
 
 function findStationByAbbrev(stationAbbrev){
   var station = stations.find(function(station){ return station.abbrev == stationAbbrev})
-  console.log("FIND", stationAbbrev, station)
+  //console.log("FIND", stationAbbrev, station)
   return station
 }
 

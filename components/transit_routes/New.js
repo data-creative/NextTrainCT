@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text} from 'react-native';
 import {Container, Header, Button, Icon, Title, Content} from 'native-base';
 
-export default class NewRoute extends Component {
+export default class NewTransitRoute extends Component {
   render() {
     const goBack = this.goBack;
     const navigator = this.props.navigator;
@@ -16,8 +16,9 @@ export default class NewRoute extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          <Text>ORIGIN STATION PICKER</Text>
-          <Text>DESTINATION STATION PICKER</Text>
+          <Text style={{marginTop:5, marginBottom:5}}>TODO: ORIGIN-STATION PICKER</Text>
+          <Text style={{marginTop:5, marginBottom:5}}>TODO: DESTINATION-STATION PICKER</Text>
+          <Button block primary style={{marginTop:5}}> Submit </Button>
         </Content>
       </Container>
     );

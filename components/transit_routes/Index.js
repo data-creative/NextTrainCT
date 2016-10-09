@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class RoutesIndex extends Component {
+export default class TransitRoutesIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -63,7 +63,7 @@ export default class RoutesIndex extends Component {
   }
 
   goNew(){
-    this.props.navigator.push({name: 'NEW_ROUTE'})
+    this.props.navigator.push({name: 'NEW_TRANSIT_ROUTE'})
   }
 
   componentWillMount(){  console.log("INDEX WILL MOUNT")  }

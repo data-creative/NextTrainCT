@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class RoutesList extends Component {
+export default class TransitRoutesList extends Component {
   render() {
     const goShow = this.goShow
     const routes = this.props.routes
