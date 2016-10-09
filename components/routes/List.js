@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class SearchesList extends Component {
+export default class RoutesList extends Component {
   render() {
     const goShow = this.goShow
     const routes = this.props.routes
@@ -75,9 +75,7 @@ export default class SearchesList extends Component {
     );
   }
 
-
-
   goShow(navigator, routes, route){
-    navigator.push({name: 'SearchResults', params:{routes: routes, route: route}})
+    navigator.push({name: 'TRAINS', params:{routes: routes, route: route}})
   }
 };

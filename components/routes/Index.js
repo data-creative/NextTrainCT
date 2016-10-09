@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
-import SearchesCardList from "./CardList"
+import RouteList from "./List"
 
 const myRoutes = [
   {"id":1111, "origin":"BNF", "destination":"NHV"},
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class SearchesIndex extends Component {
+export default class RoutesIndex extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -38,9 +38,9 @@ export default class SearchesIndex extends Component {
 
   render() {
     const routes = this.state.routes
-    const welcomeMessage = "Search trains using the button below."
+    const welcomeMessage = "This page displays your favorite train routes. Tap the button below to add a new one."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    const searchesCardList = <SearchesCardList routes={routes} navigator={this.props.navigator}/>
+    const routeList = <RouteList routes={routes} navigator={this.props.navigator}/>
 
     const navigator = this.props.navigator;
     return (
@@ -50,7 +50,7 @@ export default class SearchesIndex extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          { routes.length > 0 ? searchesCardList : welcomeText }
+          { routes.length > 0 ? routeList : welcomeText }
         </Content>
 
         <Footer transparent style={styles.footer}>
@@ -63,8 +63,7 @@ export default class SearchesIndex extends Component {
   }
 
   goNew(){
-    console.log("VISIT NEW SEARCH PAGE")
-    this.props.navigator.push({name: 'NewSearch'})
+    this.props.navigator.push({name: 'NEW_ROUTE'})
   }
 
   componentWillMount(){  console.log("INDEX WILL MOUNT")  }

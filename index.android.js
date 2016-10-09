@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 import {AppRegistry, Navigator} from 'react-native';
 
-import SearchesIndex from "./components/searches/Index";
-import SearchesNew from "./components/searches/New";
-import SearchesShow from "./components/searches/Show";
+import RoutesIndex from "./components/routes/Index";
+import NewRoute from "./components/routes/New";
+import TrainsIndex from "./components/trains/Index";
 
 class App extends Component {
   render(){
     return (
       <Navigator style={{ flex:1 }}
-        initialRoute={{ name: 'Searches' }}
+        initialRoute={{ name: 'ROUTES' }}
         renderScene={ this.renderScene }
         configureScene={ this.configureScene }
       />
     );
   }
 
-  // todo: iterate over a hash of routes and actions
-  renderScene(route, navigator) {
-    switch (route.name) {
-      case 'Searches':
-        return <SearchesIndex navigator={navigator} {...route.params}  />
+  // todo: iterate over a hash of nav routes and actions
+  renderScene(navRoute, navigator) {
+    switch (navRoute.name) {
+      case 'ROUTES':
+        return <RoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
-      case 'NewSearch':
-        return <SearchesNew navigator={navigator} {...route.params}  />
+      case 'NEW_ROUTE':
+        return <NewRoute navigator={navigator} {...navRoute.params}  />
         break;
-      case 'SearchResults':
-        return <SearchesShow navigator={navigator} {...route.params}  />
+      case 'TRAINS':
+        return <TrainsIndex navigator={navigator} {...navRoute.params}  />
         break;
     };
   }
 
-  configureScene(route, routeStack){
-    switch (route.type) {
+  configureScene(navRoute, navRouteStack){
+    switch (navRoute.transition) {
       case 'Back':
         return Navigator.SceneConfigs.FloatFromLeft;
         break;

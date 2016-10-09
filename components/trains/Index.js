@@ -3,7 +3,7 @@ import {Text} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon} from 'native-base';
 import {searchTitleAbbrevs} from "../../app/models/route"
 
-export default class SearchesShow extends Component {
+export default class TrainsIndex extends Component {
   render() {
     const route = this.props.route;
     const routes = this.props.routes;
@@ -15,7 +15,7 @@ export default class SearchesShow extends Component {
           <Button transparent onPress={function(){ goBack(navigator) }}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>{"Search Results" }</Title>
+          <Title>{"Trains from ABC to XYZ" }</Title>
         </Header>
 
         <Content style={{margin:20}}>
