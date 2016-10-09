@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
-import {searches} from "../../data/searches"
+import {searches} from "../../app/models/route"
 import SearchesList from "./List"
 import SearchesCardList from "./CardList"
 

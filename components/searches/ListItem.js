@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native'
 import {ListItem, Button, Icon} from 'native-base';
-import {searchTitleNames} from "../../data/searches"
+import {searchTitleNames} from "../../app/models/route"
 
 export default class SearchesListItem extends Component {
 

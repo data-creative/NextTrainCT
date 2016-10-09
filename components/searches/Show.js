@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon} from 'native-base';
-import {searchTitleAbbrevs} from "../../data/searches"
+import {searchTitleAbbrevs} from "../../app/models/route"
 
 export default class SearchesShow extends Component {
   render() {

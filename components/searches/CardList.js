@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, StyleSheet, ScrollView} from 'react-native';
 import {Card, CardItem, Icon, Button, Thumbnail} from 'native-base';
 import SearchesListItem from "./ListItem"
-import {findStationByAbbrev} from "../../data/stations"
+import {findStationByAbbrev} from "../../app/models/station"
 
 const styles = StyleSheet.create({
   cardItem:{

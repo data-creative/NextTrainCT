@@ -1,6 +1,6 @@
 "use strict";
 
-import {stationTitle, findStationByAbbrev} from "./stations"
+import {stationTitle, findStationByAbbrev} from "./route"
 
 const searches = [
   {"id":1111, "origin":"BNF", "destination":"NHV"},
