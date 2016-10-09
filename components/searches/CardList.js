@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     fontSize:16
   },
   buttonList:{
-    alignSelf:'flex-end'
+    //alignSelf:'flex-end'
   },
   button:{
     //borderWidth:1, borderColor:'#ccc', borderStyle:'solid',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     height:30,
   },
   buttonText:{
-    color:'#5067FF',
+    color: '#7a7a7a', //'#5067FF',
     //fontStyle:'italic'
     textDecorationLine:'underline'
   }
