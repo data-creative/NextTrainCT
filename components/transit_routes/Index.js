@@ -4,9 +4,11 @@ import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem}
 import RouteList from "./List"
 
 const myRoutes = [
-  {"id":1111, "origin":"BNF", "destination":"NHV"},
-  {"id":2222, "origin":"NHV", "destination":"BNF"},
-  {"id":3333, "origin":"GLF", "destination":"OSB"}
+  {"id":1111, "origin":"BRN", "destination":"NHV"},
+  {"id":2222, "origin":"NHV", "destination":"BRN"},
+  {"id":3333, "origin":"GUIL", "destination":"OSB"},
+  {"id":4444, "origin":"GCS", "destination":"NHV"},
+  {"id":5555, "origin":"ST", "destination":"NHV"}
 ];
 
 const styles = StyleSheet.create({
