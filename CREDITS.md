@@ -30,6 +30,7 @@
   + https://facebook.github.io/react-native/docs/flexbox.html
   + https://facebook.github.io/react-native/docs/view.html
   + https://facebook.github.io/react-native/docs/text.html
+  + https://facebook.github.io/react-native/docs/picker.html
   + http://www.color-hex.com/
   + http://nativebase.io/docs/v0.5.7/getting-started
   + http://nativebase.io/docs/v0.5.7/cheatsheet

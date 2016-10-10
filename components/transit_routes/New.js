@@ -1,15 +1,16 @@
-
-
 import React, {Component} from 'react';
 import {Text} from 'react-native';
 import {Container, Header, Button, Icon, Title, Content, Picker} from 'native-base';
+
+import {stations} from "../../app/models/station"
+//import {StationPicker} from "../stations/Picker"
 
 export default class NewTransitRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOrigin: 'key2',
-      selectedDestination: 'key3',
+      originAbbrev: 'GCS',
+      destinationAbbrev: 'NHV',
     }
   }
 
@@ -26,47 +27,44 @@ export default class NewTransitRoute extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-
-          <Text style={{fontWeight:'bold', fontSize:16}}>
-            {"ORIGIN STATION:"}
-          </Text>
-          <Picker style={{marginTop:5, marginBottom:5}}
-                  mode="dropdown"
-                  selectedValue={this.state.selectedOrigin}
-                  onValueChange={this.onOriginValueChange.bind(this)}>
-            <Picker.Item selected label="Branford" value="key0" />
-            <Picker.Item label="Guilford" value="key1" />
-            <Picker.Item label="New Haven Union" value="key2" />
-            <Picker.Item label="New Haven State" value="key3" />
+          <Text style={{fontWeight:'bold', fontSize:16}}>{"FROM:"}</Text>
+          <Picker
+            style={{marginTop:5, marginBottom:5}}
+            mode="dropdown"
+            selectedValue={this.state.originAbbrev}
+            onValueChange={this.onOriginValueChange.bind(this)}>
+            {
+              stations.map(function(station){
+                return <Picker.Item key={station.id} value={station.abbrev} label={station.name} />
+              })
+            }
           </Picker>
 
-          <Text style={{marginTop:15, fontWeight:'bold', fontSize:16}}>
-            {"DESTINATION STATION:"}
-          </Text>
-          <Picker style={{marginTop:5, marginBottom:5}}
-                  mode="dropdown"
-                  selectedValue={this.state.selectedDestination}
-                  onValueChange={this.onDestinationValueChange.bind(this)}>
-            <Picker.Item label="Hello" value="key0" />
-            <Picker.Item label="Dogs" value="key1" />
-            <Picker.Item selected label="Birds" value="key2" />
-            <Picker.Item label="Elephants" value="key3" />
+          <Text style={{marginTop:15, fontWeight:'bold', fontSize:16}}>{"TO:"}</Text>
+          <Picker
+            style={{marginTop:5, marginBottom:5}}
+            mode="dropdown"
+            selectedValue={this.state.destinationAbbrev}
+            onValueChange={this.onDestinationValueChange.bind(this)}>
+            {
+              stations.map(function(station){
+                return <Picker.Item key={station.id} value={station.abbrev} label={station.name} />
+              })
+            }
           </Picker>
 
-          <Button block primary style={{marginTop:15}}>
-            Save
-          </Button>
+          <Button block primary style={{marginTop:15}}>{"Save"}</Button>
         </Content>
       </Container>
     );
   }
 
   onOriginValueChange(val){
-    this.setState({selectedOrigin: val});
+    this.setState({originAbbrev: val});
   }
 
   onDestinationValueChange(val){
-    this.setState({selectedDestination: val});
+    this.setState({destinationAbbrev: val});
   }
 
   goBack(navigator){

@@ -9,7 +9,7 @@ class App extends Component {
   render(){
     return (
       <Navigator style={{ flex:1 }}
-        initialRoute={{ name: 'TRANSIT_ROUTES' }}
+        initialRoute={{ name: 'NEW_TRANSIT_ROUTE' }}
         renderScene={ this.renderScene }
         configureScene={ this.configureScene }
       />
