@@ -1,3 +1,4 @@
+var d3 = require("d3");
 import React, {Component} from 'react';
 import {Text} from 'react-native';
 import {Container, Header, Button, Icon, Title, Content, Picker} from 'native-base';
@@ -11,6 +12,9 @@ export default class NewTransitRoute extends Component {
     this.state = {
       originAbbrev: 'GCS',
       destinationAbbrev: 'NHV',
+      stations: stations.sort(function(a, b){
+        return d3.ascending(a.name, b.name)
+      })
     }
   }
 
@@ -34,7 +38,7 @@ export default class NewTransitRoute extends Component {
             selectedValue={this.state.originAbbrev}
             onValueChange={this.onOriginValueChange.bind(this)}>
             {
-              stations.map(function(station){
+              this.state.stations.map(function(station){
                 return <Picker.Item key={station.id} value={station.abbrev} label={station.name} />
               })
             }
@@ -47,7 +51,7 @@ export default class NewTransitRoute extends Component {
             selectedValue={this.state.destinationAbbrev}
             onValueChange={this.onDestinationValueChange.bind(this)}>
             {
-              stations.map(function(station){
+              this.state.stations.map(function(station){
                 return <Picker.Item key={station.id} value={station.abbrev} label={station.name} />
               })
             }
@@ -75,7 +79,7 @@ export default class NewTransitRoute extends Component {
   componentDidMount(){  console.log("NEW DID MOUNT")  }
   componentWillReceiveProps(nextProps){  console.log("NEW WILL RECEIVE PROPS")  }
   componentWillUpdate(nextProps, nextState){
-    console.log("NEW WILL UPDATE", nextState)
+    console.log("NEW WILL UPDATE", nextState.originAbbrev, nextState.destinationAbbrev)
   }
   componentDidUpdate(prevProps, prevState){  console.log("NEW DID UPDATE")  }
   componentWillUnmount(){  console.log("NEW WILL UNMOUNT")  }
