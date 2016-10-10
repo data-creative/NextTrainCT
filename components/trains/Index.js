@@ -8,9 +8,9 @@ const searchResults = {
   schedulePostedOn:"2016-01-01",
   trains:[
     {id:1, departure: "10:30am", arrival:"10:45am"},
-    {id:2, departure: "11:23am", arrival:"11:38"},
-    {id:3, departure: "1:15pm", arrival:"1:30"},
-    {id:4, departure: "5:45am", arrival:"6:00am"}
+    {id:2, departure: "11:23am", arrival:"11:38am"},
+    {id:3, departure: "1:15pm", arrival:"1:30pm"},
+    {id:4, departure: "5:45pm", arrival:"6:00pm"}
   ]
 }
 
@@ -21,6 +21,7 @@ export default class TrainsIndex extends Component {
     const navigator = this.props.navigator;
     const goBack = this.goBack;
     const trains = searchResults.trains;
+    const nextTrainBadge = <Text>departs in 5 mins</Text>
 
     return (
       <Container>
@@ -33,9 +34,9 @@ export default class TrainsIndex extends Component {
 
         <Content style={{margin:20}}>
           <Text style={{marginTop:10, fontSize:16, marginBottom:5 /* textAlign:'center' */}}>
-            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
+            {/*<Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
               {"from  "}
-            </Text>
+            </Text>*/}
             <Text style={{fontWeight:'bold'}}>
               { findStationByAbbrev(route.origin).name.toUpperCase() }
             </Text>
@@ -46,7 +47,7 @@ export default class TrainsIndex extends Component {
               { findStationByAbbrev(route.destination).name.toUpperCase() }
             </Text>
           </Text>
-          <Text style={{marginBottom:10}}>
+          <Text style={{marginBottom:10, textAlign:'left'}}>
             <Text style={{fontStyle:'italic', fontSize:12}}>
               {"departing  "}
             </Text>
@@ -60,7 +61,8 @@ export default class TrainsIndex extends Component {
               return (
                 <ListItem iconLeft key={train.id} style={{height:60}}>
                     <Icon name='md-train' style={{marginRight:10, color:'#282828'}}/>
-                    <Text>{train.arrival + " to " + train.departure}</Text>
+                    <Text>{train.departure + " to " + train.arrival}</Text>
+                    {  nextTrainBadge }
                 </ListItem>
               )
             })}
