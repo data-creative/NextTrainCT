@@ -6,17 +6,16 @@ import StationPicker from "../stations/Picker"
 export default class NewTransitRoute extends Component {
   constructor(props) {
     super(props);
-    this.state = {origin: 'GCS', destination: 'NHV'}
+    this.state = {origin: 'GCS', destination: 'NHV'};
+    this.goBack = this.goBack.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
-    const goBack = this.goBack;
-    const navigator = this.props.navigator;
-
     return (
       <Container>
         <Header>
-          <Button transparent onPress={function(){ goBack(navigator) }}>
+          <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
           <Title>{"Choose a favorite route"}</Title>
@@ -33,7 +32,9 @@ export default class NewTransitRoute extends Component {
             selectedValue={this.state.destination}
             onValueChange={this.selectDestination.bind(this)} />
 
-          <Button block primary style={{marginTop:15}}>{"Save"}</Button>
+          <Button block primary style={{marginTop:15}} onPress={ this.handleSubmit }>
+            {"Save"}
+          </Button>
         </Content>
       </Container>
     );
@@ -47,16 +48,24 @@ export default class NewTransitRoute extends Component {
     this.setState({destination: val});
   }
 
-  goBack(navigator){
-    navigator.pop();
+  goBack(){
+    this.props.navigator.pop();
+  }
+
+  handleSubmit(){
+    console.log("SAVE ME! SAVE ME! SAVE ME! AJAX. SPINNER.")
+    this.props.navigator.push({
+      name:'CREATE_TRANSIT_ROUTE',
+      params:{
+        transitRoute:{origin: this.state.origin, destination: this.state.destination}
+      }
+    });
   }
 
   componentWillMount(){  console.log("NEW WILL MOUNT")  }
   componentDidMount(){  console.log("NEW DID MOUNT")  }
-  componentWillReceiveProps(nextProps){  console.log("NEW WILL RECEIVE PROPS", nextProps)  }
-  componentWillUpdate(nextProps, nextState){
-    console.log("NEW WILL UPDATE", nextState.origin, nextState.destination)
-  }
+  componentWillReceiveProps(nextProps){  console.log("NEW WILL RECEIVE PROPS")  }
+  componentWillUpdate(nextProps, nextState){  console.log("NEW WILL UPDATE", nextState.origin, nextState.destination)  }
   componentDidUpdate(prevProps, prevState){  console.log("NEW DID UPDATE")  }
   componentWillUnmount(){  console.log("NEW WILL UNMOUNT")  }
 };

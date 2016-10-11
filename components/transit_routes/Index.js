@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
-import RouteList from "./List"
+import TransitRoutesList from "./List"
 
 const myRoutes = [
   {"id":1111, "origin":"BRN", "destination":"NHV"},
@@ -31,20 +31,25 @@ const styles = StyleSheet.create({
 export default class TransitRoutesIndex extends Component {
   constructor(props){
     super(props)
+
+    var transitRoutes = []
+    if (props.transitRoute) {
+      props.transitRoute["id"] = Date.now() // fake save
+      transitRoutes.push(props.transitRoute)
+    } // passed-in from post-save redirect
+
     this.state = {
-      routes: myRoutes, //[],
-      title:"NextTrain CT"
+      transitRoutes: transitRoutes,
+      title:"NextTrain CT",
     }
     this.goNew = this.goNew.bind(this);
   }
 
   render() {
-    const routes = this.state.routes
-    const welcomeMessage = "This page displays your favorite train routes. Tap the button below to add a new one."
+    const welcomeMessage = "Tap the button below to save a transit route."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    const routeList = <RouteList routes={routes} navigator={this.props.navigator}/>
+    const transitRoutesList = <TransitRoutesList routes={this.state.transitRoutes} navigator={this.props.navigator}/>
 
-    const navigator = this.props.navigator;
     return (
       <Container>
         <Header>
@@ -52,7 +57,7 @@ export default class TransitRoutesIndex extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          { routes.length > 0 ? routeList : welcomeText }
+          { this.state.transitRoutes.length > 0 ? transitRoutesList : welcomeText }
         </Content>
 
         <Footer transparent style={styles.footer}>
@@ -70,8 +75,12 @@ export default class TransitRoutesIndex extends Component {
 
   componentWillMount(){  console.log("INDEX WILL MOUNT")  }
   componentDidMount(){  console.log("INDEX DID MOUNT")  }
-  componentWillReceiveProps(nextProps){  console.log("INDEX WILL RECEIVE PROPS")  }
-  componentWillUpdate(nextProps, nextState){  console.log("INDEX WILL UPDATE")  }
+  componentWillReceiveProps(nextProps){
+    console.log("INDEX WILL RECEIVE PROPS", nextProps.transitRoute)
+  }
+  componentWillUpdate(nextProps, nextState){
+    console.log("INDEX WILL UPDATE", nextProps.transitRoute, nextState)
+  }
   componentDidUpdate(prevProps, prevState){  console.log("INDEX DID UPDATE")  }
   componentWillUnmount(){  console.log("INDEX WILL UNMOUNT")  }
 };

@@ -9,7 +9,7 @@ class App extends Component {
   render(){
     return (
       <Navigator style={{ flex:1 }}
-        initialRoute={{ name: 'NEW_TRANSIT_ROUTE' }}
+        initialRoute={{ name: 'TRANSIT_ROUTES' }}
         renderScene={ this.renderScene }
         configureScene={ this.configureScene }
       />
@@ -24,6 +24,9 @@ class App extends Component {
         break;
       case 'NEW_TRANSIT_ROUTE':
         return <NewTransitRoute navigator={navigator} {...navRoute.params}  />
+        break;
+      case 'CREATE_TRANSIT_ROUTE':
+        return <TransitRoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />
