@@ -1,26 +1,18 @@
-var d3 = require("d3");
 import React, {Component} from 'react';
 import {Text} from 'react-native';
-import {Container, Header, Button, Icon, Title, Content, Picker} from 'native-base';
-
-import {stations} from "../../app/models/station"
-//import {StationPicker} from "../stations/Picker"
+import {Container, Header, Button, Icon, Title, Content} from 'native-base';
+import StationPicker from "../stations/Picker"
 
 export default class NewTransitRoute extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      originAbbrev: 'GCS',
-      destinationAbbrev: 'NHV',
-      stations: stations.sort(function(a, b){
-        return d3.ascending(a.name, b.name)
-      })
-    }
+    this.state = {origin: 'GCS', destination: 'NHV'}
   }
 
   render() {
     const goBack = this.goBack;
     const navigator = this.props.navigator;
+
     return (
       <Container>
         <Header>
@@ -32,30 +24,14 @@ export default class NewTransitRoute extends Component {
 
         <Content style={{margin:20}}>
           <Text style={{fontWeight:'bold', fontSize:16}}>{"FROM:"}</Text>
-          <Picker
-            style={{marginTop:5, marginBottom:5}}
-            mode="dropdown"
-            selectedValue={this.state.originAbbrev}
-            onValueChange={this.onOriginValueChange.bind(this)}>
-            {
-              this.state.stations.map(function(station){
-                return <Picker.Item key={station.id} value={station.abbrev} label={station.name} />
-              })
-            }
-          </Picker>
+          <StationPicker style={{marginTop:5, marginBottom:5}}
+            selectedValue={this.state.origin}
+            onValueChange={this.selectOrigin.bind(this)} />
 
           <Text style={{marginTop:15, fontWeight:'bold', fontSize:16}}>{"TO:"}</Text>
-          <Picker
-            style={{marginTop:5, marginBottom:5}}
-            mode="dropdown"
-            selectedValue={this.state.destinationAbbrev}
-            onValueChange={this.onDestinationValueChange.bind(this)}>
-            {
-              this.state.stations.map(function(station){
-                return <Picker.Item key={station.id} value={station.abbrev} label={station.name} />
-              })
-            }
-          </Picker>
+          <StationPicker style={{marginTop:5, marginBottom:5}}
+            selectedValue={this.state.destination}
+            onValueChange={this.selectDestination.bind(this)} />
 
           <Button block primary style={{marginTop:15}}>{"Save"}</Button>
         </Content>
@@ -63,12 +39,12 @@ export default class NewTransitRoute extends Component {
     );
   }
 
-  onOriginValueChange(val){
-    this.setState({originAbbrev: val});
+  selectOrigin(val){
+    this.setState({origin: val});
   }
 
-  onDestinationValueChange(val){
-    this.setState({destinationAbbrev: val});
+  selectDestination(val){
+    this.setState({destination: val});
   }
 
   goBack(navigator){
@@ -77,9 +53,9 @@ export default class NewTransitRoute extends Component {
 
   componentWillMount(){  console.log("NEW WILL MOUNT")  }
   componentDidMount(){  console.log("NEW DID MOUNT")  }
-  componentWillReceiveProps(nextProps){  console.log("NEW WILL RECEIVE PROPS")  }
+  componentWillReceiveProps(nextProps){  console.log("NEW WILL RECEIVE PROPS", nextProps)  }
   componentWillUpdate(nextProps, nextState){
-    console.log("NEW WILL UPDATE", nextState.originAbbrev, nextState.destinationAbbrev)
+    console.log("NEW WILL UPDATE", nextState.origin, nextState.destination)
   }
   componentDidUpdate(prevProps, prevState){  console.log("NEW DID UPDATE")  }
   componentWillUnmount(){  console.log("NEW WILL UNMOUNT")  }
