@@ -3,7 +3,7 @@ import {Text} from 'react-native';
 import {Container, Header, Button, Icon, Title, Content} from 'native-base';
 import StationPicker from "../stations/Picker"
 
-export default class NewTransitRoute extends Component {
+export default class NewRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {origin: 'GCS', destination: 'NHV'};
@@ -55,9 +55,9 @@ export default class NewTransitRoute extends Component {
   handleSubmit(){
     console.log("SAVE ME! SAVE ME! SAVE ME! AJAX. SPINNER.")
     this.props.navigator.push({
-      name:'CREATE_TRANSIT_ROUTE',
+      name:'CREATE_ROUTE',
       params:{
-        transitRoute:{origin: this.state.origin, destination: this.state.destination}
+        route:{origin: this.state.origin, destination: this.state.destination}
       }
     });
   }

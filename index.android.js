@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {AppRegistry, Navigator} from 'react-native';
 
-import TransitRoutesIndex from "./components/transit_routes/Index";
-import NewTransitRoute from "./components/transit_routes/New";
+import RoutesIndex from "./components/routes/Index";
+import NewRoute from "./components/routes/New";
 import TrainsIndex from "./components/trains/Index";
 
 class App extends Component {
   render(){
     return (
       <Navigator style={{ flex:1 }}
-        initialRoute={{ name: 'TRANSIT_ROUTES' }}
+        initialRoute={{ name: 'ROUTES' }}
         renderScene={ this.renderScene }
         configureScene={ this.configureScene }
       />
@@ -19,14 +19,14 @@ class App extends Component {
   // todo: iterate over a hash of nav routes and actions
   renderScene(navRoute, navigator) {
     switch (navRoute.name) {
-      case 'TRANSIT_ROUTES':
-        return <TransitRoutesIndex navigator={navigator} {...navRoute.params}  />
+      case 'ROUTES':
+        return <RoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
-      case 'NEW_TRANSIT_ROUTE':
-        return <NewTransitRoute navigator={navigator} {...navRoute.params}  />
+      case 'NEW_ROUTE':
+        return <NewRoute navigator={navigator} {...navRoute.params}  />
         break;
-      case 'CREATE_TRANSIT_ROUTE':
-        return <TransitRoutesIndex navigator={navigator} {...navRoute.params}  />
+      case 'CREATE_ROUTE':
+        return <RoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />

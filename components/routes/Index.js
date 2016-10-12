@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
-import TransitRoutesList from "./List"
+import RoutesList from "./List"
 
 const myRoutes = [
   {"id":1111, "origin":"BRN", "destination":"NHV"},
@@ -28,18 +28,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class TransitRoutesIndex extends Component {
+export default class RoutesIndex extends Component {
   constructor(props){
     super(props)
 
-    var transitRoutes = []
-    if (props.transitRoute) {
-      props.transitRoute["id"] = Date.now() // fake save
-      transitRoutes.push(props.transitRoute)
+    var routes = []
+    if (props.route) {
+      props.route["id"] = Date.now() // fake save
+      routes.push(props.route)
     } // passed-in from post-save redirect
 
     this.state = {
-      transitRoutes: transitRoutes,
+      routes: routes,
       title:"NextTrain CT",
     }
     this.goNew = this.goNew.bind(this);
@@ -48,7 +48,7 @@ export default class TransitRoutesIndex extends Component {
   render() {
     const welcomeMessage = "Tap the button below to save a transit route."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    const transitRoutesList = <TransitRoutesList routes={this.state.transitRoutes} navigator={this.props.navigator}/>
+    const list = <RoutesList routes={this.state.routes} navigator={this.props.navigator}/>
 
     return (
       <Container>
@@ -57,7 +57,7 @@ export default class TransitRoutesIndex extends Component {
         </Header>
 
         <Content style={{margin:20}}>
-          { this.state.transitRoutes.length > 0 ? transitRoutesList : welcomeText }
+          { this.state.routes.length > 0 ? list : welcomeText }
         </Content>
 
         <Footer transparent style={styles.footer}>
@@ -70,16 +70,16 @@ export default class TransitRoutesIndex extends Component {
   }
 
   goNew(){
-    this.props.navigator.push({name: 'NEW_TRANSIT_ROUTE'})
+    this.props.navigator.push({name: 'NEW_ROUTE'})
   }
 
   componentWillMount(){  console.log("INDEX WILL MOUNT")  }
   componentDidMount(){  console.log("INDEX DID MOUNT")  }
   componentWillReceiveProps(nextProps){
-    console.log("INDEX WILL RECEIVE PROPS", nextProps.transitRoute)
+    console.log("INDEX WILL RECEIVE PROPS", nextProps.route)
   }
   componentWillUpdate(nextProps, nextState){
-    console.log("INDEX WILL UPDATE", nextProps.transitRoute, nextState)
+    console.log("INDEX WILL UPDATE", nextProps.route, nextState)
   }
   componentDidUpdate(prevProps, prevState){  console.log("INDEX DID UPDATE")  }
   componentWillUnmount(){  console.log("INDEX WILL UNMOUNT")  }
