@@ -2,21 +2,25 @@
 
 var stations = require('../../data/stations.json');
 
-function findStationByAbbrev(stationAbbrev){
-  var station = stations.find(function(station){ return station.abbrev == stationAbbrev})
-  if (typeof(station) == "undefined"){
-    console.error("UNABLE TO FIND STATION -- " + stationAbbrev)
-  } // else { console.log("FIND", stationAbbrev, station) }
-  return station
-}
+export default class Station {
+  constructor(props) {
+    this.id = props.id;
+    this.abbrev = props.abbrev;
+    this.name = props.name;
+    this.latitude = props.latitude;
+    this.longitude = props.longitude;
+    this.url = props.url;
+  }
 
-function stationTitleFull(stationAbbrev){
-  var station = findStationByAbbrev(stationAbbrev)
-  return station.name + " (" + station.abbrev + ")"
-}
+  static all(){
+    return stations.map(function(station){
+      return new Station(station)
+    });
+  }
 
-module.exports = {
-  stations,
-  findStationByAbbrev,
-  stationTitleFull
-}
+  static findByAbbrev(abbrev){
+    var station = Station.all().find(function(station){ return station.abbrev == abbrev} )
+    if (typeof(station) == "undefined"){ console.error("UNABLE TO FIND STATION -- " + abbrev); }
+    return station
+  }
+};

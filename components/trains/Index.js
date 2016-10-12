@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon, List, ListItem} from 'native-base';
-import {findStationByAbbrev} from "../../app/models/station"
+
+import Station from "../../app/models/station"
 
 const searchResults = {
   resultsAt:"8:11am",
@@ -38,13 +39,13 @@ export default class TrainsIndex extends Component {
               {"from  "}
             </Text>*/}
             <Text style={{fontWeight:'bold'}}>
-              { findStationByAbbrev(route.origin).name.toUpperCase() }
+              { Station.findByAbbrev(route.origin).name.toUpperCase() }
             </Text>
             <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
               {"  to  "}
             </Text>
             <Text style={{fontWeight:'bold'}}>
-              { findStationByAbbrev(route.destination).name.toUpperCase() }
+              { Station.findByAbbrev(route.destination).name.toUpperCase() }
             </Text>
           </Text>
           <Text style={{marginBottom:10, textAlign:'left'}}>

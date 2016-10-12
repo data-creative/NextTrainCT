@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, ScrollView} from 'react-native';
 import {Card, CardItem, Icon, Button, Thumbnail} from 'native-base';
-import {findStationByAbbrev} from "../../app/models/station"
+
+import Station from "../../app/models/station"
 
 const styles = StyleSheet.create({
   cardItem:{
@@ -40,13 +41,13 @@ export default class RoutesList extends Component {
             <CardItem key={route.id} style={styles.cardItem}>
                 <Text style={styles.cardItemTitle}>
                   <Text style={{fontWeight:'bold'}}>
-                    { findStationByAbbrev(route.origin).name.toUpperCase() }
+                    { Station.findByAbbrev(route.origin).name.toUpperCase() }
                   </Text>
                   <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
                     {"  to  "}
                   </Text>
                   <Text style={{fontWeight:'bold'}}>
-                    { findStationByAbbrev(route.destination).name.toUpperCase() }
+                    { Station.findByAbbrev(route.destination).name.toUpperCase() }
                   </Text>
                 </Text>
 

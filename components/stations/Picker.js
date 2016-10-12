@@ -1,13 +1,13 @@
 var d3 = require("d3");
 import React, {Component} from 'react'
 import {Picker} from 'native-base'
-import {stations} from "../../app/models/station"
+import Station from "../../app/models/station"
 
 export default class StationPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stations: stations.sort(function(a, b){  return d3.ascending(a.name, b.name)  })
+      stations: Station.all().sort(function(a, b){  return d3.ascending(a.name, b.name)  })
     }
   }
 
