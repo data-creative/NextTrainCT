@@ -1,30 +1,35 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native'
-import {Container, Header, Title, Content, Button, Icon, List, ListItem} from 'native-base';
+import {Text, StyleSheet} from 'react-native'
+import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer} from 'native-base';
 
 import Station from "../../app/models/station"
 
-const searchResults = {
-  responseAt:"8:11am",
-  schedule:{
-    publishedOn:"2016-01-01"
-  },
-  trains:[
-    {id:1, departure: "10:30am", arrival:"10:45am"},
-    {id:2, departure: "11:23am", arrival:"11:38am"},
-    {id:3, departure: "1:15pm", arrival:"1:30pm"},
-    {id:4, departure: "5:45pm", arrival:"6:00pm"}
-  ]
-}
-
 export default class TrainsIndex extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      searchResults: {
+        responseAt:"8:11am",
+        schedule:{
+          publishedOn:"2016-01-01"
+        },
+        trains:[
+          {id:1, departure: "10:30am", arrival:"10:45am"},
+          {id:2, departure: "11:23am", arrival:"11:38am"},
+          {id:3, departure: "1:15pm", arrival:"1:30pm"},
+          {id:4, departure: "5:45pm", arrival:"6:00pm"}
+        ]
+      }
+    }
+  }
+
   render() {
     const route = this.props.route;
     const routes = this.props.routes;
     const dateSearchParam = this.props.dateSearchParam;
     const navigator = this.props.navigator;
     const goBack = this.goBack;
-    const trains = searchResults.trains;
+
     const nextTrainBadge = <Text>departs in 5 mins</Text>
 
     return (
@@ -61,7 +66,7 @@ export default class TrainsIndex extends Component {
           </Text>
 
           <List>
-            { trains.map(function(train){
+            { this.state.searchResults.trains.map(function(train){
               return (
                 <ListItem iconLeft key={train.id} style={{height:60}}>
                     <Icon name='md-train' style={{marginRight:10, color:'#282828'}}/>
@@ -72,6 +77,10 @@ export default class TrainsIndex extends Component {
             })}
           </List>
         </Content>
+
+        <Footer transparent style={styles.footer}>
+          <Text style={styles.footerText}>Schedule published by Shoreline East on {this.state.searchResults.schedule.publishedOn}.</Text>
+        </Footer>
       </Container>
     );
   }
@@ -80,3 +89,17 @@ export default class TrainsIndex extends Component {
     navigator.pop();
   }
 };
+
+const styles = StyleSheet.create({
+  footer: {
+    backgroundColor: 'transparent',
+    height:75,
+    paddingLeft:20
+  },
+  footerText:{
+    fontSize:12,
+    color: '#7a7a7a', //'#5067FF',
+    fontStyle:'italic',
+    alignSelf:'flex-start'
+  }
+});

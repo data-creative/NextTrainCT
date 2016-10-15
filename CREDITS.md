@@ -19,6 +19,7 @@
 
   + https://toddmotto.com/react-create-class-versus-component/
   + http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/
+  + https://facebook.github.io/react/docs/reusable-components.html
 
 ## React Native
 
