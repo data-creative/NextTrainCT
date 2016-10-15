@@ -71,8 +71,9 @@ export default class RoutesList extends Component {
   }
 
   handleButtonPress(navigator, routes, route, dateSearchParam){
+    var routeName = (dateSearchParam == "FUTURE") ? "DATE_PICKER" : "TRAINS"
     navigator.push({
-      name: 'TRAINS',
+      name: routeName,
       params:{
         routes: routes,
         route: route,

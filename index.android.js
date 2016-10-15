@@ -4,6 +4,7 @@ import {AppRegistry, Navigator} from 'react-native';
 import RoutesIndex from "./components/routes/Index";
 import NewRoute from "./components/routes/New";
 import TrainsIndex from "./components/trains/Index";
+import FutureDatePicker from "./components/search/FutureDatePicker";
 
 class App extends Component {
   render(){
@@ -30,6 +31,9 @@ class App extends Component {
         break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />
+        break;
+      case 'DATE_PICKER':
+        return <FutureDatePicker navigator={navigator} {...navRoute.params}  />
         break;
       default:
         console.error("UNRECOGNIZED ROUTE -- " + navRoute.name)

@@ -29,6 +29,7 @@
   + https://facebook.github.io/react-native/docs/view.html
   + https://facebook.github.io/react-native/docs/text.html
   + https://facebook.github.io/react-native/docs/picker.html
+  + https://facebook.github.io/react-native/docs/modal.html
 
 ## Styling and Design
 
