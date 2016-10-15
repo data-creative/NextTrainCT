@@ -59,12 +59,8 @@ export default class RoutesIndex extends Component {
 
   componentWillMount(){  console.log("INDEX WILL MOUNT")  }
   componentDidMount(){  console.log("INDEX DID MOUNT")  }
-  componentWillReceiveProps(nextProps){
-    console.log("INDEX WILL RECEIVE PROPS", nextProps.route)
-  }
-  componentWillUpdate(nextProps, nextState){
-    console.log("INDEX WILL UPDATE", nextProps.route, nextState)
-  }
+  componentWillReceiveProps(nextProps){  console.log("INDEX WILL RECEIVE PROPS")  }
+  componentWillUpdate(nextProps, nextState){  console.log("INDEX WILL UPDATE")  }
   componentDidUpdate(prevProps, prevState){  console.log("INDEX DID UPDATE")  }
   componentWillUnmount(){  console.log("INDEX WILL UNMOUNT")  }
 };

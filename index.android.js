@@ -31,6 +31,8 @@ class App extends Component {
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />
         break;
+      default:
+        console.error("UNRECOGNIZED ROUTE -- " + navRoute.name)
     };
   }
 
