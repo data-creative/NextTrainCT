@@ -6,7 +6,7 @@ export default class FutureDatePicker extends Component {
   constructor(props){
     super(props)
     this.state = {
-      date: "2017-01-01"
+      date: null // set as null to use the placeholder "2017-01-01"
     }
   }
 
@@ -18,7 +18,7 @@ export default class FutureDatePicker extends Component {
           style={{width: 200}}
           date={this.state.date}
           mode="date"
-          //placeholder="future date"
+          placeholder="future"
           showIcon={false}
           format="YYYY-MM-DD"
           minDate="2016-10-01"
@@ -43,6 +43,7 @@ const datePickerStyles = {
     marginLeft: 0
   },
   dateInput: {
-    marginLeft: 36
+    marginLeft: 36,
+    borderWidth:0 // remove default border
   }
 }
