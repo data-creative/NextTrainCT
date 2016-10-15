@@ -7,7 +7,7 @@ export default class StationPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stations: Station.all().sort(function(a, b){  return d3.ascending(a.name, b.name)  })
+      stations: Station.all().sort(function(a, b){ return d3.ascending(a.name, b.name) })
     }
   }
 

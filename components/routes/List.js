@@ -1,33 +1,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, ScrollView} from 'react-native';
 import {Card, CardItem, Icon, Button, Thumbnail} from 'native-base';
-
 import Station from "../../app/models/station"
-
-const styles = StyleSheet.create({
-  cardItem:{
-    height:90,
-    paddingLeft:20
-  },
-  cardItemTitle:{
-    marginTop:10,
-    marginBottom:3,
-    fontSize:16
-  },
-  buttonList:{
-    //alignSelf:'flex-end'
-  },
-  button:{
-    //borderWidth:1, borderColor:'#ccc', borderStyle:'solid',
-    //marginRight:10,
-    height:30,
-  },
-  buttonText:{
-    color: '#7a7a7a', //'#5067FF',
-    //fontStyle:'italic'
-    textDecorationLine:'underline'
-  }
-});
 
 export default class RoutesList extends Component {
   render() {
@@ -80,3 +54,28 @@ export default class RoutesList extends Component {
     navigator.push({name: 'TRAINS', params:{routes: routes, route: route}})
   }
 };
+
+const styles = StyleSheet.create({
+  cardItem:{
+    height:90,
+    paddingLeft:20
+  },
+  cardItemTitle:{
+    marginTop:10,
+    marginBottom:3,
+    fontSize:16
+  },
+  buttonList:{
+    //alignSelf:'flex-end'
+  },
+  button:{
+    //borderWidth:1, borderColor:'#ccc', borderStyle:'solid',
+    //marginRight:10,
+    height:30,
+  },
+  buttonText:{
+    color: '#7a7a7a', //'#5067FF',
+    //fontStyle:'italic'
+    textDecorationLine:'underline'
+  }
+});
