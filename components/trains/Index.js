@@ -5,8 +5,10 @@ import {Container, Header, Title, Content, Button, Icon, List, ListItem} from 'n
 import Station from "../../app/models/station"
 
 const searchResults = {
-  resultsAt:"8:11am",
-  schedulePostedOn:"2016-01-01",
+  responseAt:"8:11am",
+  schedule:{
+    publishedOn:"2016-01-01"
+  },
   trains:[
     {id:1, departure: "10:30am", arrival:"10:45am"},
     {id:2, departure: "11:23am", arrival:"11:38am"},
@@ -19,6 +21,7 @@ export default class TrainsIndex extends Component {
   render() {
     const route = this.props.route;
     const routes = this.props.routes;
+    const dateSearchParam = this.props.dateSearchParam;
     const navigator = this.props.navigator;
     const goBack = this.goBack;
     const trains = searchResults.trains;
@@ -53,7 +56,7 @@ export default class TrainsIndex extends Component {
               {"departing  "}
             </Text>
             <Text style={{fontWeight:'bold', fontSize:16}}>
-              { "TODAY" }
+              { dateSearchParam }
             </Text>
           </Text>
 

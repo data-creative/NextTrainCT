@@ -3,36 +3,20 @@ import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
 import RoutesList from "./List"
 
-const myRoutes = [
-  {"id":1111, "origin":"BRN", "destination":"NHV"},
-  {"id":2222, "origin":"NHV", "destination":"BRN"},
-  {"id":3333, "origin":"GUIL", "destination":"OSB"},
-  {"id":4444, "origin":"GCS", "destination":"NHV"},
-  {"id":5555, "origin":"ST", "destination":"NHV"}
-];
-
-const styles = StyleSheet.create({
-  text:{
-    textAlign: 'center'
-  },
-  footer: {
-    backgroundColor: 'transparent',
-    height:75
-  },
-  footerButton:{
-    height:55,
-    width:55,
-    marginRight:20,
-    marginBottom:20,
-    alignSelf: 'flex-end'
-  }
-});
-
 export default class RoutesIndex extends Component {
   constructor(props){
     super(props)
 
-    var routes = []
+    var routes = [
+      //{"id":1111, "origin":"BRN", "destination":"NHV"},
+      //{"id":2222, "origin":"NHV", "destination":"BRN"},
+      {"id":3333, "origin":"GUIL", "destination":"OSB"},
+      //{"id":4444, "origin":"GCS", "destination":"NHV"},
+      //{"id":5555, "origin":"ST", "destination":"NHV"},
+      {"id":666, "origin":"BRN", "destination":"MAD"},
+      {"id":777, "origin":"MAD", "destination":"BRN"}
+    ]
+
     if (props.route) {
       props.route["id"] = Date.now() // fake save
       routes.push(props.route)
@@ -84,3 +68,20 @@ export default class RoutesIndex extends Component {
   componentDidUpdate(prevProps, prevState){  console.log("INDEX DID UPDATE")  }
   componentWillUnmount(){  console.log("INDEX WILL UNMOUNT")  }
 };
+
+const styles = StyleSheet.create({
+  text:{
+    textAlign: 'center'
+  },
+  footer: {
+    backgroundColor: 'transparent',
+    height:75
+  },
+  footerButton:{
+    height:55,
+    width:55,
+    marginRight:20,
+    marginBottom:20,
+    alignSelf: 'flex-end'
+  }
+});

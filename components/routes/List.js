@@ -4,42 +4,62 @@ import {Card, CardItem, Icon, Button, Thumbnail} from 'native-base';
 import Station from "../../app/models/station"
 
 export default class RoutesList extends Component {
+  constructor(props){
+    super(props)
+    //this.goTrains = this.goTrains.bind(this)
+  }
+
   render() {
     const goShow = this.goShow
     const routes = this.props.routes
     const navigator = this.props.navigator
+    const handleButtonPress = this.handleButtonPress //.bind(this)
     return (
       <Card>
+
         {routes.map(function(route){
           return (
             <CardItem key={route.id} style={styles.cardItem}>
+
+                { /* ROUTE TITLE */ }
+
                 <Text style={styles.cardItemTitle}>
                   <Text style={{fontWeight:'bold'}}>
-                    { Station.findByAbbrev(route.origin).name.toUpperCase() }
+                    {
+                      Station.findByAbbrev(route.origin).name.toUpperCase()
+                    }
                   </Text>
                   <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
                     {"  to  "}
                   </Text>
                   <Text style={{fontWeight:'bold'}}>
-                    { Station.findByAbbrev(route.destination).name.toUpperCase() }
+                    {
+                      Station.findByAbbrev(route.destination).name.toUpperCase()
+                    }
                   </Text>
                 </Text>
 
+                { /* BUTTON LIST */ }
 
                 <ScrollView horizontal style={styles.buttonList}>
 
-                  <Button transparent style={styles.button} onPress={function(){ goShow(navigator, routes, route)}}>
-                    <Text style={styles.buttonText}>today</Text>
+                  <Button transparent style={styles.button} onPress={function(){ handleButtonPress(navigator, routes, route, "TODAY")}}>
+                    <Text style={styles.buttonText}>
+                      {"today"}
+                    </Text>
                   </Button>
 
-                  <Button transparent style={styles.button} onPress={function(){ goShow(navigator, routes, route)}}>
-                    <Text style={styles.buttonText}>tomorrow</Text>
+                  <Button transparent style={styles.button} onPress={function(){ handleButtonPress(navigator, routes, route, "TOMORROW")}}>
+                    <Text style={styles.buttonText}>
+                      {"tomorrow"}
+                    </Text>
                   </Button>
 
-                  <Button transparent style={styles.button} onPress={function(){ goShow(navigator, routes, route)}}>
-                    <Text style={styles.buttonText}>future</Text>
+                  <Button transparent style={styles.button} onPress={function(){ handleButtonPress(navigator, routes, route, "FUTURE")}}>
+                    <Text style={styles.buttonText}>
+                      {"future"}
+                    </Text>
                   </Button>
-
 
 
                 </ScrollView>
@@ -50,9 +70,17 @@ export default class RoutesList extends Component {
     );
   }
 
-  goShow(navigator, routes, route){
-    navigator.push({name: 'TRAINS', params:{routes: routes, route: route}})
+  handleButtonPress(navigator, routes, route, dateSearchParam){
+    navigator.push({
+      name: 'TRAINS',
+      params:{
+        routes: routes,
+        route: route,
+        dateSearchParam: dateSearchParam
+      }
+    })
   }
+
 };
 
 const styles = StyleSheet.create({
