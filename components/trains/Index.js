@@ -1,11 +1,13 @@
-import moment from 'moment'
+import moment from 'moment';
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer} from 'native-base';
 
 import Station from "../../app/models/station"
 
-export default class TrainsIndex extends Component {
+//moment.updateLocale('en', {calendar : {sameDay : '[Today]', nextDay : '[Tomorrow]'}})
+
+export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
   constructor(props){
     super(props)
     this.state = {
@@ -28,7 +30,8 @@ export default class TrainsIndex extends Component {
   render() {
     const route = this.props.route;
     const routes = this.props.routes;
-    const dateSearchParam = this.props.dateSearchParam;
+    const selectedDate = this.props.selectedDate;
+    console.log(selectedDate, typeof(selectedDate));
     const navigator = this.props.navigator;
     const goBack = this.goBack;
 
@@ -63,7 +66,7 @@ export default class TrainsIndex extends Component {
               {"departing  "}
             </Text>
             <Text style={{fontWeight:'bold', fontSize:16}}>
-              { dateSearchParam }
+              { moment(selectedDate).format("dddd, MMMM D").toUpperCase() }
             </Text>
           </Text>
 
@@ -88,7 +91,7 @@ export default class TrainsIndex extends Component {
             </Text>
             <Text> on </Text>
             <Text style={{fontStyle:'italic'}}>
-              {moment(this.state.searchResults.schedule.publishedOn).format("MMM D, YYYY")}
+              {moment(this.state.searchResults.schedule.publishedOn).format("MMMM D, YYYY")}
             </Text>
             <Text>.</Text>
           </Text>

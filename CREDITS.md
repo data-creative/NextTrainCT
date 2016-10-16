@@ -14,6 +14,7 @@
   + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Strict_mode
   + https://www.sitepoint.com/object-oriented-javascript-deep-dive-es6-classes/
   + https://scotch.io/tutorials/better-javascript-with-es6-pt-ii-a-deep-dive-into-classes
+  + http://stackoverflow.com/a/35442541/670433
 
 ## React
 

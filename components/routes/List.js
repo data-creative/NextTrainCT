@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, {Component} from 'react';
 import {Text, StyleSheet, ScrollView} from 'react-native';
 import {Card, CardItem, Icon, Button, Thumbnail} from 'native-base';
@@ -9,17 +10,20 @@ export default class RoutesList extends Component {
     super(props)
     //this.goTrains = this.goTrains.bind(this)
     this.state = {
-      date: null // set as null to use the placeholder text
+      selectedDate: null // set as null to use the placeholder text
     }
   }
 
   render() {
-    const goShow = this.goShow
-    const routes = this.props.routes
-    const navigator = this.props.navigator
-    const handleButtonPress = this.handleButtonPress
-    const selectedDate = this.state.date
-    const handleDateSelection = this.handleDateSelection
+    const goShow = this.goShow;
+    const routes = this.props.routes;
+    const navigator = this.props.navigator;
+    const handleButtonPress = this.handleButtonPress;
+    const selectedDate = this.state.selectedDate;
+    const handleDateSelection = this.handleDateSelection;
+    const dateFormat = "YYYY-MM-DD";
+    const todaysDate = moment().format(dateFormat);
+    const tomorrowsDate = moment().add(1, 'days').format(dateFormat);
 
     return (
       <Card>
@@ -50,23 +54,17 @@ export default class RoutesList extends Component {
 
                 <ScrollView horizontal style={styles.buttonList}>
 
-                  <Button transparent style={styles.button} onPress={function(){ handleButtonPress(navigator, routes, route, "TODAY")}}>
-                    <Text style={styles.buttonText}>
-                      {"today"}
-                    </Text>
+                  <Button transparent style={styles.button} onPress={function(){
+                      handleButtonPress(navigator, routes, route, todaysDate)
+                    }}>
+                    <Text style={styles.buttonText}>today</Text>
                   </Button>
 
-                  <Button transparent style={styles.button} onPress={function(){ handleButtonPress(navigator, routes, route, "TOMORROW")}}>
-                    <Text style={styles.buttonText}>
-                      {"tomorrow"}
-                    </Text>
+                  <Button transparent style={styles.button} onPress={function(){
+                      handleButtonPress(navigator, routes, route, tomorrowsDate)
+                    }}>
+                    <Text style={styles.buttonText}>tomorrow</Text>
                   </Button>
-
-                  {/* <Button transparent style={styles.button} onPress={function(){ handleButtonPress(navigator, routes, route, "FUTURE")}}>
-                    <Text style={styles.buttonText}>
-                      {"future"}
-                    </Text>
-                  </Button>*/}
 
                   <DatePicker
                     style={styles.datePickerButton}
@@ -80,7 +78,9 @@ export default class RoutesList extends Component {
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
                     customStyles={datePickerCustomStyles}
-                    onDateChange={function(date){ handleButtonPress(navigator, routes, route, date)}}
+                    onDateChange={function(selectedDate){
+                      handleButtonPress(navigator, routes, route, selectedDate)
+                    }}
                   />
 
                 </ScrollView>
@@ -91,13 +91,13 @@ export default class RoutesList extends Component {
     );
   }
 
-  handleButtonPress(navigator, routes, route, dateSearchParam){
+  handleButtonPress(navigator, routes, route, selectedDate){
     navigator.push({
       name: "TRAINS",
       params:{
         routes: routes,
         route: route,
-        dateSearchParam: dateSearchParam
+        selectedDate: selectedDate
       }
     })
   }
