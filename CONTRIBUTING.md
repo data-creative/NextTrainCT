@@ -3,7 +3,7 @@
 ## Installation
 
 ```` sh
-git clone _________
+git clone git@github.com:s2t2/next-train-ct.git
 cd next-train-ct/
 npm install
 ````
