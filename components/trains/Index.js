@@ -31,11 +31,10 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
     const route = this.props.route;
     const routes = this.props.routes;
     const selectedDate = this.props.selectedDate;
-    console.log(selectedDate, typeof(selectedDate));
+    //console.log(selectedDate, typeof(selectedDate));
     const navigator = this.props.navigator;
     const goBack = this.goBack;
-
-    const nextTrainBadge = <Text>departs in 5 mins</Text>
+    const isUpcoming = this.isUpcoming;
 
     return (
       <Container>
@@ -72,11 +71,12 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
 
           <List>
             { this.state.searchResults.trains.map(function(train){
+              const upcomingTrainBadge = <Text>departs in 5 mins</Text>
               return (
                 <ListItem iconLeft key={train.id} style={{height:60}}>
                     <Icon name='md-train' style={{marginRight:10, color:'#282828'}}/>
                     <Text>{train.departure + " to " + train.arrival}</Text>
-                    {  nextTrainBadge }
+                    {isUpcoming(train) ? upcomingTrainBadge : <Text/>}
                 </ListItem>
               )
             })}
@@ -102,6 +102,10 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
 
   goBack(navigator){
     navigator.pop();
+  }
+
+  isUpcoming(train){
+    return true // todo
   }
 };
 
