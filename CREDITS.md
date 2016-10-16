@@ -20,6 +20,7 @@
   + https://toddmotto.com/react-create-class-versus-component/
   + http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/
   + https://facebook.github.io/react/docs/reusable-components.html
+  + https://babeljs.io/blog/2015/06/07/react-on-es6-plus
 
 ## React Native
 
@@ -30,6 +31,8 @@
   + https://facebook.github.io/react-native/docs/text.html
   + https://facebook.github.io/react-native/docs/picker.html
   + https://facebook.github.io/react-native/docs/modal.html
+  + https://facebook.github.io/react-native/docs/debugging.html#accessing-the-in-app-developer-menu
+  + https://github.com/xgfe/react-native-datepicker/blob/7bed2921e5e6b1044f3bc8af05ed3d54c633c81f/style.js
 
 ## Styling and Design
 

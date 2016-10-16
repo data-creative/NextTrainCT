@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 30, // should match styles.button.height
     bottom: 5, // hack to acheive vertical alignment with other buttons
-    left: 3
+    left: 2
   }
 });
 
