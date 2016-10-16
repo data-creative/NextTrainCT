@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer} from 'native-base';
@@ -11,7 +12,8 @@ export default class TrainsIndex extends Component {
       searchResults: {
         responseAt:"8:11am",
         schedule:{
-          publishedOn:"2016-01-01"
+          publishedOn:"2016-01-01",
+          publishedBy:"Shoreline East"
         },
         trains:[
           {id:1, departure: "10:30am", arrival:"10:45am"},
@@ -79,7 +81,17 @@ export default class TrainsIndex extends Component {
         </Content>
 
         <Footer transparent style={styles.footer}>
-          <Text style={styles.footerText}>Schedule published by Shoreline East on {this.state.searchResults.schedule.publishedOn}.</Text>
+          <Text style={styles.footerText}>
+            <Text>Schedule published by </Text>
+            <Text style={{fontStyle:'italic'}}>
+              {this.state.searchResults.schedule.publishedBy}
+            </Text>
+            <Text> on </Text>
+            <Text style={{fontStyle:'italic'}}>
+              {moment(this.state.searchResults.schedule.publishedOn).format("MMM D, YYYY")}
+            </Text>
+            <Text>.</Text>
+          </Text>
         </Footer>
       </Container>
     );
@@ -94,12 +106,12 @@ const styles = StyleSheet.create({
   footer: {
     backgroundColor: 'transparent',
     height:75,
-    paddingLeft:20
+    paddingLeft:20,
+    //alignItems:'flex-start'
   },
   footerText:{
     fontSize:12,
     color: '#7a7a7a', //'#5067FF',
-    fontStyle:'italic',
     alignSelf:'flex-start'
   }
 });
