@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
-import RoutesList from "./List"
+//import RoutesList from "./List"
+import RoutesSwipeList from "./SwipeList"
 
 export default class RoutesIndex extends Component {
   constructor(props){
@@ -32,7 +33,8 @@ export default class RoutesIndex extends Component {
   render() {
     const welcomeMessage = "Tap the button below to save a transit route."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    const list = <RoutesList routes={this.state.routes} navigator={this.props.navigator}/>
+    //const list = <RoutesList routes={this.state.routes} navigator={this.props.navigator}/>
+    const list = <RoutesSwipeList routes={this.state.routes} navigator={this.props.navigator}/>
 
     return (
       <Container>
