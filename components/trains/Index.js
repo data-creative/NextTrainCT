@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
-import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer, Badge} from 'native-base';
+import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer, Badge, Card, CardItem} from 'native-base';
 
 import Station from "../../app/models/station"
 import Train from "../../app/models/train"
@@ -78,28 +78,27 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         </Header>
 
         <Content style={{margin:20}}>
-          <Text style={{marginTop:10, fontSize:16, marginBottom:5 /* textAlign:'center' */}}>
-            {/*<Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
-              {"from  "}
-            </Text>*/}
-            <Text style={{fontWeight:'bold'}}>
-              { Station.findByAbbrev(this.selectedRoute.origin).name.toUpperCase() }
-            </Text>
-            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
-              {"  to  "}
-            </Text>
-            <Text style={{fontWeight:'bold'}}>
-              { Station.findByAbbrev(this.selectedRoute.destination).name.toUpperCase() }
-            </Text>
-          </Text>
-          <Text style={{marginBottom:10, textAlign:'left'}}>
-            <Text style={{fontStyle:'italic', fontSize:12}}>
-              {"departing  "}
-            </Text>
-            <Text style={{fontWeight:'bold', fontSize:16}}>
-              { moment(this.selectedDate).format(TrainsIndex.dateDisplayFormat).toUpperCase() }
-            </Text>
-          </Text>
+
+          <Card>
+            <CardItem>
+              <Text>
+                <Text style={{fontWeight:'bold'}}>
+                  { Station.findByAbbrev(this.selectedRoute.origin).name.toUpperCase() }
+                </Text>
+                <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
+                  {"  to  "}
+                </Text>
+                <Text style={{fontWeight:'bold'}}>
+                  { Station.findByAbbrev(this.selectedRoute.destination).name.toUpperCase() }
+                </Text>
+              </Text>
+
+              <Text style={{fontWeight:'bold', fontSize:14}}>
+                { moment(this.selectedDate).format(TrainsIndex.dateDisplayFormat).toUpperCase() }
+              </Text>
+            </CardItem>
+          </Card>
+
 
           <List>
             { this.state.searchResults.trains.map(function(train){
