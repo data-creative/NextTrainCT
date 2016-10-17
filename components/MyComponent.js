@@ -13,21 +13,21 @@ export default class MyComponent extends Component {
     return (
       <View>
         <Text>{this.state.message}</Text>
-        <TouchableOpacity onPress={this.handleButtonPress}>
+        <TouchableOpacity onPress={function(){ this.handleButtonPress("GOODBYE") }.bind(this) }>
           <Text>Press Me</Text>
         </TouchableOpacity>
       </View>
     )
   }
 
-  handleButtonPress(){
-    console.log("BUTTON WAS PRESSED")
-    this.myFunc()
+  handleButtonPress(message){
+    console.log("BUTTON WAS PRESSED WITH MESSAGE: " + message)
+    this.myFunc(message)
   }
 
-  myFunc(){
+  myFunc(message){
     console.log("MY FUNCTION WAS CALLED")
-    this.setState({message:"GOODBYE"})
+    this.setState({message:message})
   }
 
 }
