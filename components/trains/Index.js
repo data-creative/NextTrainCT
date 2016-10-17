@@ -9,9 +9,10 @@ import Train from "../../app/models/train"
 //moment.updateLocale('en', {calendar : {sameDay : '[Today]', nextDay : '[Tomorrow]'}})
 
 export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
+  static get dateDisplayFormat(){ return "dddd, MMMM D, YYYY" } // MONDAY, OCTOBER 17, 2016
+
   constructor(props){
     super(props)
-    //this.goBack = this.goBack.bind(this);
     this.state = {
       searchResults: {
         schedule:{publishedOn:"2016-01-01", publishedBy:"Shoreline East"},
@@ -59,21 +60,18 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         ].map(function(train){ return new Train(train) })
       }
     }
+    this.selectedRoute = this.props.route;
+    this.selectedDate = this.props.selectedDate;
+    this.navigator = this.props.navigator;
+    this.goBack = this.goBack.bind(this);
   }
 
   render() {
-    const route = this.props.route;
-    const routes = this.props.routes;
-    const selectedDate = this.props.selectedDate;
-    //console.log(selectedDate, typeof(selectedDate));
-    const navigator = this.props.navigator;
-
-    const goBack = this.goBack;
 
     return (
       <Container>
         <Header>
-          <Button transparent onPress={function(){ goBack(navigator) }}>
+          <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
           <Title>{"Trains" }</Title>
@@ -85,13 +83,13 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
               {"from  "}
             </Text>*/}
             <Text style={{fontWeight:'bold'}}>
-              { Station.findByAbbrev(route.origin).name.toUpperCase() }
+              { Station.findByAbbrev(this.selectedRoute.origin).name.toUpperCase() }
             </Text>
             <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
               {"  to  "}
             </Text>
             <Text style={{fontWeight:'bold'}}>
-              { Station.findByAbbrev(route.destination).name.toUpperCase() }
+              { Station.findByAbbrev(this.selectedRoute.destination).name.toUpperCase() }
             </Text>
           </Text>
           <Text style={{marginBottom:10, textAlign:'left'}}>
@@ -99,7 +97,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
               {"departing  "}
             </Text>
             <Text style={{fontWeight:'bold', fontSize:16}}>
-              { moment(selectedDate).format("dddd, MMMM D").toUpperCase() }
+              { moment(this.selectedDate).format(TrainsIndex.dateDisplayFormat).toUpperCase() }
             </Text>
           </Text>
 
@@ -138,8 +136,8 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
     );
   }
 
-  goBack(navigator){
-    navigator.pop();
+  goBack(){
+    this.navigator.pop();
   }
 
 };
