@@ -1,28 +1,62 @@
 import moment from 'moment';
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
-import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer} from 'native-base';
+import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer, Badge} from 'native-base';
 
 import Station from "../../app/models/station"
+import Train from "../../app/models/train"
 
 //moment.updateLocale('en', {calendar : {sameDay : '[Today]', nextDay : '[Tomorrow]'}})
 
 export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
   constructor(props){
     super(props)
+    //this.goBack = this.goBack.bind(this);
     this.state = {
       searchResults: {
-        responseAt:"8:11am",
-        schedule:{
-          publishedOn:"2016-01-01",
-          publishedBy:"Shoreline East"
-        },
+        schedule:{publishedOn:"2016-01-01", publishedBy:"Shoreline East"},
         trains:[
-          {id:1, departure: "10:30am", arrival:"10:45am"},
-          {id:2, departure: "11:23am", arrival:"11:38am"},
-          {id:3, departure: "1:15pm", arrival:"1:30pm"},
-          {id:4, departure: "5:45pm", arrival:"6:00pm"}
-        ]
+          {
+            id:1,
+            departure: moment().subtract(90, "minutes").format(),
+            arrival: moment().subtract(75, "minutes").format(),
+          },
+          {
+            id:2,
+            departure: moment().subtract(20, "minutes").format(),
+            arrival: moment().subtract(5, "minutes").format(),
+          },
+          {
+            id:3,
+            departure: moment().format(),
+            arrival: moment().add(15, "minutes").format(),
+          },
+          {
+            id:3,
+            departure: moment().add(45, "seconds").format(),
+            arrival: moment().add(16, "minutes").format(),
+          },
+          {
+            id:4,
+            departure: moment().add(90, "seconds").format(),
+            arrival: moment().add(18, "minutes").format(),
+          },
+          {
+            id:5,
+            departure: moment().add(5, "minutes").format(),
+            arrival: moment().add(20, "minutes").format(),
+          },
+          {
+            id:6,
+            departure: moment().add(75, "minutes").format(),
+            arrival: moment().add(90, "minutes").format(),
+          },
+          {
+            id:7,
+            departure: moment().add(125, "minutes").format(),
+            arrival: moment().add(140, "minutes").format(),
+          },
+        ].map(function(train){ return new Train(train) })
       }
     }
   }
@@ -33,8 +67,8 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
     const selectedDate = this.props.selectedDate;
     //console.log(selectedDate, typeof(selectedDate));
     const navigator = this.props.navigator;
+
     const goBack = this.goBack;
-    const isUpcoming = this.isUpcoming;
 
     return (
       <Container>
@@ -71,13 +105,17 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
 
           <List>
             { this.state.searchResults.trains.map(function(train){
-              const upcomingTrainBadge = <Text>departs in 5 mins</Text>
+
+              const upcomingTrainBadge = <Badge primary>{train.departureDisplayTimeFromNow()}</Badge>
+
               return (
+
                 <ListItem iconLeft key={train.id} style={{height:60}}>
                     <Icon name='md-train' style={{marginRight:10, color:'#282828'}}/>
-                    <Text>{train.departure + " to " + train.arrival}</Text>
-                    {isUpcoming(train) ? upcomingTrainBadge : <Text/>}
+                    <Text style={{fontSize:16, top:3}}>{train.departureDisplayTime() + " to " + train.arrivalDisplayTime()}</Text>
+                    {train.isUpcoming() ? upcomingTrainBadge : <Text/>}
                 </ListItem>
+
               )
             })}
           </List>
@@ -104,9 +142,6 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
     navigator.pop();
   }
 
-  isUpcoming(train){
-    return true // todo
-  }
 };
 
 const styles = StyleSheet.create({
