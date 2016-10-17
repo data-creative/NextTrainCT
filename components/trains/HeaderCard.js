@@ -4,15 +4,14 @@ import {Text} from 'react-native';
 import {Card, CardItem} from 'native-base';
 
 import Station from "../../app/models/station"
-import Train from "../../app/models/train"
 
 export default class RouteHeaderCard extends Component {
   static get dateDisplayFormat(){ return "dddd, MMMM D, YYYY" } // MONDAY, OCTOBER 17, 2016
 
   constructor(props){
     super(props)
-    this.selectedDate = this.props.date;
     this.selectedRoute = this.props.route;
+    this.selectedDate = this.props.date;
   }
 
   render(){
