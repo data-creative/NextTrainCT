@@ -4,8 +4,9 @@ import moment from 'moment'
 
 export default class Train {
 
-  //static get timeZoneFormat(){return "H:mm:ssZ" } // like "23:32:04-04:00"
-  static get timeDisplayFormat(){return "h:mma" } // like "10:32pm"
+  //static get timeZoneFormat(){return "H:mm:ssZ" } // "23:32:04-04:00"
+  static get timeDisplayFormat(){return "h:mma" } // "10:32pm"
+  static get upcomingThresholdMinutes(){ return 45 }
 
   // @example new Train({id:1, departure: "2016-10-16T23:02:00-04:00", arrival:"2016-10-16T23:22:00-04:00"})
   constructor(props) {
@@ -14,20 +15,23 @@ export default class Train {
     this.arrival = props.arrival;
   }
 
-  isUpcoming(){
-    return true // todo
-  }
-
   departureDisplayTime(){
     return moment(this.departure).format(Train.timeDisplayFormat)
   }
 
   arrivalDisplayTime(){
-    return moment(this.arrival).format("h:mma")
+    return moment(this.arrival).format(Train.timeDisplayFormat)
   }
 
   departureDisplayTimeFromNow(){
-    //console.log(this, "DEPARTS ...", "IN 5 MINS")
-    return "in 5 mins"
+    return moment(this.departure).fromNow()
+  }
+
+  minutesFromNow(){
+    return moment(this.departure).diff(moment(), 'minutes')
+  }
+
+  isUpcoming(){
+    return this.minutesFromNow() > 0 && this.minutesFromNow() <= Train.upcomingThresholdMinutes
   }
 };
