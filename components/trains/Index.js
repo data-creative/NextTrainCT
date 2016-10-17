@@ -5,11 +5,11 @@ import {Container, Header, Title, Content, Button, Icon, List, ListItem, Footer,
 
 import Station from "../../app/models/station"
 import Train from "../../app/models/train"
+import RouteHeaderCard from "./HeaderCard"
 
 //moment.updateLocale('en', {calendar : {sameDay : '[Today]', nextDay : '[Tomorrow]'}})
 
 export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
-  static get dateDisplayFormat(){ return "dddd, MMMM D, YYYY" } // MONDAY, OCTOBER 17, 2016
 
   constructor(props){
     super(props)
@@ -74,31 +74,12 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
           <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>{"Trains" }</Title>
+          <Title>Trains</Title>
         </Header>
 
         <Content style={{margin:20}}>
 
-          <Card>
-            <CardItem>
-              <Text>
-                <Text style={{fontWeight:'bold'}}>
-                  { Station.findByAbbrev(this.selectedRoute.origin).name.toUpperCase() }
-                </Text>
-                <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
-                  {"  to  "}
-                </Text>
-                <Text style={{fontWeight:'bold'}}>
-                  { Station.findByAbbrev(this.selectedRoute.destination).name.toUpperCase() }
-                </Text>
-              </Text>
-
-              <Text style={{fontWeight:'bold', fontSize:14}}>
-                { moment(this.selectedDate).format(TrainsIndex.dateDisplayFormat).toUpperCase() }
-              </Text>
-            </CardItem>
-          </Card>
-
+          <RouteHeaderCard route={this.selectedRoute} date={this.selectedDate}/>
 
           <List>
             { this.state.searchResults.trains.map(function(train){
