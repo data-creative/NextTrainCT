@@ -15,6 +15,7 @@
   + https://www.sitepoint.com/object-oriented-javascript-deep-dive-es6-classes/
   + https://scotch.io/tutorials/better-javascript-with-es6-pt-ii-a-deep-dive-into-classes
   + http://stackoverflow.com/a/35442541/670433
+  + http://stackoverflow.com/a/40077033/670433
 
 ## React
 
@@ -22,6 +23,7 @@
   + http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/
   + https://facebook.github.io/react/docs/reusable-components.html
   + https://babeljs.io/blog/2015/06/07/react-on-es6-plus
+  + http://stackoverflow.com/a/40076899/670433
 
 ## React Native
 

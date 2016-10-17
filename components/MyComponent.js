@@ -4,18 +4,26 @@ import {View, Text, TouchableOpacity} from 'react-native';
 export default class MyComponent extends Component {
   constructor(props){
     super(props)
-    this.state = {message:"HELLO"}
+    this.state = {messages:["THANKS", "MERCI", "GRAZIE"]}
     this.myFunc = this.myFunc.bind(this)
     this.handleButtonPress = this.handleButtonPress.bind(this)
   }
 
   render(){
+
     return (
       <View>
         <Text>{this.state.message}</Text>
-        <TouchableOpacity onPress={function(){ this.handleButtonPress("GOODBYE") }.bind(this) }>
-          <Text>Press Me</Text>
-        </TouchableOpacity>
+
+        {
+          this.state.messages.map(function(message, index){
+            return (
+              <TouchableOpacity key={index} onPress={function(){ this.handleButtonPress(message) }.bind(this) }>
+                <Text>Press Me</Text>
+              </TouchableOpacity>
+            )
+          }, this)
+        }
       </View>
     )
   }
