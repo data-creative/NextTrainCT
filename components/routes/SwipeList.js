@@ -10,13 +10,14 @@ export default class RoutesSwipeList extends Component {
     super(props)
     this.renderRow = this.renderRow.bind(this);
     this.renderHiddenRow = this.renderHiddenRow.bind(this);
+    this.rowHasChanged = this.rowHasChanged.bind(this);
+    this.dataSource = new ListView.DataSource({rowHasChanged: this.rowHasChanged}).cloneWithRows(this.props.routes)
   }
 
   render() {
-    const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.props.routes)
     return (
         <SwipeListView
-          dataSource={dataSource}
+          dataSource={this.dataSource}
           renderRow={this.renderRow}
           renderHiddenRow={this.renderHiddenRow}
           leftOpenValue={75}
@@ -31,5 +32,9 @@ export default class RoutesSwipeList extends Component {
 
   renderHiddenRow(route){
     return <SwipeListHiddenRow route={route}/>
+  }
+
+  rowHasChanged(row1, row2){
+    return row1 !== row2
   }
 };
