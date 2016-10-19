@@ -6,22 +6,23 @@ export default class RoutesSwipeList extends Component {
 
   constructor(props){
     super(props)
-    this.dataSource = Array(20).fill('').map((_,i)=>`item #${i}`) // this.props.routes
+    this.state = {routes: this.props.routes} //=> {"id":3333, "origin":"GUIL", "destination":"OSB"}
   }
 
   render() {
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.state.routes)
+
     return (
-        <SwipeListView
-            dataSource={ds.cloneWithRows(this.dataSource)}
+        <SwipeListView dataSource={dataSource}
             renderRow={ data => (
                 <View style={styles.rowFront}>
-                    <Text>I am {data} in a SwipeListView</Text>
+                    <Text>{data.origin} to {data.destination}</Text>
                 </View>
             )}
             renderHiddenRow={ data => (
                 <View style={styles.rowBack}>
                     <Text>Left</Text>
+
                     <Text>Right</Text>
                 </View>
             )}
@@ -33,28 +34,6 @@ export default class RoutesSwipeList extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		backgroundColor: 'white',
-		flex: 1
-	},
-	standalone: {
-		marginTop: 30,
-		marginBottom: 30,
-	},
-	standaloneRowFront: {
-		alignItems: 'center',
-		backgroundColor: '#CCC',
-		justifyContent: 'center',
-		height: 50,
-	},
-	standaloneRowBack: {
-		alignItems: 'center',
-		backgroundColor: '#8BC645',
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		padding: 15
-	},
 	rowFront: {
 		alignItems: 'center',
 		backgroundColor: '#CCC',
