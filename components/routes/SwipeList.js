@@ -3,38 +3,46 @@ import {StyleSheet, Text, View, ListView} from 'react-native';
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 
 export default class RoutesSwipeList extends Component {
-
   constructor(props){
     super(props)
-    this.state = {routes: this.props.routes} //=> {"id":3333, "origin":"GUIL", "destination":"OSB"}
+    this.state = {routes: this.props.routes} // [{"id":3333, "origin":"GUIL", "destination":"OSB"},{},{}]
   }
 
   render() {
     const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.state.routes)
 
-    return (
-        <SwipeListView dataSource={dataSource}
-            renderRow={ data => (
-                <View style={styles.rowFront}>
-                    <Text>{data.origin} to {data.destination}</Text>
-                </View>
-            )}
-            renderHiddenRow={ data => (
-                <View style={styles.rowBack}>
-                    <Text>Left</Text>
+    const renderRow = function(route){
+      return (
+        <View style={styles.row}>
+          <Text>{route.origin} to {route.destination}</Text>
+        </View>
+      )
+    }
 
-                    <Text>Right</Text>
-                </View>
-            )}
-            leftOpenValue={75}
-            rightOpenValue={-75}
+    const renderHiddenRow = function(route){
+      const DeleteButton = <Text>Delete!</Text>
+      return (
+        <View style={styles.hiddenRow}>
+          {DeleteButton}
+          {DeleteButton}
+        </View>
+      )
+    }
+
+    return (
+        <SwipeListView
+          dataSource={dataSource}
+          renderRow={ renderRow }
+          renderHiddenRow={ renderHiddenRow }
+          leftOpenValue={75}
+          rightOpenValue={-75}
         />
     )
   }
 }
 
 const styles = StyleSheet.create({
-	rowFront: {
+	row: {
 		alignItems: 'center',
 		backgroundColor: '#CCC',
 		borderBottomColor: 'black',
@@ -42,7 +50,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		height: 50,
 	},
-	rowBack: {
+	hiddenRow: {
 		alignItems: 'center',
 		backgroundColor: '#DDD',
 		flex: 1,
