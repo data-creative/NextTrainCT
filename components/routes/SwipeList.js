@@ -20,8 +20,8 @@ export default class RoutesSwipeList extends Component {
           dataSource={this.dataSource.cloneWithRows(this.props.routes)}
           renderRow={this.renderRow}
           renderHiddenRow={this.renderHiddenRow}
-          leftOpenValue={75}
-          rightOpenValue={-75}
+          leftOpenValue={60}
+          rightOpenValue={-60}
         />
     )
   }

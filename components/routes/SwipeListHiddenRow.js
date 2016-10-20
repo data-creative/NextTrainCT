@@ -10,8 +10,8 @@ export default class SwipeListRowHidden extends Component {
 
   render(){
     const DeleteButton = (
-      <Button danger onPress={this.handleDeleteButtonPress}>
-        <Icon name="md-trash" />
+      <Button transparent onPress={this.handleDeleteButtonPress}>
+        <Icon name="md-trash" style={{color: "white"}}/>
       </Button>
     )
 
@@ -40,10 +40,12 @@ export default class SwipeListRowHidden extends Component {
 const styles = StyleSheet.create({
 	hiddenRow: {
 		alignItems: 'center',
-		backgroundColor: '#DDD',
+		backgroundColor: '#d9534f', // danger
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		paddingLeft: 15,
+    paddingRight:15,
+    paddingTop:8
 	}
 });
