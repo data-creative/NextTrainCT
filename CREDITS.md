@@ -24,6 +24,7 @@
   + https://facebook.github.io/react/docs/reusable-components.html
   + https://babeljs.io/blog/2015/06/07/react-on-es6-plus
   + http://stackoverflow.com/a/40076899/670433
+  + https://camjackson.net/post/9-things-every-reactjs-beginner-should-know
 
 ## React Native
 
@@ -44,3 +45,7 @@
   + http://www.color-hex.com/
   + http://nativebase.io/docs/v0.5.7/getting-started
   + http://nativebase.io/docs/v0.5.7/cheatsheet
+
+## Debugging and Performance Monitoring
+
+  + https://support.apple.com/en-us/HT201464
