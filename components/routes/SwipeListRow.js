@@ -24,6 +24,8 @@ export default class SwipeListRow extends Component {
   render(){
     let todaysDate = moment().format(SwipeListRow.dateFormat);
     let tomorrowsDate = moment().add(1, 'days').format(SwipeListRow.dateFormat);
+    let datePickerMin = todaysDate;
+    let datePickerMax = moment().add(3, 'months').format(SwipeListRow.dateFormat);
 
     return (
       <CardItem key={this.route.id} style={styles.cardItem}>
@@ -53,8 +55,8 @@ export default class SwipeListRow extends Component {
               placeholder="future"
               showIcon={false}
               format={SwipeListRow.dateFormat}
-              minDate={todaysDate}
-              //maxDate="2020-06-01"
+              minDate={this.datePickerMin}
+              maxDate={this.datePickerMax}
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={datePickerCustomStyles}

@@ -10,6 +10,7 @@ export default class SwipeListHiddenRow extends Component {
     this.route = this.props.route;
     this.handleDeleteButtonPress = this.handleDeleteButtonPress.bind(this);
     this.removeRouteFromFavoritesList = this.removeRouteFromFavoritesList.bind(this);
+    this.removeRouteFromRoutes = this.removeRouteFromRoutes.bind(this);
   }
 
   render(){
@@ -44,35 +45,36 @@ export default class SwipeListHiddenRow extends Component {
     //  },
     //]
     //Alert.alert(alertTitle, alertMessage, configAlertButtons)
-    this.removeRouteFromFavoritesList();
+    this.removeRouteFromFavoritesList()
   }
 
   removeRouteFromFavoritesList(){
+    this.navigator.replace({
+      name: 'ROUTES',
+      params:{routes: this.removeRouteFromRoutes()}
+    })
+  }
+
+  removeRouteFromRoutes(){
     const route = this.route;
     const routes = this.routes;
     delete routes[routes.indexOf(route)];
-
-    this.navigator.push({
-      name: "ROUTES",
-      params:{
-        routes: routes
-      }
-    })
+    return routes
   }
 }
 
 const styles = StyleSheet.create({
-	hiddenRow: {
-		alignItems: 'center',
-		backgroundColor: '#d9534f', // danger
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingLeft: 15,
+  hiddenRow: {
+    alignItems: 'center',
+    backgroundColor: '#d9534f', // danger
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 15,
     paddingRight:15,
     marginBottom:15 // expect to match value from non-hidden row
-	},
+  },
   deleteButton:{
     alignSelf:'center'
   }
-});
+})

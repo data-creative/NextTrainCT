@@ -1,27 +1,21 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
-//import RoutesList from "./List"
+
 import RoutesSwipeList from "./SwipeList"
 
 export default class RoutesIndex extends Component {
   constructor(props){
     super(props)
+    this.fakeRoutes = [
+      {"id":1111, "origin":"BRN", "destination":"NHV"},
+      {"id":2222, "origin":"NHV", "destination":"BRN"},
+      {"id":3333, "origin":"GUIL", "destination":"OSB"},
+      //{"id":666, "origin":"BRN", "destination":"MAD"},
+      //{"id":777, "origin":"MAD", "destination":"BRN"}
+    ]
 
-    var routes;
-    if(!this.props.routes){
-      routes = [
-        //{"id":1111, "origin":"BRN", "destination":"NHV"},
-        //{"id":2222, "origin":"NHV", "destination":"BRN"},
-        {"id":3333, "origin":"GUIL", "destination":"OSB"},
-        //{"id":4444, "origin":"GCS", "destination":"NHV"},
-        //{"id":5555, "origin":"ST", "destination":"NHV"},
-        {"id":666, "origin":"BRN", "destination":"MAD"},
-        {"id":777, "origin":"MAD", "destination":"BRN"}
-      ]
-    } else {
-      routes = this.props.routes
-    } // post-route-deletion redirect
+    var routes = this.props.routes || this.fakeRoutes // post-route-deletion redirect
 
     if (props.route) {
       props.route["id"] = Date.now() // fake save
@@ -32,14 +26,14 @@ export default class RoutesIndex extends Component {
       routes: routes,
       title:"NextTrain CT",
     }
-    this.goNew = this.goNew.bind(this);
+    this.navigator = this.props.navigator;
+    this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
   render() {
     const welcomeMessage = "Tap the button below to save a transit route."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    //const list = <RoutesList routes={this.state.routes} navigator={this.props.navigator}/>
-    const list = <RoutesSwipeList routes={this.state.routes} navigator={this.props.navigator}/>
+    const list = <RoutesSwipeList routes={this.state.routes} navigator={this.navigator}/>
 
     return (
       <Container>
@@ -52,7 +46,7 @@ export default class RoutesIndex extends Component {
         </Content>
 
         <Footer transparent style={styles.footer}>
-          <Button rounded style={styles.footerButton} onPress={this.goNew}>
+          <Button rounded style={styles.footerButton} onPress={this.handleButtonPress}>
             <Icon name="md-add" />
           </Button>
         </Footer>
@@ -60,8 +54,8 @@ export default class RoutesIndex extends Component {
     );
   }
 
-  goNew(){
-    this.props.navigator.push({name: 'NEW_ROUTE'})
+  handleButtonPress(){
+    this.navigator.push({name: 'NEW_ROUTE'})
   }
 
   componentWillMount(){  console.log("INDEX WILL MOUNT")  }

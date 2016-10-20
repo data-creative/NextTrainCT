@@ -54,7 +54,7 @@ export default class NewRoute extends Component {
 
   handleSubmit(){
     console.log("SAVE ME! SAVE ME! SAVE ME! AJAX. SPINNER.")
-    this.props.navigator.push({
+    this.props.navigator.resetTo({
       name:'CREATE_ROUTE',
       params:{
         route:{origin: this.state.origin, destination: this.state.destination}
