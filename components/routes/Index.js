@@ -17,11 +17,6 @@ export default class RoutesIndex extends Component {
 
     var routes = this.props.routes || this.fakeRoutes // post-route-deletion redirect
 
-    if (props.route) {
-      props.route["id"] = Date.now() // fake save
-      routes.push(props.route)
-    } // post-route-creation redirect
-
     this.state = {
       routes: routes,
       title:"NextTrain CT",
@@ -55,7 +50,13 @@ export default class RoutesIndex extends Component {
   }
 
   handleButtonPress(){
-    this.navigator.push({name: 'NEW_ROUTE'})
+    console.log("INDEX PASSING", this.state.routes.length, "FAVS")
+    this.navigator.push({
+      name: 'NEW_FAV',
+      params: {
+        routes: this.state.routes
+      }
+    })
   }
 
   componentWillMount(){  console.log("INDEX WILL MOUNT")  }

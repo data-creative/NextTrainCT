@@ -22,10 +22,10 @@ class App extends Component {
       case 'ROUTES':
         return <RoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
-      case 'NEW_ROUTE':
+      case 'NEW_FAV':
         return <NewRoute navigator={navigator} {...navRoute.params}  />
         break;
-      case 'CREATE_ROUTE':
+      case 'CREATE_FAV':
         return <RoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
       case 'TRAINS':
