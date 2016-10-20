@@ -10,7 +10,7 @@ export default class HeaderCard extends Component {
 
   constructor(props){
     super(props)
-    this.selectedRoute = this.props.route;
+    this.fav = this.props.fav;
     this.selectedDate = this.props.date;
   }
 
@@ -20,18 +20,18 @@ export default class HeaderCard extends Component {
         <CardItem>
           <Text>
             <Text style={{fontWeight:'bold'}}>
-              { Station.findByAbbrev(this.selectedRoute.origin).name.toUpperCase() }
+              { Station.findByAbbrev(this.fav.origin).name.toUpperCase() }
             </Text>
             <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
               {"  to  "}
             </Text>
             <Text style={{fontWeight:'bold'}}>
-              { Station.findByAbbrev(this.selectedRoute.destination).name.toUpperCase() }
+              { Station.findByAbbrev(this.fav.destination).name.toUpperCase() }
             </Text>
           </Text>
 
           <Text style={{fontWeight:'bold', fontSize:14}}>
-            { moment(this.selectedDate).format(RouteHeaderCard.dateDisplayFormat).toUpperCase() }
+            { moment(this.selectedDate).format(HeaderCard.dateDisplayFormat).toUpperCase() }
           </Text>
         </CardItem>
       </Card>
