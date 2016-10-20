@@ -55,8 +55,8 @@ export default class SwipeListRow extends Component {
               placeholder="future"
               showIcon={false}
               format={SwipeListRow.dateFormat}
-              minDate={this.datePickerMin}
-              maxDate={this.datePickerMax}
+              minDate={datePickerMin}
+              maxDate={datePickerMax}
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={datePickerCustomStyles}
