@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon, Footer} from 'native-base';
 
-import RouteHeaderCard from "./HeaderCard"
+import HeaderCard from "./HeaderCard"
 import TrainsList from "./List"
 
 //moment.updateLocale('en', {calendar : {sameDay : '[Today]', nextDay : '[Tomorrow]'}})
@@ -25,7 +25,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         {id:8,departure: moment().add(125, "minutes").format(), arrival: moment().add(140, "minutes").format()}
       ]
     }
-    this.selectedRoute = this.props.route;
+    this.fav = this.props.fav;
     this.selectedDate = this.props.selectedDate;
     this.navigator = this.props.navigator;
     this.goBack = this.goBack.bind(this);
@@ -43,7 +43,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         </Header>
 
         <Content style={{margin:20}}>
-          <RouteHeaderCard route={this.selectedRoute} date={this.selectedDate}/>
+          <HeaderCard fav={this.fav} date={this.selectedDate}/>
           <TrainsList trains={this.searchResults.trains}/>
         </Content>
 

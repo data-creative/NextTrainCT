@@ -2,42 +2,37 @@ import React, {Component} from 'react';
 import {Alert, Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
 
-import RoutesSwipeList from "./SwipeList"
+import SwipeList from "./SwipeList"
 
-export default class RoutesIndex extends Component {
+export default class FavsIndex extends Component {
   constructor(props){
     super(props)
-    this.fakeRoutes = [
+    this.title = "NextTrain CT";
+    this.fakeFavs = [
       {"id":1111, "origin":"BRN", "destination":"NHV"},
       {"id":2222, "origin":"NHV", "destination":"BRN"},
       {"id":3333, "origin":"GUIL", "destination":"OSB"},
       //{"id":666, "origin":"BRN", "destination":"MAD"},
       //{"id":777, "origin":"MAD", "destination":"BRN"}
     ]
-
-    var routes = this.props.routes || this.fakeRoutes // post-route-deletion redirect
-
-    this.state = {
-      routes: routes,
-      title:"NextTrain CT",
-    }
+    this.favs = this.props.favs || this.fakeFavs // post-deletion redirect
     this.navigator = this.props.navigator;
     this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
   render() {
-    const welcomeMessage = "Tap the button below to save a transit route."
+    const welcomeMessage = "Tap the button below to save a favorite transit route."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    const list = <RoutesSwipeList routes={this.state.routes} navigator={this.navigator}/>
+    const list = <SwipeList favs={this.favs} navigator={this.navigator}/>
 
     return (
       <Container>
         <Header>
-          <Title>{this.state.title}</Title>
+          <Title>{this.title}</Title>
         </Header>
 
         <Content style={{margin:20}}>
-          { this.state.routes.length > 0 ? list : welcomeText }
+          { this.favs.length > 0 ? list : welcomeText }
         </Content>
 
         <Footer transparent style={styles.footer}>
@@ -52,7 +47,7 @@ export default class RoutesIndex extends Component {
   handleButtonPress(){
     this.navigator.push({
       name: 'NEW_FAV',
-      params: {routes: this.state.routes}
+      params: {favs: this.favs}
     })
   }
 

@@ -5,11 +5,11 @@ import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 import SwipeListRow from './SwipeListRow';
 import SwipeListHiddenRow from './SwipeListHiddenRow';
 
-export default class RoutesSwipeList extends Component {
+export default class SwipeList extends Component {
   constructor(props){
     super(props)
     this.navigator = this.props.navigator;
-    this.routes = this.props.routes;
+    this.favs = this.props.favs;
     this.renderRow = this.renderRow.bind(this);
     this.renderHiddenRow = this.renderHiddenRow.bind(this);
     this.rowHasChanged = this.rowHasChanged.bind(this);
@@ -19,7 +19,7 @@ export default class RoutesSwipeList extends Component {
   render() {
     return (
         <SwipeListView
-          dataSource={this.dataSource.cloneWithRows(this.props.routes)}
+          dataSource={this.dataSource.cloneWithRows(this.favs)}
           renderRow={this.renderRow}
           renderHiddenRow={this.renderHiddenRow}
           leftOpenValue={60}
@@ -28,13 +28,12 @@ export default class RoutesSwipeList extends Component {
     )
   }
 
-  renderRow(route, sectionId, rowId){
-    //console.log(route,sectionId, rowId)
-    return <SwipeListRow route={route} navigator={this.navigator}/>
+  renderRow(fav, sectionId, rowId){
+    return <SwipeListRow fav={fav} navigator={this.navigator}/>
   }
 
-  renderHiddenRow(route, sectionId, rowId){
-    return <SwipeListHiddenRow route={route} routes={this.routes} navigator={this.navigator}/>
+  renderHiddenRow(fav, sectionId, rowId){
+    return <SwipeListHiddenRow fav={fav} favs={this.favs} navigator={this.navigator}/>
   }
 
   rowHasChanged(row1, row2){

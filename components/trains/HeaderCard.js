@@ -5,7 +5,7 @@ import {Card, CardItem} from 'native-base';
 
 import Station from "../../app/models/station"
 
-export default class RouteHeaderCard extends Component {
+export default class HeaderCard extends Component {
   static get dateDisplayFormat(){ return "dddd, MMMM D, YYYY" } // MONDAY, OCTOBER 17, 2016
 
   constructor(props){

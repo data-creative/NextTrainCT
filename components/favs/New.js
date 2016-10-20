@@ -3,11 +3,11 @@ import {Text} from 'react-native';
 import {Container, Header, Button, Icon, Title, Content} from 'native-base';
 import StationPicker from "../stations/Picker"
 
-export default class NewRoute extends Component {
+export default class NewFav extends Component {
   constructor(props) {
     super(props);
     this.state = {origin: 'GCS', destination: 'NHV'};
-    this.routes = this.props.routes;
+    this.favs = this.props.favs;
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -54,13 +54,13 @@ export default class NewRoute extends Component {
   }
 
   handleSubmit(){
-    const newRoute = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
-    this.routes.push(newRoute);
+    const newFav = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
+    this.favs.push(newFav);
     this.props.navigator.resetTo({
       name:'CREATE_FAV',
       params:{
-        route: newRoute,
-        routes: this.routes
+        fav: newFav,
+        favs: this.favs
       }
     });
   }

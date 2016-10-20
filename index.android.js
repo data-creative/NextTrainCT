@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {AppRegistry, Navigator} from 'react-native';
 
-import RoutesIndex from "./components/routes/Index";
-import NewRoute from "./components/routes/New";
+import FavsIndex from "./components/favs/Index";
+import NewFav from "./components/favs/New";
 import TrainsIndex from "./components/trains/Index";
 
 class App extends Component {
   render(){
     return (
       <Navigator style={{ flex:1 }}
-        initialRoute={{ name: 'ROUTES' }}
+        initialRoute={{ name: 'FAVS' }}
         renderScene={ this.renderScene }
         configureScene={ this.configureScene }
       />
@@ -19,14 +19,14 @@ class App extends Component {
   // todo: iterate over a hash of nav routes and actions
   renderScene(navRoute, navigator) {
     switch (navRoute.name) {
-      case 'ROUTES':
-        return <RoutesIndex navigator={navigator} {...navRoute.params}  />
+      case 'FAVS':
+        return <FavsIndex navigator={navigator} {...navRoute.params}  />
         break;
       case 'NEW_FAV':
-        return <NewRoute navigator={navigator} {...navRoute.params}  />
+        return <NewFav navigator={navigator} {...navRoute.params}  />
         break;
       case 'CREATE_FAV':
-        return <RoutesIndex navigator={navigator} {...navRoute.params}  />
+        return <FavsIndex navigator={navigator} {...navRoute.params}  />
         break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />

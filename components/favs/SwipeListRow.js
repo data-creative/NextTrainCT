@@ -14,10 +14,10 @@ export default class SwipeListRow extends Component {
     super(props)
     this.state = {selectedDate: null} // expect selectedDate to be null to cause datepicker to display placeholder text
     this.navigator = this.props.navigator;
-    this.routes = this.props.routes;
-    this.route = this.props.route;
-    this.originStation = Station.findByAbbrev(this.route.origin);
-    this.destinationStation = Station.findByAbbrev(this.route.destination)
+    this.favs = this.props.favs;
+    this.fav = this.props.fav;
+    this.originStation = Station.findByAbbrev(this.fav.origin);
+    this.destinationStation = Station.findByAbbrev(this.fav.destination)
     this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
@@ -28,7 +28,7 @@ export default class SwipeListRow extends Component {
     let datePickerMax = moment().add(3, 'months').format(SwipeListRow.dateFormat);
 
     return (
-      <CardItem key={this.route.id} style={styles.cardItem}>
+      <CardItem key={this.fav.id} style={styles.cardItem}>
           <Text style={styles.cardItemTitle}>
             <Text style={{fontWeight:'bold'}}>{this.originStation.name.toUpperCase()}</Text>
             <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>{"  to  "}</Text>
@@ -76,8 +76,8 @@ export default class SwipeListRow extends Component {
     this.navigator.push({
       name: "TRAINS",
       params:{
-        routes: this.routes,
-        route: this.route,
+        favs: this.favs,
+        fav: this.fav,
         selectedDate: selectedDate
       }
     })

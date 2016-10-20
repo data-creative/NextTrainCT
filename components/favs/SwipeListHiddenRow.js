@@ -6,11 +6,10 @@ export default class SwipeListHiddenRow extends Component {
   constructor(props){
     super(props)
     this.navigator = this.props.navigator;
-    this.routes = this.props.routes;
-    this.route = this.props.route;
+    this.favs = this.props.favs;
+    this.fav = this.props.fav;
     this.handleDeleteButtonPress = this.handleDeleteButtonPress.bind(this);
-    this.removeRouteFromFavoritesList = this.removeRouteFromFavoritesList.bind(this);
-    this.removeRouteFromRoutes = this.removeRouteFromRoutes.bind(this);
+    this.removeFav = this.removeFav.bind(this);
   }
 
   render(){
@@ -41,25 +40,22 @@ export default class SwipeListHiddenRow extends Component {
     //  },
     //  {
     //    text: 'OK',
-    //    onPress: function(){ this.removeRouteFromFavoritesList() }.bind(this)
+    //    onPress: function(){ this.removeFav() }.bind(this)
     //  },
     //]
     //Alert.alert(alertTitle, alertMessage, configAlertButtons)
-    this.removeRouteFromFavoritesList()
+    this.removeFav()
   }
 
-  removeRouteFromFavoritesList(){
+  removeFav(){
+    const fav = this.fav;
+    const favs = this.favs;
+    delete favs[favs.indexOf(fav)];
+
     this.navigator.replace({
-      name: 'ROUTES',
-      params:{routes: this.removeRouteFromRoutes()}
+      name: 'FAVS',
+      params:{favs: this.favs}
     })
-  }
-
-  removeRouteFromRoutes(){
-    const route = this.route;
-    const routes = this.routes;
-    delete routes[routes.indexOf(route)];
-    return routes
   }
 }
 
