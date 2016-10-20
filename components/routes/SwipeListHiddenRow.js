@@ -25,15 +25,23 @@ export default class SwipeListRowHidden extends Component {
 
   handleDeleteButtonPress(){
     console.log("DELETE BUTTON PRESSED")
-
-    Alert.alert(
-      "Remove from favorites?",
-      "Are you sure you want to remove this route from your favorites list?",
-      [
-        {text: 'Cancel', onPress: function(){  console.log("DELETE NEVERMIND")  }},
-        {text: 'OK', onPress: function(){  console.log("DELETE OK")  }},
-      ]
-    )
+    let alertTitle = "Remove from favorites?";
+    let alertMessage = "Are you sure you want to remove this route from your favorites list?";
+    let configAlertButtons = [
+      {
+        text: 'Cancel',
+        onPress: function(){
+          console.log("DELETE NEVERMIND")
+        }
+      },
+      {
+        text: 'OK',
+        onPress: function(){
+          console.log("DELETE OK")
+        }
+      },
+    ]
+    Alert.alert(alertTitle, alertMessage, configAlertButtons)
   }
 }
 

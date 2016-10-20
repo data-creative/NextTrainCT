@@ -8,6 +8,7 @@ import SwipeListHiddenRow from './SwipeListHiddenRow';
 export default class RoutesSwipeList extends Component {
   constructor(props){
     super(props)
+    this.navigator = this.props.navigator;
     this.renderRow = this.renderRow.bind(this);
     this.renderHiddenRow = this.renderHiddenRow.bind(this);
     this.rowHasChanged = this.rowHasChanged.bind(this);
@@ -28,11 +29,11 @@ export default class RoutesSwipeList extends Component {
 
   renderRow(route, sectionId, rowId){
     console.log(route,sectionId, rowId)
-    return <SwipeListRow route={route}/>
+    return <SwipeListRow route={route} navigator={this.navigator}/>
   }
 
   renderHiddenRow(route, sectionId, rowId){
-    return <SwipeListHiddenRow route={route}/>
+    return <SwipeListHiddenRow route={route} navigator={this.navigator}/>
   }
 
   rowHasChanged(row1, row2){
