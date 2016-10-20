@@ -8,20 +8,25 @@ export default class RoutesIndex extends Component {
   constructor(props){
     super(props)
 
-    var routes = [
-      //{"id":1111, "origin":"BRN", "destination":"NHV"},
-      //{"id":2222, "origin":"NHV", "destination":"BRN"},
-      {"id":3333, "origin":"GUIL", "destination":"OSB"},
-      //{"id":4444, "origin":"GCS", "destination":"NHV"},
-      //{"id":5555, "origin":"ST", "destination":"NHV"},
-      {"id":666, "origin":"BRN", "destination":"MAD"},
-      {"id":777, "origin":"MAD", "destination":"BRN"}
-    ]
+    var routes;
+    if(!this.props.routes){
+      routes = [
+        //{"id":1111, "origin":"BRN", "destination":"NHV"},
+        //{"id":2222, "origin":"NHV", "destination":"BRN"},
+        {"id":3333, "origin":"GUIL", "destination":"OSB"},
+        //{"id":4444, "origin":"GCS", "destination":"NHV"},
+        //{"id":5555, "origin":"ST", "destination":"NHV"},
+        {"id":666, "origin":"BRN", "destination":"MAD"},
+        {"id":777, "origin":"MAD", "destination":"BRN"}
+      ]
+    } else {
+      routes = this.props.routes
+    } // post-route-deletion redirect
 
     if (props.route) {
       props.route["id"] = Date.now() // fake save
       routes.push(props.route)
-    } // passed-in from post-save redirect
+    } // post-route-creation redirect
 
     this.state = {
       routes: routes,

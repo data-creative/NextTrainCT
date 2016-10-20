@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import {StyleSheet, View, Alert} from 'react-native';
 import {Button, Icon} from 'native-base';
 
-export default class SwipeListRowHidden extends Component {
+export default class SwipeListHiddenRow extends Component {
   constructor(props){
     super(props)
+    this.navigator = this.props.navigator;
+    this.routes = this.props.routes;
+    this.route = this.props.route;
     this.handleDeleteButtonPress = this.handleDeleteButtonPress.bind(this);
+    this.removeRouteFromFavoritesList = this.removeRouteFromFavoritesList.bind(this);
   }
 
   render(){
@@ -25,23 +29,35 @@ export default class SwipeListRowHidden extends Component {
 
   handleDeleteButtonPress(){
     console.log("DELETE BUTTON PRESSED")
-    let alertTitle = "Remove from favorites?";
-    let alertMessage = "Are you sure you want to remove this route from your favorites list?";
-    let configAlertButtons = [
-      {
-        text: 'Cancel',
-        onPress: function(){
-          console.log("DELETE NEVERMIND")
-        }
-      },
-      {
-        text: 'OK',
-        onPress: function(){
-          console.log("DELETE OK")
-        }
-      },
-    ]
-    Alert.alert(alertTitle, alertMessage, configAlertButtons)
+    //let alertTitle = "Remove from favorites?";
+    //let alertMessage = "Are you sure you want to remove this route from your favorites list?";
+    //let configAlertButtons = [
+    //  {
+    //    text: 'Cancel',
+    //    onPress: function(){
+    //      console.log("DELETE NEVERMIND")
+    //    }
+    //  },
+    //  {
+    //    text: 'OK',
+    //    onPress: function(){ this.removeRouteFromFavoritesList() }.bind(this)
+    //  },
+    //]
+    //Alert.alert(alertTitle, alertMessage, configAlertButtons)
+    this.removeRouteFromFavoritesList();
+  }
+
+  removeRouteFromFavoritesList(){
+    const route = this.route;
+    const routes = this.routes;
+    delete routes[routes.indexOf(route)];
+
+    this.navigator.push({
+      name: "ROUTES",
+      params:{
+        routes: routes
+      }
+    })
   }
 }
 
