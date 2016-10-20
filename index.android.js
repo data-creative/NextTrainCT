@@ -4,7 +4,6 @@ import {AppRegistry, Navigator} from 'react-native';
 import RoutesIndex from "./components/routes/Index";
 import NewRoute from "./components/routes/New";
 import TrainsIndex from "./components/trains/Index";
-import MyComponent from "./components/MyComponent";
 
 class App extends Component {
   render(){
@@ -23,17 +22,14 @@ class App extends Component {
       case 'ROUTES':
         return <RoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
-      case 'NEW_ROUTE':
+      case 'NEW_FAV':
         return <NewRoute navigator={navigator} {...navRoute.params}  />
         break;
-      case 'CREATE_ROUTE':
+      case 'CREATE_FAV':
         return <RoutesIndex navigator={navigator} {...navRoute.params}  />
         break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />
-        break;
-      case 'TEST_TEST':
-        return <MyComponent navigator={navigator} {...navRoute.params}  />
         break;
       default:
         console.error("UNRECOGNIZED ROUTE -- " + navRoute.name)
@@ -41,6 +37,9 @@ class App extends Component {
   }
 
   configureScene(navRoute, navRouteStack){
+    console.log('ROUTE', navRoute.name)
+    if(navRouteStack){  console.log('ROUTE-STACK (', navRouteStack.length, ')', navRouteStack)  }
+
     switch (navRoute.transition) {
       case 'Back':
         return Navigator.SceneConfigs.FloatFromLeft;

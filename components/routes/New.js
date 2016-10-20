@@ -7,6 +7,7 @@ export default class NewRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {origin: 'GCS', destination: 'NHV'};
+    this.routes = this.props.routes;
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -53,11 +54,13 @@ export default class NewRoute extends Component {
   }
 
   handleSubmit(){
-    console.log("SAVE ME! SAVE ME! SAVE ME! AJAX. SPINNER.")
-    this.props.navigator.push({
-      name:'CREATE_ROUTE',
+    const newRoute = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
+    this.routes.push(newRoute);
+    this.props.navigator.resetTo({
+      name:'CREATE_FAV',
       params:{
-        route:{origin: this.state.origin, destination: this.state.destination}
+        route: newRoute,
+        routes: this.routes
       }
     });
   }
