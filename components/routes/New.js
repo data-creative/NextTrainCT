@@ -54,7 +54,6 @@ export default class NewRoute extends Component {
   }
 
   handleSubmit(){
-    console.log("SAVE ME! SAVE ME! SAVE ME! AJAX. SPINNER.");
     const newRoute = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
     this.routes.push(newRoute);
     this.props.navigator.resetTo({

@@ -50,12 +50,9 @@ export default class RoutesIndex extends Component {
   }
 
   handleButtonPress(){
-    console.log("INDEX PASSING", this.state.routes.length, "FAVS")
     this.navigator.push({
       name: 'NEW_FAV',
-      params: {
-        routes: this.state.routes
-      }
+      params: {routes: this.state.routes}
     })
   }
 
