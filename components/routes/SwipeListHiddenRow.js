@@ -10,7 +10,7 @@ export default class SwipeListRowHidden extends Component {
 
   render(){
     const DeleteButton = (
-      <Button transparent onPress={this.handleDeleteButtonPress}>
+      <Button transparent onPress={this.handleDeleteButtonPress} style={styles.deleteButton}>
         <Icon name="md-trash" style={{color: "white"}}/>
       </Button>
     )
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		paddingLeft: 15,
     paddingRight:15,
-    paddingTop:8
-	}
+    marginBottom:15 // expect to match value from non-hidden row
+	},
+  deleteButton:{
+    alignSelf:'center'
+  }
 });

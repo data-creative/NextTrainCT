@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
   cardItem:{
     height:90,
     paddingLeft:20,
-    backgroundColor:"white"
+    backgroundColor:"white",
+    marginBottom:15 // expect value to be the same as hiddenRow
   },
   cardItemTitle:{
     marginTop:10,
