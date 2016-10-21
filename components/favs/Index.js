@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Text, StyleSheet} from 'react-native'
+import {Alert, Text, StyleSheet, AsyncStorage} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
 
 import SwipeList from "./SwipeList"
@@ -7,15 +7,7 @@ import SwipeList from "./SwipeList"
 export default class FavsIndex extends Component {
   constructor(props){
     super(props)
-    this.title = "NextTrain CT";
-    this.fakeFavs = [
-      {"id":1111, "origin":"BRN", "destination":"NHV"},
-      {"id":2222, "origin":"NHV", "destination":"BRN"},
-      {"id":3333, "origin":"GUIL", "destination":"OSB"},
-      //{"id":666, "origin":"BRN", "destination":"MAD"},
-      //{"id":777, "origin":"MAD", "destination":"BRN"}
-    ]
-    this.favs = this.props.favs || this.fakeFavs // post-deletion redirect
+    this.state = {favs: this.props.favs || [] }
     this.navigator = this.props.navigator;
     this.handleButtonPress = this.handleButtonPress.bind(this);
   }
@@ -23,16 +15,16 @@ export default class FavsIndex extends Component {
   render() {
     const welcomeMessage = "Tap the button below to save a favorite transit route."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
-    const list = <SwipeList favs={this.favs} navigator={this.navigator}/>
+    const list = <SwipeList favs={this.state.favs} navigator={this.navigator}/>
 
     return (
       <Container>
         <Header>
-          <Title>{this.title}</Title>
+          <Title>NextTrain CT</Title>
         </Header>
 
         <Content style={{margin:20}}>
-          { this.favs.length > 0 ? list : welcomeText }
+          { this.state.favs.length > 0 ? list : welcomeText }
         </Content>
 
         <Footer transparent style={styles.footer}>
@@ -47,16 +39,30 @@ export default class FavsIndex extends Component {
   handleButtonPress(){
     this.navigator.push({
       name: 'NEW_FAV',
-      params: {favs: this.favs}
+      params: {favs: this.state.favs}
     })
   }
 
-  componentWillMount(){  console.log("INDEX WILL MOUNT")  }
-  componentDidMount(){  console.log("INDEX DID MOUNT")  }
-  componentWillReceiveProps(nextProps){  console.log("INDEX WILL RECEIVE PROPS")  }
-  componentWillUpdate(nextProps, nextState){  console.log("INDEX WILL UPDATE")  }
-  componentDidUpdate(prevProps, prevState){  console.log("INDEX DID UPDATE")  }
-  componentWillUnmount(){  console.log("INDEX WILL UNMOUNT")  }
+  componentWillMount(){  console.log("FAVS INDEX WILL MOUNT")  }
+  componentDidMount(){  console.log("FAVS INDEX DID MOUNT")
+    AsyncStorage.getItem("@FavsStore:favs").then(function(favs){
+      console.log('AsyncStorage Success:', favs)
+      if (favs) {
+        this.setState({favs:favs})
+      }
+    }).catch(function(error){
+      console.error('AsyncStorage Error:', error)
+    })
+  }
+  componentWillReceiveProps(nextProps){  console.log("FAVS INDEX WILL RECEIVE PROPS")  }
+  componentWillUpdate(nextProps, nextState){  console.log("FAVS INDEX WILL UPDATE")  }
+  componentDidUpdate(prevProps, prevState){  console.log("FAVS INDEX DID UPDATE")  }
+  componentWillUnmount(){  console.log("FAVS INDEX WILL UNMOUNT")  }
+};
+
+FavsIndex.propTypes = {
+  navigator: React.PropTypes.object.isRequired, // an instance of react-native Navigator
+  favs: React.PropTypes.arrayOf(React.PropTypes.object)
 };
 
 const styles = StyleSheet.create({
