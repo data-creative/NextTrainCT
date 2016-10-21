@@ -63,7 +63,7 @@ export default class NewFav extends Component {
 
     const favs = this.favs
     const nav = this.navigator
-    AsyncStorage.setItem("favs", favs).then(function(){
+    AsyncStorage.setItem("favs", JSON.stringify(favs)).then(function(){
       console.log('AsyncStorage setItem() Success', newFav)
       return nav.resetTo({name:'CREATE_FAV'});
     }).catch(function(error){

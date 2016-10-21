@@ -57,12 +57,12 @@ export default class FavsIndex extends Component {
       //if(err){ console.log(err)}
       console.log("AsyncStorage KEYS", keys)
 
-      AsyncStorage.getItem('favs', (err, result) => {
+      AsyncStorage.getItem('favs', (err, favs) => {
         //if(err){ console.log(err)}
-        console.log("AsyncStorage FAVS!", typeof(result), result);
+        console.log("AsyncStorage FAVS!", typeof(favs), favs);
 
-        if (result) {
-          component.setState({favs:favs})
+        if (favs) {
+          component.setState({favs: JSON.parse(favs)})
         }
         //AsyncStorage.removeItem('favs', (err, result) => {
         //  console.log("REMOVE FAVS");
