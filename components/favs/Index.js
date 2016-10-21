@@ -37,10 +37,7 @@ export default class FavsIndex extends Component {
   }
 
   handleButtonPress(){
-    this.navigator.push({
-      name: 'NEW_FAV',
-      params: {favs: this.state.favs}
-    })
+    this.navigator.push({name: 'NEW_FAV'})
   }
 
   componentWillMount(){  console.log("FAVS INDEX WILL MOUNT")  }

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
-import {Container, Header, Button, Icon, Title, Content} from 'native-base';
+import {Text, AsyncStorage} from 'react-native';
+import {Container, Header, Button, Icon, Title, Content, Spinner} from 'native-base';
 import StationPicker from "../stations/Picker"
 
 export default class NewFav extends Component {
   constructor(props) {
     super(props);
-    this.state = {origin: 'GCS', destination: 'NHV'};
-    this.favs = this.props.favs;
+    this.state = {origin: 'GCS', destination: 'NHV', displaySpinner:false};
+    this.navigator = this.props.navigator;
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -36,6 +36,8 @@ export default class NewFav extends Component {
           <Button block primary style={{marginTop:15}} onPress={ this.handleSubmit }>
             {"Save"}
           </Button>
+
+          {this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null}
         </Content>
       </Container>
     );
@@ -50,19 +52,21 @@ export default class NewFav extends Component {
   }
 
   goBack(){
-    this.props.navigator.pop();
+    this.navigator.pop();
   }
 
   handleSubmit(){
+    this.setState({displaySpinner:true})
     const newFav = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
-    this.favs.push(newFav);
-    this.props.navigator.resetTo({
-      name:'CREATE_FAV',
-      params:{
-        fav: newFav,
-        favs: this.favs
-      }
-    });
+    //this.favs.push(newFav);
+
+    const nav = this.navigator
+    AsyncStorage.setItem("@FavsStore:favs").then(function(){
+      console.log('AsyncStorage Success', newFav)
+      nav.resetTo({name:'CREATE_FAV'});
+    }).catch(function(error){
+      console.error('AsyncStorage Error:', error)
+    })
   }
 
   componentWillMount(){  console.log("NEW WILL MOUNT")  }
@@ -71,4 +75,8 @@ export default class NewFav extends Component {
   componentWillUpdate(nextProps, nextState){  console.log("NEW WILL UPDATE", nextState.origin, nextState.destination)  }
   componentDidUpdate(prevProps, prevState){  console.log("NEW DID UPDATE")  }
   componentWillUnmount(){  console.log("NEW WILL UNMOUNT")  }
+};
+
+NewFav.propTypes = {
+  navigator: React.PropTypes.object.isRequired, // an instance of react-native Navigator
 };
