@@ -37,19 +37,44 @@ export default class FavsIndex extends Component {
   }
 
   handleButtonPress(){
-    this.navigator.push({name: 'NEW_FAV'})
+    const favs = this.state.favs
+    this.navigator.push({name: 'NEW_FAV', params:{favs:favs}})
   }
 
   componentWillMount(){  console.log("FAVS INDEX WILL MOUNT")  }
   componentDidMount(){  console.log("FAVS INDEX DID MOUNT")
-    AsyncStorage.getItem("@FavsStore:favs").then(function(favs){
-      console.log('AsyncStorage Success:', favs)
-      if (favs) {
-        this.setState({favs:favs})
-      }
-    }).catch(function(error){
-      console.error('AsyncStorage Error:', error)
-    })
+    //AsyncStorage.getItem("@FavsStore:favs").then(function(favs){
+    //  console.log('AsyncStorage Success:', favs)
+    //  if (favs) {
+    //    this.setState({favs:favs})
+    //  }
+    //}).catch(function(error){
+    //  console.error('AsyncStorage Error:', error)
+    //})
+
+    var component = this
+    AsyncStorage.getAllKeys((err, keys) => {
+      //if(err){ console.log(err)}
+      console.log("AsyncStorage KEYS", keys)
+
+      AsyncStorage.getItem('favs', (err, result) => {
+        //if(err){ console.log(err)}
+        console.log("AsyncStorage FAVS!", typeof(result), result);
+
+        if (result) {
+          component.setState({favs:favs})
+        }
+        //AsyncStorage.removeItem('favs', (err, result) => {
+        //  console.log("REMOVE FAVS");
+//
+        //  AsyncStorage.getAllKeys((err, keys) => {
+        //    console.log("STORAGE KEYS", keys)
+        //  });
+//
+        //});
+      });
+    });
+
   }
   componentWillReceiveProps(nextProps){  console.log("FAVS INDEX WILL RECEIVE PROPS")  }
   componentWillUpdate(nextProps, nextState){  console.log("FAVS INDEX WILL UPDATE")  }

@@ -8,6 +8,7 @@ export default class NewFav extends Component {
     super(props);
     this.state = {origin: 'GCS', destination: 'NHV', displaySpinner:false};
     this.navigator = this.props.navigator;
+    this.favs = this.props.favs;
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -58,14 +59,15 @@ export default class NewFav extends Component {
   handleSubmit(){
     this.setState({displaySpinner:true})
     const newFav = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
-    //this.favs.push(newFav);
+    this.favs.push(newFav);
 
+    const favs = this.favs
     const nav = this.navigator
-    AsyncStorage.setItem("@FavsStore:favs").then(function(){
-      console.log('AsyncStorage Success', newFav)
-      nav.resetTo({name:'CREATE_FAV'});
+    AsyncStorage.setItem("favs", favs).then(function(){
+      console.log('AsyncStorage setItem() Success', newFav)
+      return nav.resetTo({name:'CREATE_FAV'});
     }).catch(function(error){
-      console.error('AsyncStorage Error:', error)
+      console.log('AsyncStorage setItem() Error:', error)
     })
   }
 
