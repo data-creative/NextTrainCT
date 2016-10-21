@@ -4,12 +4,13 @@ import {AppRegistry, Navigator} from 'react-native';
 import FavsIndex from "./components/favs/Index";
 import NewFav from "./components/favs/New";
 import TrainsIndex from "./components/trains/Index";
+import MyComponent from "./components/examples/MyComponent";
 
 class App extends Component {
   render(){
     return (
       <Navigator style={{ flex:1 }}
-        initialRoute={{ name: 'FAVS' }}
+        initialRoute={{ name: 'TEST_TEST' }}
         renderScene={ this.renderScene }
         configureScene={ this.configureScene }
       />
@@ -27,6 +28,9 @@ class App extends Component {
         break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />
+        break;
+      case 'TEST_TEST':
+        return <MyComponent navigator={navigator} {...navRoute.params}  />
         break;
       default:
         console.error("UNRECOGNIZED ROUTE -- " + navRoute.name)
