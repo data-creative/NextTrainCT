@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, View, Alert} from 'react-native';
+import {StyleSheet, View, AsyncStorage} from 'react-native';
 import {Button, Icon} from 'native-base';
 
 export default class SwipeListHiddenRow extends Component {
@@ -9,7 +9,8 @@ export default class SwipeListHiddenRow extends Component {
     this.favs = this.props.favs;
     this.fav = this.props.fav;
     this.handleDeleteButtonPress = this.handleDeleteButtonPress.bind(this);
-    this.removeFav = this.removeFav.bind(this);
+    //this.removeFromFavs = this.removeFromFavs.bind(this);
+    //this.saveFavs = this.saveFavs.bind(this);
   }
 
   render(){
@@ -28,34 +29,20 @@ export default class SwipeListHiddenRow extends Component {
   }
 
   handleDeleteButtonPress(){
-    console.log("DELETE BUTTON PRESSED")
-    //let alertTitle = "Remove from favorites?";
-    //let alertMessage = "Are you sure you want to remove this route from your favorites list?";
-    //let configAlertButtons = [
-    //  {
-    //    text: 'Cancel',
-    //    onPress: function(){
-    //      console.log("DELETE NEVERMIND")
-    //    }
-    //  },
-    //  {
-    //    text: 'OK',
-    //    onPress: function(){ this.removeFav() }.bind(this)
-    //  },
-    //]
-    //Alert.alert(alertTitle, alertMessage, configAlertButtons)
-    this.removeFav()
+    this.removeFromFavs()
+    this.saveFavs()
   }
 
-  removeFav(){
-    const fav = this.fav;
-    const favs = this.favs;
-    delete favs[favs.indexOf(fav)];
+  removeFromFavs(){
+    this.favs.splice(this.favs.indexOf(this.fav), 1)
+  }
 
-    this.navigator.replace({
-      name: 'FAVS',
-      params:{favs: this.favs}
-    })
+  saveFavs(){
+    AsyncStorage.setItem("favs", JSON.stringify(this.favs)) // stringify to avoid err:
+      .then(function(){  console.log('SAVE FAVS', typeof(this.favs), this.favs.length)
+        this.navigator.replace({name:'FAVS', params:{favs: this.favs}})
+      }.bind(this))
+      .catch(function(error){  console.log('SAVE ERR', error)  })
   }
 }
 
