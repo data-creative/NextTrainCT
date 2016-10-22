@@ -38,7 +38,7 @@ class App extends Component {
 
   configureScene(navRoute, navRouteStack){
     console.log('ROUTE:', navRoute.name)
-    if(navRouteStack){  console.log('ROUTE-STACK', `(${navRouteStack.length})`, navRouteStack.map(function(navRoute){ return navRoute.name}))  }
+    if(navRouteStack){  console.log('ROUTE-STACK', `(${navRouteStack.length})`)  } // navRouteStack.map(function(navRoute){ return navRoute.name})
 
     switch (navRoute.transition) {
       case 'Back':

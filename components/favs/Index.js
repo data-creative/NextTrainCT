@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
 import {Alert, Text, StyleSheet, AsyncStorage} from 'react-native'
-import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem} from 'native-base';
+import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem, Spinner} from 'native-base';
 
 import SwipeList from "./SwipeList"
 
 export default class FavsIndex extends Component {
+  //static get storageKey(){ return "favs"}
+
   constructor(props){
     super(props)
-    this.state = {favs: this.props.favs || [] }
+    this.state = {
+      favs: this.props.favs || [],
+      displaySpinner:true
+    }
     this.navigator = this.props.navigator;
+    this.fetchAll = this.fetchAll.bind(this);
+    this.removeAll = this.removeAll.bind(this);
     this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
   render() {
-    const welcomeMessage = "Tap the button below to save a favorite transit route."
+    const welcomeMessage = "Tap the button below to add a transit route to your favorites."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
     const list = <SwipeList favs={this.state.favs} navigator={this.navigator}/>
 
@@ -24,6 +31,7 @@ export default class FavsIndex extends Component {
         </Header>
 
         <Content style={{margin:20}}>
+          { this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null }
           { this.state.favs.length > 0 ? list : welcomeText }
         </Content>
 
@@ -37,44 +45,34 @@ export default class FavsIndex extends Component {
   }
 
   handleButtonPress(){
-    const favs = this.state.favs
+    const favs = this.state.favs // todo
     this.navigator.push({name: 'NEW_FAV', params:{favs:favs}})
+  }
+
+  fetchAll(){
+    AsyncStorage.getItem('favs').then(function(results){
+      console.log("FETCH ALL", results);
+      var nextState = {displaySpinner:false}
+
+      if (results){  nextState.favs = JSON.parse(results)  }
+
+      this.setState(nextState)
+    }.bind(this)).catch(function(err){  console.error("FETCH ERROR", err)  })
+  }
+
+  removeAll(){
+    AsyncStorage.removeItem('favs').then(function(result){
+      console.log("REMOVE ALL");
+      //AsyncStorage.getAllKeys((err, keys) => {
+      //  console.log("STORAGE KEYS", keys)
+      //});
+    }).catch(function(err){  console.error("REMOVE ERROR", err)  })
   }
 
   componentWillMount(){  console.log("FAVS INDEX WILL MOUNT")  }
   componentDidMount(){  console.log("FAVS INDEX DID MOUNT")
-    //AsyncStorage.getItem("@FavsStore:favs").then(function(favs){
-    //  console.log('AsyncStorage Success:', favs)
-    //  if (favs) {
-    //    this.setState({favs:favs})
-    //  }
-    //}).catch(function(error){
-    //  console.error('AsyncStorage Error:', error)
-    //})
-
-    var component = this
-    AsyncStorage.getAllKeys((err, keys) => {
-      //if(err){ console.log(err)}
-      console.log("AsyncStorage KEYS", keys)
-
-      AsyncStorage.getItem('favs', (err, favs) => {
-        //if(err){ console.log(err)}
-        console.log("AsyncStorage FAVS!", typeof(favs), favs);
-
-        if (favs) {
-          component.setState({favs: JSON.parse(favs)})
-        }
-        //AsyncStorage.removeItem('favs', (err, result) => {
-        //  console.log("REMOVE FAVS");
-//
-        //  AsyncStorage.getAllKeys((err, keys) => {
-        //    console.log("STORAGE KEYS", keys)
-        //  });
-//
-        //});
-      });
-    });
-
+    //this.removeAll()
+    this.fetchAll()
   }
   componentWillReceiveProps(nextProps){  console.log("FAVS INDEX WILL RECEIVE PROPS")  }
   componentWillUpdate(nextProps, nextState){  console.log("FAVS INDEX WILL UPDATE")  }
