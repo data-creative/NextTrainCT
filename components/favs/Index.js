@@ -9,9 +9,10 @@ export default class FavsIndex extends Component {
 
   constructor(props){
     super(props)
+    console.log("INDEX PROPS FAVS", typeof(this.props.favs), this.props.favs)
     this.state = {
-      favs: this.props.favs || [],
-      displaySpinner:true
+      favs: (this.props.favs ? this.props.favs : []),
+      displaySpinner:false
     }
     this.navigator = this.props.navigator;
     this.fetchAll = this.fetchAll.bind(this);
@@ -50,29 +51,31 @@ export default class FavsIndex extends Component {
   }
 
   fetchAll(){
-    AsyncStorage.getItem('favs').then(function(results){
-      console.log("FETCH ALL", results);
-      var nextState = {displaySpinner:false}
-
-      if (results){  nextState.favs = JSON.parse(results)  }
-
-      this.setState(nextState)
-    }.bind(this)).catch(function(err){  console.error("FETCH ERROR", err)  })
+    AsyncStorage.getItem('favs')
+      .then(function(results){  console.log("FETCH ALL", results);
+        var nextState = {displaySpinner:false}
+        if (results){  nextState.favs = JSON.parse(results)  }
+        this.setState(nextState)
+      }.bind(this))
+      .catch(function(err){
+        console.error("FETCH ERROR", err)
+        this.removeAll() // temporary
+      }.bind(this))
   }
 
   removeAll(){
     AsyncStorage.removeItem('favs').then(function(result){
       console.log("REMOVE ALL");
-      //AsyncStorage.getAllKeys((err, keys) => {
-      //  console.log("STORAGE KEYS", keys)
-      //});
+      AsyncStorage.getAllKeys((err, keys) => {
+        console.log("STORAGE KEYS", keys)
+      });
     }).catch(function(err){  console.error("REMOVE ERROR", err)  })
   }
 
   componentWillMount(){  console.log("FAVS INDEX WILL MOUNT")  }
-  componentDidMount(){  console.log("FAVS INDEX DID MOUNT")
-    //this.removeAll()
-    this.fetchAll()
+  componentDidMount(){
+    console.log("FAVS INDEX DID MOUNT")
+    if(!this.props.favs){  this.fetchAll()  }
   }
   componentWillReceiveProps(nextProps){  console.log("FAVS INDEX WILL RECEIVE PROPS")  }
   componentWillUpdate(nextProps, nextState){  console.log("FAVS INDEX WILL UPDATE")  }

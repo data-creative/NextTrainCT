@@ -25,9 +25,6 @@ class App extends Component {
       case 'NEW_FAV':
         return <NewFav navigator={navigator} {...navRoute.params}  />
         break;
-      case 'CREATE_FAV':
-        return <FavsIndex navigator={navigator} {...navRoute.params}  />
-        break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />
         break;

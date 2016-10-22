@@ -11,6 +11,8 @@ export default class NewFav extends Component {
     this.favs = this.props.favs;
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addToFavs = this.addToFavs.bind(this);
+    this.saveFavs = this.saveFavs.bind(this);
   }
 
   render() {
@@ -58,17 +60,24 @@ export default class NewFav extends Component {
 
   handleSubmit(){
     this.setState({displaySpinner:true})
-    const newFav = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
-    this.favs.push(newFav);
+    this.addToFavs()
+    this.saveFavs()
+  }
 
-    const favs = this.favs
-    const nav = this.navigator
-    AsyncStorage.setItem("favs", JSON.stringify(favs)).then(function(){
-      console.log('AsyncStorage setItem() Success', newFav)
-      return nav.resetTo({name:'CREATE_FAV'});
-    }).catch(function(error){
-      console.log('AsyncStorage setItem() Error:', error)
+  addToFavs(){
+    this.favs.push({
+      id: Date.now(),
+      origin: this.state.origin,
+      destination: this.state.destination
     })
+  }
+
+  saveFavs(){
+    AsyncStorage.setItem("favs", JSON.stringify(this.favs)) // stringify to avoid err:
+      .then(function(){  console.log('SAVE FAVS', this.favs.length)
+        this.navigator.resetTo({name:'FAVS', params:{favs: this.favs}})
+      }.bind(this))
+      .catch(function(error){  console.log('SAVE ERR', error)  })
   }
 
   componentWillMount(){  console.log("NEW WILL MOUNT")  }
