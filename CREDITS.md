@@ -16,6 +16,8 @@
   + https://scotch.io/tutorials/better-javascript-with-es6-pt-ii-a-deep-dive-into-classes
   + http://stackoverflow.com/a/35442541/670433
   + http://stackoverflow.com/a/40077033/670433
+  + http://es6-features.org/
+  + http://stackoverflow.com/questions/5767325/how-to-remove-a-particular-element-from-an-array-in-javascript
 
 ## React
 
@@ -45,6 +47,7 @@
 
   + http://www.shorelineeast.com/images/slider/sle_home_map.png
   + http://www.color-hex.com/
+  + http://www.color-hex.com/color/cccccc
   + http://nativebase.io/docs/v0.5.7/getting-started
   + http://nativebase.io/docs/v0.5.7/cheatsheet
 

@@ -64,12 +64,14 @@ export default class FavsIndex extends Component {
   }
 
   removeAll(){
-    AsyncStorage.removeItem('favs').then(function(result){
-      console.log("REMOVE ALL");
-      AsyncStorage.getAllKeys((err, keys) => {
-        console.log("STORAGE KEYS", keys)
-      });
-    }).catch(function(err){  console.error("REMOVE ERROR", err)  })
+    AsyncStorage.removeItem('favs')
+      .then(function(result){
+        console.log("REMOVE ALL");
+        AsyncStorage.getAllKeys((err, keys) => {
+          console.log("STORAGE KEYS", keys)
+        })
+      })
+      .catch(function(err){  console.error("REMOVE ERROR", err)  })
   }
 
   componentWillMount(){  console.log("FAVS INDEX WILL MOUNT")  }
