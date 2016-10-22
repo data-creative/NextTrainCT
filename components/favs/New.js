@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
-import {Container, Header, Button, Icon, Title, Content} from 'native-base';
+import {Text, AsyncStorage} from 'react-native';
+import {Container, Header, Button, Icon, Title, Content, Spinner} from 'native-base';
 import StationPicker from "../stations/Picker"
 
 export default class NewFav extends Component {
   constructor(props) {
     super(props);
-    this.state = {origin: 'GCS', destination: 'NHV'};
+    this.state = {origin: 'GCS', destination: 'NHV', displaySpinner:false};
+    this.navigator = this.props.navigator;
     this.favs = this.props.favs;
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addToFavs = this.addToFavs.bind(this);
+    this.saveFavs = this.saveFavs.bind(this);
   }
 
   render() {
@@ -36,6 +39,8 @@ export default class NewFav extends Component {
           <Button block primary style={{marginTop:15}} onPress={ this.handleSubmit }>
             {"Save"}
           </Button>
+
+          {this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null}
         </Content>
       </Container>
     );
@@ -50,19 +55,29 @@ export default class NewFav extends Component {
   }
 
   goBack(){
-    this.props.navigator.pop();
+    this.navigator.pop();
   }
 
   handleSubmit(){
-    const newFav = {id: Date.now(), origin: this.state.origin, destination: this.state.destination};
-    this.favs.push(newFav);
-    this.props.navigator.resetTo({
-      name:'CREATE_FAV',
-      params:{
-        fav: newFav,
-        favs: this.favs
-      }
-    });
+    this.setState({displaySpinner:true})
+    this.addToFavs()
+    this.saveFavs()
+  }
+
+  addToFavs(){
+    this.favs.push({
+      id: Date.now(),
+      origin: this.state.origin,
+      destination: this.state.destination
+    })
+  }
+
+  saveFavs(){
+    AsyncStorage.setItem("favs", JSON.stringify(this.favs)) // stringify to avoid err:
+      .then(function(){  console.log('SAVE FAVS', this.favs.length)
+        this.navigator.resetTo({name:'FAVS', params:{favs: this.favs}})
+      }.bind(this))
+      .catch(function(error){  console.log('SAVE ERR', error)  })
   }
 
   componentWillMount(){  console.log("NEW WILL MOUNT")  }
@@ -71,4 +86,8 @@ export default class NewFav extends Component {
   componentWillUpdate(nextProps, nextState){  console.log("NEW WILL UPDATE", nextState.origin, nextState.destination)  }
   componentDidUpdate(prevProps, prevState){  console.log("NEW DID UPDATE")  }
   componentWillUnmount(){  console.log("NEW WILL UNMOUNT")  }
+};
+
+NewFav.propTypes = {
+  navigator: React.PropTypes.object.isRequired, // an instance of react-native Navigator
 };
