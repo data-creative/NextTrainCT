@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { Component } from 'react';
-import {StyleSheet, ScrollView, Text} from 'react-native';
+import {StyleSheet, View, ScrollView, Text} from 'react-native';
 import {CardItem, Button, Icon} from 'native-base';
 import DatePicker from 'react-native-datepicker';
 
@@ -29,11 +29,11 @@ export default class SwipeListRow extends Component {
 
     return (
       <CardItem key={this.fav.id} style={styles.cardItem}>
-          <Text style={styles.cardItemTitle}>
-            <Text style={{fontWeight:'bold'}}>{this.originStation.name.toUpperCase()}</Text>
+          <View style={styles.cardItemTitle}>
+            <Text style={styles.stationTitle}>{this.originStation.name.toUpperCase()}</Text>
             <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>{"  to  "}</Text>
-            <Text style={{fontWeight:'bold'}}>{this.destinationStation.name.toUpperCase()}</Text>
-          </Text>
+            <Text style={styles.stationTitle}>{this.destinationStation.name.toUpperCase()}</Text>
+          </View>
 
           <ScrollView horizontal style={styles.buttonList}>
             <Button transparent style={styles.button} onPress={function(){
@@ -86,12 +86,19 @@ export default class SwipeListRow extends Component {
 
 const styles = StyleSheet.create({
   cardItem:{
-    height:90,
+    height:120,
     paddingLeft:20,
     backgroundColor:"white",
-    marginBottom:15 // expect value to be the same as hiddenRow
+    marginBottom:5// expect value to be the same as hiddenRow
   },
-  cardItemTitle:{
+  //cardItemTitle:{
+  //  marginTop:10,
+  //  marginBottom:3,
+  //  fontSize:16
+  //},
+  stationTitle:{
+    fontWeight:'bold',
+    flex:1,
     marginTop:10,
     marginBottom:3,
     fontSize:16
