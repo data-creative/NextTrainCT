@@ -16,7 +16,7 @@ export default class StationPicker extends Component {
       <Picker mode="dropdown" selectedValue={this.props.selectedValue} onValueChange={this.props.onValueChange} >
         {
           this.state.stations.map(function(station){
-            return <Picker.Item key={station.id} value={station.abbrev} label={station.name} />
+            return <Picker.Item key={station.id} value={station.abbrev} label={station.title} />
           })
         }
       </Picker>
