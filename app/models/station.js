@@ -23,4 +23,8 @@ export default class Station {
     if (typeof(station) == "undefined"){ console.error("UNABLE TO FIND STATION -- " + abbrev); }
     return station
   }
+
+  get title(){
+    return this.name + " (" + this.abbrev + ")"
+  }
 };
