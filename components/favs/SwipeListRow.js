@@ -7,7 +7,6 @@ import DatePicker from 'react-native-datepicker';
 import Station from "../../app/models/station";
 
 export default class SwipeListRow extends Component {
-
   static get dateFormat(){return "YYYY-MM-DD"};
 
   constructor(props){
@@ -29,10 +28,13 @@ export default class SwipeListRow extends Component {
 
     return (
       <CardItem key={this.fav.id} style={styles.cardItem}>
-          <Text style={styles.cardItemTitle}>
+          <Text style={styles.originTitle}>
+            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>{"from   "}</Text>
             <Text style={{fontWeight:'bold'}}>{this.originStation.name.toUpperCase()}</Text>
-            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>{"  to  "}</Text>
-            <Text style={{fontWeight:'bold'}}>{this.destinationStation.name.toUpperCase()}</Text>
+          </Text>
+          <Text style={styles.destinationTitle}>
+            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>{"   to   "}</Text>
+            <Text style={{fontWeight:'bold' }}>{this.destinationStation.name.toUpperCase()}</Text>
           </Text>
 
           <ScrollView horizontal style={styles.buttonList}>
@@ -86,18 +88,30 @@ export default class SwipeListRow extends Component {
 
 const styles = StyleSheet.create({
   cardItem:{
-    height:90,
+    height:140,
     paddingLeft:20,
+    paddingTop:20,
+    paddingBottom:10,
     backgroundColor:"white",
     marginBottom:15 // expect value to be the same as hiddenRow
   },
-  cardItemTitle:{
+  originTitle:{
     marginTop:10,
     marginBottom:3,
-    fontSize:16
+    fontSize:16,
+    //textAlign:'center'
+  },
+  destinationTitle:{
+    marginTop:10,
+    marginBottom:3,
+    fontSize:16,
+    marginLeft:6,
+    //textAlign:'center'
   },
   buttonList:{
-    //alignSelf:'flex-end'
+    alignSelf:'flex-end',
+    marginRight:15,
+    //alignSelf:'center'
   },
   button:{
     //borderWidth:1, borderColor:'#ccc', borderStyle:'solid',
