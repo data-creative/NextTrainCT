@@ -90,21 +90,21 @@ const styles = StyleSheet.create({
   cardItem:{
     height:140,
     paddingLeft:20,
-    paddingTop:20,
+    paddingTop:30,
     paddingBottom:10,
     backgroundColor:"white",
     marginBottom:15 // expect value to be the same as hiddenRow
   },
   originTitle:{
-    marginTop:10,
+    //marginTop:10,
     marginBottom:3,
-    fontSize:16,
+    fontSize:14,
     //textAlign:'center'
   },
   destinationTitle:{
-    marginTop:10,
+    //marginTop:10,
     marginBottom:3,
-    fontSize:16,
+    fontSize:14,
     marginLeft:6,
     //textAlign:'center'
   },
