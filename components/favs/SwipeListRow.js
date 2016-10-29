@@ -75,20 +75,35 @@ export default class SwipeListRow extends Component {
   }
 
   handleButtonPress(selectedDate){
-    this.navigator.push({
-      name: "TRAINS",
-      params:{
-        favs: this.favs,
-        fav: this.fav,
-        selectedDate: selectedDate
-      }
-    })
+    var requestURL = "http://next-train-production.herokuapp.com/api/v0/trains.json?origin=BRN&destination=NHV&date=2016-12-01"
+
+    fetch(requestURL)
+      .then(function(response) {
+        console.log("RAW RESPONSE", "STATUS", response.status, response.statusText, response.ok, "HEADERS", response.headers, response.url)
+        return response.json()
+      })
+      .then(function(json){
+        console.log("PARSED RESPONSE BODY", json)
+        this.navigator.push({
+          name: "TRAINS",
+          params:{
+            favs: this.favs,
+            fav: this.fav,
+            selectedDate: selectedDate,
+            searchResults: json
+          }
+        })
+      }.bind(this))
+      .catch(function(err){
+        // var flash = {danger: ["There was an issue fetching schedule results from the server. Please try again or contact the developer."]}
+        console.error(err)
+      })
   }
 }
 
 const styles = StyleSheet.create({
   cardItem:{
-    height:140,
+    height:120,
     paddingLeft:20,
     paddingTop:30,
     paddingBottom:10,
