@@ -48,7 +48,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
           <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>Trains ({this.fav.origin.toUpperCase()} to {this.fav.destination.toUpperCase()})</Title>
+          <Title>Trains from {this.fav.origin.toUpperCase()} to {this.fav.destination.toUpperCase()}</Title>
         </Header>
 
         <Content style={{margin:20}}>

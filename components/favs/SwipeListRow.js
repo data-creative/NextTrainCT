@@ -29,11 +29,11 @@ export default class SwipeListRow extends Component {
     return (
       <CardItem key={this.fav.id} style={styles.cardItem}>
           <Text style={styles.originTitle}>
-            <Text style={styles.stationLabel}>{"from:   "}</Text>
+            <Text style={styles.stationLabel}>{"from:  "}</Text>
             <Text style={styles.stationName}>{this.originStation.name.toUpperCase()}</Text>
           </Text>
           <Text style={styles.destinationTitle}>
-            <Text style={styles.stationLabel}>{"   to:   "}</Text>
+            <Text style={styles.stationLabel}>{"   to:  "}</Text>
             <Text style={styles.stationName}>{this.destinationStation.name.toUpperCase()}</Text>
           </Text>
 
