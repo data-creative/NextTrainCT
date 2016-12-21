@@ -48,7 +48,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
           <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>Train Schedule ({this.fav.origin.toUpperCase()} to {this.fav.destination.toUpperCase()})</Title>
+          <Title>Trains ({this.fav.origin.toUpperCase()} to {this.fav.destination.toUpperCase()})</Title>
         </Header>
 
         <Content style={{margin:20}}>
@@ -90,7 +90,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
       })
       .then(function(json){
         console.log("PARSED RESPONSE BODY", json)
-        this.setState({displaySpinner:false, trains: this.searchResults.trains}) // todo: use json.results
+        this.setState({displaySpinner:false, trains: json.results})
       }.bind(this))
       .catch(function(err){
         // var flash = {danger: ["There was an issue fetching schedule results from the server. Please try again or contact the developer."]}

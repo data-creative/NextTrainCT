@@ -12,7 +12,9 @@ export default class TrainsList extends Component {
     super(props)
     this.selectedDate = this.props.selectedDate
     this.transitRoute = this.props.transitRoute
-    this.trains = this.props.trains.map(function(train){ return new Train(train) });
+    this.trains = this.props.trains.map(function(train){
+      return new Train({id: train.id, departure: train.origin_departure, arrival: train.destination_arrival})
+    });
   }
 
   render() {
