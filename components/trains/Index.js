@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon, Footer, Spinner} from 'native-base';
 
-import HeaderCard from "./HeaderCard"
 import TrainsList from "./List"
 
 //moment.updateLocale('en', {calendar : {sameDay : '[Today]', nextDay : '[Tomorrow]'}})
@@ -41,6 +40,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
   render() {
     const waitingMessage = "Crunching train schedule data..."
     const waitingText = <Text style={{textAlign: 'center'}}>{waitingMessage}</Text>
+    const trainsList = <TrainsList trains={this.state.trains} transitRoute={this.fav} selectedDate={this.selectedDate}/>
 
     return (
       <Container>
@@ -52,7 +52,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         </Header>
 
         <Content style={{margin:20}}>
-          { this.state.trains.length > 0 ? <TrainsList trains={this.state.trains}/> : waitingText }
+          { this.state.trains.length > 0 ? trainsList : waitingText }
           { this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null }
         </Content>
 
