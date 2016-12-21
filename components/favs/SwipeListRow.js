@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   stationLabel:{
     fontStyle:'italic',
     fontSize:12,
-    color: '#383838' // '#000' // 'grey'
+    color: 'grey' // '#383838' // '#000' // 'grey'
   },
   stationName:{
     color: '#383838', // '#000',

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
-import {Container, Header, Title, Content, Button, Icon, Footer} from 'native-base';
+import {Container, Header, Title, Content, Button, Icon, Footer, Spinner} from 'native-base';
 
 import HeaderCard from "./HeaderCard"
 import TrainsList from "./List"
@@ -25,6 +25,10 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         {id:8,departure: moment().add(125, "minutes").format(), arrival: moment().add(140, "minutes").format()}
       ]
     }
+    this.state = {
+      displaySpinner:true,
+      trains:[]
+    }
     this.fav = this.props.fav;
     this.selectedDate = this.props.selectedDate;
     this.navigator = this.props.navigator;
@@ -32,6 +36,8 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
   }
 
   render() {
+    const waitingMessage = "Crunching train schedule data..."
+    const waitingText = <Text style={{textAlign: 'center'}}>{waitingMessage}</Text>
 
     return (
       <Container>
@@ -39,27 +45,30 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
           <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>Trains from {this.fav.origin.toUpperCase()} to {this.fav.destination.toUpperCase()}</Title>
+          <Title>Train Schedule ({this.fav.origin.toUpperCase()} to {this.fav.destination.toUpperCase()})</Title>
         </Header>
 
         <Content style={{margin:20}}>
-          <HeaderCard fav={this.fav} date={this.selectedDate}/>
-          <TrainsList trains={this.searchResults.trains}/>
+          { this.state.trains.length > 0 ? <TrainsList trains={this.searchResults.trains}/> : waitingText }
+          { this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null }
         </Content>
 
-        <Footer transparent style={styles.footer}>
-          <Text style={styles.footerText}>
-            <Text>Schedule published by </Text>
-            <Text>
-              {this.searchResults.schedule.publishedBy}
+        {/*
+          <Footer transparent style={styles.footer}>
+            <Text style={styles.footerText}>
+              <Text>Schedule published by </Text>
+              <Text>
+                {this.searchResults.schedule.publishedBy}
+              </Text>
+              <Text> on </Text>
+              <Text>
+                {moment(this.searchResults.schedule.publishedOn).format("MMMM D, YYYY")}
+              </Text>
+              <Text>.</Text>
             </Text>
-            <Text> on </Text>
-            <Text>
-              {moment(this.searchResults.schedule.publishedOn).format("MMMM D, YYYY")}
-            </Text>
-            <Text>.</Text>
-          </Text>
-        </Footer>
+          </Footer>
+          */}
+
       </Container>
     );
   }

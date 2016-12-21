@@ -34,9 +34,15 @@ export default class HeaderCard extends Component {
 
             */}
 
-          <Text style={{fontWeight:'bold', fontSize:14}}>
-            { moment(this.selectedDate).format(HeaderCard.dateDisplayFormat).toUpperCase() }
+          <Text>
+            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>
+              {"departing: "}
+            </Text>
+            <Text style={{fontWeight:'bold', fontSize:14}}>
+              { moment(this.selectedDate).format(HeaderCard.dateDisplayFormat).toUpperCase() }
+            </Text>
           </Text>
+
         </CardItem>
       </Card>
     )
