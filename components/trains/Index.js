@@ -13,7 +13,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
   constructor(props){
     super(props)
     this.searchResults = {
-      schedule:{publishedOn:"2016-01-01", publishedBy:"Shoreline East"},
+      schedule:{publishedOn:"2016-01-01", publishedBy:"Shore Line East"},
       trains:[
         {id:1, departure: moment().subtract(90, "minutes").format(), arrival: moment().subtract(75, "minutes").format() },
         {id:2, departure: moment().subtract(20, "minutes").format(), arrival: moment().subtract(5, "minutes").format() },
@@ -39,7 +39,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
           <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>Trains</Title>
+          <Title>Trains from {this.fav.origin.toUpperCase()} to {this.fav.destination.toUpperCase()}</Title>
         </Header>
 
         <Content style={{margin:20}}>
@@ -50,11 +50,11 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         <Footer transparent style={styles.footer}>
           <Text style={styles.footerText}>
             <Text>Schedule published by </Text>
-            <Text style={{fontStyle:'italic'}}>
+            <Text>
               {this.searchResults.schedule.publishedBy}
             </Text>
             <Text> on </Text>
-            <Text style={{fontStyle:'italic'}}>
+            <Text>
               {moment(this.searchResults.schedule.publishedOn).format("MMMM D, YYYY")}
             </Text>
             <Text>.</Text>
@@ -66,6 +66,33 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
 
   goBack(){
     this.navigator.pop();
+  }
+
+  fetchTrainSchedule(){
+    var requestURL = "http://next-train-production.herokuapp.com/api/v0/trains.json?origin=BRN&destination=NHV&date=2016-12-01"
+
+    fetch(requestURL)
+      .then(function(response) {
+        //console.log("RAW RESPONSE", "STATUS", response.status, response.statusText, response.ok, "HEADERS", response.headers, response.url)
+        return response.json()
+      })
+      .then(function(json){
+        console.log("PARSED RESPONSE BODY", json)
+        console.lot("TODO: SET STATES")
+        //this.navigator.push({
+        //  name: "TRAINS",
+        //  params:{
+        //    favs: this.favs,
+        //    fav: this.fav,
+        //    selectedDate: selectedDate,
+        //    searchResults: json
+        //  }
+        //})
+      }.bind(this))
+      .catch(function(err){
+        // var flash = {danger: ["There was an issue fetching schedule results from the server. Please try again or contact the developer."]}
+        console.error(err)
+      })
   }
 
 };

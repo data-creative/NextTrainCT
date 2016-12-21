@@ -51,6 +51,7 @@
   + http://www.color-hex.com/color/cccccc
   + http://nativebase.io/docs/v0.5.7/getting-started
   + http://nativebase.io/docs/v0.5.7/cheatsheet
+  + http://www.w3schools.com/colors/colors_shades.asp
 
 ## Debugging and Performance Monitoring
 
