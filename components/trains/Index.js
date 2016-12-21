@@ -12,6 +12,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
 
   constructor(props){
     super(props)
+
     this.searchResults = {
       schedule:{publishedOn:"2016-01-01", publishedBy:"Shore Line East"},
       trains:[
@@ -24,7 +25,8 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         {id:7, departure: moment().add(75, "minutes").format(), arrival: moment().add(90, "minutes").format() },
         {id:8,departure: moment().add(125, "minutes").format(), arrival: moment().add(140, "minutes").format()}
       ]
-    }
+    } // remove me
+
     this.state = {
       displaySpinner:true,
       trains:[]
@@ -32,6 +34,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
     this.fav = this.props.fav;
     this.selectedDate = this.props.selectedDate;
     this.navigator = this.props.navigator;
+    this.fetchTrainSchedule = this.fetchTrainSchedule.bind(this);
     this.goBack = this.goBack.bind(this);
   }
 
@@ -49,7 +52,7 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
         </Header>
 
         <Content style={{margin:20}}>
-          { this.state.trains.length > 0 ? <TrainsList trains={this.searchResults.trains}/> : waitingText }
+          { this.state.trains.length > 0 ? <TrainsList trains={this.state.trains}/> : waitingText }
           { this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null }
         </Content>
 
@@ -87,22 +90,23 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
       })
       .then(function(json){
         console.log("PARSED RESPONSE BODY", json)
-        console.lot("TODO: SET STATES")
-        //this.navigator.push({
-        //  name: "TRAINS",
-        //  params:{
-        //    favs: this.favs,
-        //    fav: this.fav,
-        //    selectedDate: selectedDate,
-        //    searchResults: json
-        //  }
-        //})
+        this.setState({displaySpinner:false, trains: this.searchResults.trains}) // todo: use json.results
       }.bind(this))
       .catch(function(err){
         // var flash = {danger: ["There was an issue fetching schedule results from the server. Please try again or contact the developer."]}
         console.error(err)
       })
   }
+
+  componentWillMount(){  console.log("TRAINS INDEX WILL MOUNT")  }
+  componentDidMount(){
+    console.log("TRAINS INDEX DID MOUNT")
+    this.fetchTrainSchedule()
+  }
+  componentWillReceiveProps(nextProps){  console.log("TRAINS INDEX WILL RECEIVE PROPS")  }
+  componentWillUpdate(nextProps, nextState){  console.log("TRAINS INDEX WILL UPDATE")  }
+  componentDidUpdate(prevProps, prevState){  console.log("TRAINS INDEX DID UPDATE")  }
+  componentWillUnmount(){  console.log("TRAINS INDEX WILL UNMOUNT")  }
 
 };
 
