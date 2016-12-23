@@ -1,37 +1,28 @@
 import moment from 'moment';
 import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native'
-import {Container, Header, Title, Content, Button, Icon, Footer} from 'native-base';
+import {Container, Header, Title, Content, Button, Icon, Footer, Spinner} from 'native-base';
 
-import HeaderCard from "./HeaderCard"
 import TrainsList from "./List"
 
 //moment.updateLocale('en', {calendar : {sameDay : '[Today]', nextDay : '[Tomorrow]'}})
 
-export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
+export default class TrainsIndex extends Component {
 
   constructor(props){
     super(props)
-    this.searchResults = {
-      schedule:{publishedOn:"2016-01-01", publishedBy:"Shoreline East"},
-      trains:[
-        {id:1, departure: moment().subtract(90, "minutes").format(), arrival: moment().subtract(75, "minutes").format() },
-        {id:2, departure: moment().subtract(20, "minutes").format(), arrival: moment().subtract(5, "minutes").format() },
-        {id:3, departure: moment().format(), arrival: moment().add(15, "minutes").format() },
-        {id:4, departure: moment().add(45, "seconds").format(), arrival: moment().add(16, "minutes").format() },
-        {id:5, departure: moment().add(90, "seconds").format(), arrival: moment().add(18, "minutes").format() },
-        {id:6, departure: moment().add(5, "minutes").format(), arrival: moment().add(20, "minutes").format() },
-        {id:7, departure: moment().add(75, "minutes").format(), arrival: moment().add(90, "minutes").format() },
-        {id:8,departure: moment().add(125, "minutes").format(), arrival: moment().add(140, "minutes").format()}
-      ]
-    }
-    this.fav = this.props.fav;
+    this.state = {displaySpinner:true, trains:[]}
+    this.transitRoute = this.props.fav;
     this.selectedDate = this.props.selectedDate;
     this.navigator = this.props.navigator;
+    this.fetchTrainSchedule = this.fetchTrainSchedule.bind(this);
     this.goBack = this.goBack.bind(this);
   }
 
   render() {
+    let waitingMessage = "Crunching train schedule data..."
+    let waitingText = <Text style={{textAlign: 'center'}}>{waitingMessage}</Text>
+    let trainsList = <TrainsList trains={this.state.trains} transitRoute={this.transitRoute} selectedDate={this.selectedDate}/>
 
     return (
       <Container>
@@ -39,27 +30,30 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
           <Button transparent onPress={this.goBack}>
             <Icon name="md-arrow-back" />
           </Button>
-          <Title>Trains</Title>
+          <Title>Trains from {this.transitRoute.origin.toUpperCase()} to {this.transitRoute.destination.toUpperCase()}</Title>
         </Header>
 
         <Content style={{margin:20}}>
-          <HeaderCard fav={this.fav} date={this.selectedDate}/>
-          <TrainsList trains={this.searchResults.trains}/>
+          { this.state.trains.length > 0 ? trainsList : waitingText }
+          { this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null }
         </Content>
 
-        <Footer transparent style={styles.footer}>
-          <Text style={styles.footerText}>
-            <Text>Schedule published by </Text>
-            <Text style={{fontStyle:'italic'}}>
-              {this.searchResults.schedule.publishedBy}
+        {/*
+          <Footer transparent style={styles.footer}>
+            <Text style={styles.footerText}>
+              <Text>Schedule published by </Text>
+              <Text>
+                {this.searchResults.schedule.publishedBy}
+              </Text>
+              <Text> on </Text>
+              <Text>
+                {moment(this.searchResults.schedule.publishedOn).format("MMMM D, YYYY")}
+              </Text>
+              <Text>.</Text>
             </Text>
-            <Text> on </Text>
-            <Text style={{fontStyle:'italic'}}>
-              {moment(this.searchResults.schedule.publishedOn).format("MMMM D, YYYY")}
-            </Text>
-            <Text>.</Text>
-          </Text>
-        </Footer>
+          </Footer>
+          */}
+
       </Container>
     );
   }
@@ -67,6 +61,35 @@ export default class TrainsIndex extends Component { // a.k.a SearchResultsPage
   goBack(){
     this.navigator.pop();
   }
+
+  fetchTrainSchedule(){
+    var requestURL = "http://next-train-production.herokuapp.com/api/v0/trains.json?origin=" + this.transitRoute.origin.toUpperCase() + "&destination=" + this.transitRoute.destination.toUpperCase() + "&date=" + this.selectedDate
+    //=> "http://next-train-production.herokuapp.com/api/v0/trains.json?origin=BRN&destination=NHV&date=2016-12-01"
+
+    fetch(requestURL)
+      .then(function(response) {
+        //console.log("RAW RESPONSE", "STATUS", response.status, response.statusText, response.ok, "HEADERS", response.headers, response.url)
+        return response.json()
+      })
+      .then(function(json){
+        console.log("PARSED RESPONSE BODY", json)
+        this.setState({displaySpinner:false, trains: json.results})
+      }.bind(this))
+      .catch(function(err){
+        // var flash = {danger: ["There was an issue fetching schedule results from the server. Please try again or contact the developer."]}
+        console.error(err)
+      })
+  }
+
+  componentWillMount(){  console.log("TRAINS INDEX WILL MOUNT")  }
+  componentDidMount(){
+    console.log("TRAINS INDEX DID MOUNT")
+    this.fetchTrainSchedule()
+  }
+  componentWillReceiveProps(nextProps){  console.log("TRAINS INDEX WILL RECEIVE PROPS")  }
+  componentWillUpdate(nextProps, nextState){  console.log("TRAINS INDEX WILL UPDATE")  }
+  componentDidUpdate(prevProps, prevState){  console.log("TRAINS INDEX DID UPDATE")  }
+  componentWillUnmount(){  console.log("TRAINS INDEX WILL UNMOUNT")  }
 
 };
 

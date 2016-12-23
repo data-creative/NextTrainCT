@@ -29,12 +29,12 @@ export default class SwipeListRow extends Component {
     return (
       <CardItem key={this.fav.id} style={styles.cardItem}>
           <Text style={styles.originTitle}>
-            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>{"from   "}</Text>
-            <Text style={{fontWeight:'bold'}}>{this.originStation.name.toUpperCase()}</Text>
+            <Text style={styles.stationLabel}>{"from:  "}</Text>
+            <Text style={styles.stationName}>{this.originStation.name.toUpperCase()}</Text>
           </Text>
           <Text style={styles.destinationTitle}>
-            <Text style={{fontStyle:'italic', fontSize:12, color:'grey'}}>{"   to   "}</Text>
-            <Text style={{fontWeight:'bold' }}>{this.destinationStation.name.toUpperCase()}</Text>
+            <Text style={styles.stationLabel}>{"   to:  "}</Text>
+            <Text style={styles.stationName}>{this.destinationStation.name.toUpperCase()}</Text>
           </Text>
 
           <ScrollView horizontal style={styles.buttonList}>
@@ -78,7 +78,7 @@ export default class SwipeListRow extends Component {
     this.navigator.push({
       name: "TRAINS",
       params:{
-        favs: this.favs,
+        //favs: this.favs,
         fav: this.fav,
         selectedDate: selectedDate
       }
@@ -88,12 +88,23 @@ export default class SwipeListRow extends Component {
 
 const styles = StyleSheet.create({
   cardItem:{
-    height:140,
+    height:120,
     paddingLeft:20,
     paddingTop:30,
     paddingBottom:10,
     backgroundColor:"white",
-    marginBottom:15 // expect value to be the same as hiddenRow
+    marginBottom:15 //, // expect value to be the same as hiddenRow
+    //borderColor:'black',
+    //borderWidth:1
+  },
+  stationLabel:{
+    fontStyle:'italic',
+    fontSize:12,
+    color: 'grey' // '#383838' // '#000' // 'grey'
+  },
+  stationName:{
+    color: '#383838', // '#000',
+    fontWeight:'bold'
   },
   originTitle:{
     //marginTop:10,
@@ -119,7 +130,7 @@ const styles = StyleSheet.create({
     height:30,
   },
   buttonText:{
-    color: '#7a7a7a', //'#5067FF',
+    color: '#0645AD', // '#000', // '#7a7a7a', //'#5067FF',
     //fontStyle:'italic'
     textDecorationLine:'underline'
   },
@@ -137,7 +148,7 @@ const datePickerCustomStyles = {
     borderWidth:0, // remove default border
   },
   placeholderText: {
-    color: '#7a7a7a', // match buttonText
+    color: '#0645AD', // '#000', // '#7a7a7a', // match buttonText
     textDecorationLine:'underline' // match buttonText
   },
 }

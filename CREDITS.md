@@ -6,6 +6,7 @@
   + http://data-creative.info/process-documentation/2016/07/22/react-native-android-dev-env-setup-from-scratch/
   + https://github.com/s2t2/beacon-navigator/blob/master/index.android.js
   + https://github.com/s2t2/beacon-navigator/blob/master/components/HomePage.js
+  + https://github.com/s2t2/react-robots
 
 ## JavaScript
 
@@ -50,6 +51,7 @@
   + http://www.color-hex.com/color/cccccc
   + http://nativebase.io/docs/v0.5.7/getting-started
   + http://nativebase.io/docs/v0.5.7/cheatsheet
+  + http://www.w3schools.com/colors/colors_shades.asp
 
 ## Debugging and Performance Monitoring
 
