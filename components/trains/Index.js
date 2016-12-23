@@ -20,9 +20,9 @@ export default class TrainsIndex extends Component {
   }
 
   render() {
-    const waitingMessage = "crunching train schedule data..."
-    const waitingText = <Text style={{textAlign: 'center'}}>{waitingMessage}</Text>
-    const trainsList = <TrainsList trains={this.state.trains} transitRoute={this.transitRoute} selectedDate={this.selectedDate}/>
+    let waitingMessage = "Crunching train schedule data..."
+    let waitingText = <Text style={{textAlign: 'center'}}>{waitingMessage}</Text>
+    let trainsList = <TrainsList trains={this.state.trains} transitRoute={this.transitRoute} selectedDate={this.selectedDate}/>
 
     return (
       <Container>
