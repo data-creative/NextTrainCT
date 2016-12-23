@@ -20,7 +20,7 @@ export default class TrainsIndex extends Component {
   }
 
   render() {
-    const waitingMessage = "Crunching train schedule data..."
+    const waitingMessage = "crunching train schedule data..."
     const waitingText = <Text style={{textAlign: 'center'}}>{waitingMessage}</Text>
     const trainsList = <TrainsList trains={this.state.trains} transitRoute={this.transitRoute} selectedDate={this.selectedDate}/>
 

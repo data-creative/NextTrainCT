@@ -6,7 +6,7 @@ import {List, ListItem, Icon, Badge, Card, CardItem} from 'native-base';
 import Train from "../../app/models/train"
 
 export default class TrainsList extends Component {
-  static get dateDisplayFormat(){ return "dddd, MMMM D, YYYY" } // MONDAY, OCTOBER 17, 2016
+  static get dateFormat(){ return "dddd, MMMM D, YYYY" } // MONDAY, OCTOBER 17, 2016
 
   constructor(props){
     super(props)
@@ -21,18 +21,19 @@ export default class TrainsList extends Component {
     return (
       <List>
         <ListItem itemDivider>
-          <Text style={{fontSize:16, fontWeight:'bold'}}>
-            { moment(this.selectedDate).format(TrainsList.dateDisplayFormat) }
+          <Text style={{fontSize:14, fontWeight:'bold', fontStyle:'italic'}}>
+            { moment(this.selectedDate).format(TrainsList.dateFormat) }
           </Text>
         </ListItem>
         {
           this.trains.map(function(train){
-            const upcomingTrainBadge = <Badge primary>{train.departureDisplayTimeFromNow()}</Badge>
+            const upcomingBadge = <Badge warning>{train.departureDisplayTimeFromNow()}</Badge>
+
             return (
               <ListItem iconLeft key={train.id} style={{height:60}}>
-                  <Icon name='md-train' style={{marginRight:10, color:'#282828'}}/>
-                  <Text style={{fontSize:16, top:3}}>{train.departureDisplayTime() + " to " + train.arrivalDisplayTime()}</Text>
-                  {train.isUpcoming() ? upcomingTrainBadge : <Text/>}
+                  <Icon name='md-train' style={{marginRight:13, color:'#282828'}}/>
+                  <Text style={{fontSize:18}}>{train.departureDisplayTime() + " to " + train.arrivalDisplayTime()}</Text>
+                  {train.isUpcoming() ? upcomingBadge : <Text/>}
               </ListItem>
             )
           })
