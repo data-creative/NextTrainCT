@@ -21,7 +21,7 @@ export default class FavsIndex extends Component {
   }
 
   render() {
-    const welcomeMessage = "Tap the button below to add a transit route to your favorites."
+    const welcomeMessage = "Tap the button below to add a favorite transit route."
     const welcomeText = <Text style={styles.text}>{welcomeMessage}</Text>
     const list = <SwipeList favs={this.state.favs} navigator={this.navigator}/>
 

@@ -20,8 +20,8 @@ export default class TrainsList extends Component {
   render() {
     return (
       <List>
-        <ListItem itemDivider>
-          <Text style={{fontSize:14, fontWeight:'bold', fontStyle:'italic'}}>
+        <ListItem>
+          <Text style={{fontSize:18}}>
             { moment(this.selectedDate).format(TrainsList.dateFormat) }
           </Text>
         </ListItem>
