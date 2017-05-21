@@ -1,4 +1,5 @@
 import moment from 'moment';
+var d3 = require("d3");
 import React, {Component} from 'react';
 import {Text} from 'react-native'
 import {List, ListItem, Icon, Badge, Card, CardItem} from 'native-base';
@@ -14,7 +15,14 @@ export default class TrainsList extends Component {
     this.transitRoute = this.props.transitRoute
     this.trains = this.props.trains.map(function(train){
       return new Train({id: train.trip_guid, departure: train.origin_departure, arrival: train.destination_arrival})
-    });
+    })
+
+  }
+
+  sortedTrains(){
+    return this.trains.sort(function(x, y){
+      return d3.ascending(x.departure, y.departure)
+    })
   }
 
   render() {
@@ -26,7 +34,7 @@ export default class TrainsList extends Component {
           </Text>
         </ListItem>
         {
-          this.trains.map(function(train){
+          this.sortedTrains().map(function(train){
             const upcomingBadge = <Badge warning>{train.departureDisplayTimeFromNow()}</Badge>
 
             return (
