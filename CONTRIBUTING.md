@@ -16,6 +16,12 @@ Setup a [react-native developer environment](http://data-creative.info/process-d
 
 ### On Android
 
+Install and link peer dependencies, if necessary:
+
+```` sh
+react-native link
+````
+
 Ensure there is either a device or an emulator running:
 
 ```` sh
