@@ -62,3 +62,7 @@
   + [Toasts](https://developer.android.com/guide/topics/ui/notifiers/toasts.html), aka flash messages
   + http://nativebase.io/docs/v0.5.2/getting-started#installing-peer-dependencies
   + https://github.com/rnpm/rnpm
+
+## Moment
+
+  + http://momentjs.com/guides/#/warnings/js-date/

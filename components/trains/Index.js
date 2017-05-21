@@ -63,7 +63,7 @@ export default class TrainsIndex extends Component {
   }
 
   fetchTrainSchedule(){
-    var requestURL = "http://next-train-staging.herokuapp.com/api/v1/trains.json?origin=" + this.transitRoute.origin.toUpperCase() + "&destination=" + this.transitRoute.destination.toUpperCase() + "&date=" + this.selectedDate
+    var requestURL = "http://next-train-production.herokuapp.com/api/v1/trains.json?origin=" + this.transitRoute.origin.toUpperCase() + "&destination=" + this.transitRoute.destination.toUpperCase() + "&date=" + this.selectedDate
     //=> "http://next-train-production.herokuapp.com/api/v1/trains.json?origin=BRN&destination=NHV&date=2016-12-01"
 
     fetch(requestURL)

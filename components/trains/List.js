@@ -16,7 +16,6 @@ export default class TrainsList extends Component {
     this.trains = this.props.trains.map(function(train){
       return new Train({id: train.trip_guid, departure: train.origin_departure, arrival: train.destination_arrival})
     })
-
   }
 
   sortedTrains(){
