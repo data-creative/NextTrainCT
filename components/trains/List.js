@@ -6,14 +6,14 @@ import {List, ListItem, Icon, Badge, Card, CardItem} from 'native-base';
 import Train from "../../app/models/train"
 
 export default class TrainsList extends Component {
-  static get dateFormat(){ return "dddd, MMMM D, YYYY" } // MONDAY, OCTOBER 17, 2016
+  static get dateFormat(){ return "dddd, MMMM D, YYYY" } // Monday, October 17, 2016
 
   constructor(props){
     super(props)
     this.selectedDate = this.props.selectedDate
     this.transitRoute = this.props.transitRoute
     this.trains = this.props.trains.map(function(train){
-      return new Train({id: train.id, departure: train.origin_departure, arrival: train.destination_arrival})
+      return new Train({id: train.trip_guid, departure: train.origin_departure, arrival: train.destination_arrival})
     });
   }
 

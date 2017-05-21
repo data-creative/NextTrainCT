@@ -8,7 +8,7 @@ export default class Train {
   static get timeDisplayFormat(){return "h:mma" } // "10:32pm"
   static get upcomingThresholdMinutes(){ return 9 }
 
-  // @example new Train({id:1, departure: "2016-10-16T23:02:00-04:00", arrival:"2016-10-16T23:22:00-04:00"})
+  // @example new Train({id:3613, departure: "2016-10-16T23:02:00-04:00", arrival:"2016-10-16T23:22:00-04:00"})
   constructor(props) {
     this.id = props.id;
     this.departure = props.departure;
