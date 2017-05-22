@@ -33,7 +33,7 @@ export default class TrainsIndex extends Component {
           <Title>Trains from {this.transitRoute.origin.toUpperCase()} to {this.transitRoute.destination.toUpperCase()}</Title>
         </Header>
 
-        <Content style={{margin:20}} contentContainerStyle={{flex: 1}}>
+        <Content style={{margin:20}} >
           { this.state.trains.length > 0 ? trainsList : waitingText }
           { this.state.displaySpinner ? <Spinner color="#428bca" size="large" style={{alignSelf:"center"}}/> : null }
         </Content>

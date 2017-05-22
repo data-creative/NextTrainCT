@@ -25,7 +25,7 @@ export default class NewFav extends Component {
           <Title>{"Choose a favorite route"}</Title>
         </Header>
 
-        <Content style={{margin:20}} contentContainerStyle={{flex: 1}}>
+        <Content style={{margin:20}}>
           <Text style={{fontWeight:'bold', fontSize:16}}>{"FROM:"}</Text>
           <StationPicker style={{marginTop:5, marginBottom:5}}
             selectedValue={this.state.origin}
