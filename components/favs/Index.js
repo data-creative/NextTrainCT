@@ -31,8 +31,8 @@ export default class FavsIndex extends Component {
           <Title>NextTrain CT</Title>
         </Header>
 
-        <Content style={{margin:20}}>
-          { this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null }
+        <Content style={{margin:20}} contentContainerStyle={{flex: 1}}>
+          { this.state.displaySpinner ? <Spinner color="#428bca" size="large" style={{alignSelf:"center"}}/> : null }
           { this.state.favs.length > 0 ? list : welcomeText }
         </Content>
 

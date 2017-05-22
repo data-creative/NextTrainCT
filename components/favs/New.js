@@ -25,7 +25,7 @@ export default class NewFav extends Component {
           <Title>{"Choose a favorite route"}</Title>
         </Header>
 
-        <Content style={{margin:20}}>
+        <Content style={{margin:20}} contentContainerStyle={{flex: 1}}>
           <Text style={{fontWeight:'bold', fontSize:16}}>{"FROM:"}</Text>
           <StationPicker style={{marginTop:5, marginBottom:5}}
             selectedValue={this.state.origin}
@@ -40,7 +40,7 @@ export default class NewFav extends Component {
             {"Save"}
           </Button>
 
-          {this.state.displaySpinner ? <Spinner color="#428bca" size="large"/> : null}
+          {this.state.displaySpinner ? <Spinner color="#428bca" size="large" style={{alignSelf:"center"}}/> : null}
         </Content>
       </Container>
     );
