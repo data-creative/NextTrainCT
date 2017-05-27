@@ -43,6 +43,8 @@
   + https://github.com/xgfe/react-native-datepicker/blob/7bed2921e5e6b1044f3bc8af05ed3d54c633c81f/style.js
   + https://facebook.github.io/react-native/docs/listview.html
   + https://facebook.github.io/react/docs/reusable-components.html#prop-validation
+  + https://github.com/oblador/react-native-vector-icons/issues/480#issuecomment-304471943
+  + https://github.com/airbnb/lottie-react-native/issues/38
 
 ## Styling and Design
 
@@ -62,8 +64,12 @@
   + [Toasts](https://developer.android.com/guide/topics/ui/notifiers/toasts.html), aka flash messages
   + http://nativebase.io/docs/v0.5.2/getting-started#installing-peer-dependencies
   + https://github.com/rnpm/rnpm
+
+### Releasing
+
   + https://stackoverflow.com/a/21609757/670433
   + https://docs.gradle.org/2.9/userguide/gradle_daemon.html
+  +
 
 ## Moment
 
