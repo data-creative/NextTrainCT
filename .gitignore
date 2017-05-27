@@ -42,3 +42,6 @@ android/keystores/debug.keystore
 
 # ANDROID APP PEER DEPENDENCIES (NATIVE BASE NEEDS VECTOR ICONS):
 android/app/src/main/assets/fonts
+
+# ANDROID STORE
+*.keystore

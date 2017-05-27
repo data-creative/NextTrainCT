@@ -62,7 +62,18 @@
   + [Toasts](https://developer.android.com/guide/topics/ui/notifiers/toasts.html), aka flash messages
   + http://nativebase.io/docs/v0.5.2/getting-started#installing-peer-dependencies
   + https://github.com/rnpm/rnpm
+  + https://stackoverflow.com/a/21609757/670433
+  + https://docs.gradle.org/2.9/userguide/gradle_daemon.html
 
 ## Moment
 
   + http://momentjs.com/guides/#/warnings/js-date/
+
+## Android Store
+
+  + https://facebook.github.io/react-native/docs/signed-apk-android.html
+  + https://stackoverflow.com/questions/35935060/how-can-i-generate-an-apk-that-can-run-without-server-with-react-native
+  + https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/
+  + https://stackoverflow.com/questions/22681907/you-uploaded-an-apk-that-is-not-zip-aligned-error
+  + https://developer.android.com/studio/publish/app-signing.html#releasecompile
+  + https://www.youtube.com/watch?v=1aA949H-shk
