@@ -1,15 +1,14 @@
 # Privacy
 
-This application follows privacy and security best practices.
+This application follows privacy and security best practices and uses a minimal set of device permissions.
 
-Requests for transit schedule information are made securely over the HTTPS protocol.
+## File Storage
 
-Information about your favorite transit routes are stored on your phone so they can be retrieved the next time you open the app.
+When you use the application to save one or more favorite transit routes, the application stores this information on your device. This enables the application to remember your favorite routes the next time you open the application. 
 
-This application uses a minimal set of permissions:
+The application stores this information in a partitioned area on your phone that no other application has access to. Conversely, this application does not have access to any files created by other applications you use.
 
-  + `android.permission.INTERNET`
-  + `android.permission.READ_EXTERNAL_STORAGE`
-  + `android.permission.READ_PHONE_STATE`
-  + `android.permission.SYSTEM_ALERT_WINDOW`
-  + `android.permission.WRITE_EXTERNAL_STORAGE`
+## Internet Usage
+
+When you use the application to search transit schedule information, your phone sends a secure request over the Internet using the HTTPS protocol.
+
