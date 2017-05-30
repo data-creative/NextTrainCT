@@ -4,6 +4,7 @@ import {AppRegistry, Navigator} from 'react-native';
 import FavsIndex from "./components/favs/Index";
 import NewFav from "./components/favs/New";
 import TrainsIndex from "./components/trains/Index";
+import About from "./components/About";
 
 class App extends Component {
   render(){
@@ -27,6 +28,9 @@ class App extends Component {
         break;
       case 'TRAINS':
         return <TrainsIndex navigator={navigator} {...navRoute.params}  />
+        break;
+      case 'ABOUT':
+        return <About navigator={navigator} {...navRoute.params}  />
         break;
       default:
         console.error("UNRECOGNIZED ROUTE -- " + navRoute.name)

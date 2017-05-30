@@ -45,6 +45,7 @@
   + https://facebook.github.io/react/docs/reusable-components.html#prop-validation
   + https://github.com/oblador/react-native-vector-icons/issues/480#issuecomment-304471943
   + https://github.com/airbnb/lottie-react-native/issues/38
+  + https://facebook.github.io/react-native/releases/0.21/docs/linking.html
 
 ## Styling and Design
 
