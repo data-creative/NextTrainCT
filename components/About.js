@@ -27,10 +27,31 @@ export default class About extends Component {
 
         <Content style={styles.content}>
           <Title style={styles.heading}>About</Title>
-          <Text style={styles.text}>This app was made in New Haven by MJ Rossetti.</Text>
+          <Text style={styles.text}>Use this app to search Shore Line East transit schedules. Save your favorite transit routes, then find out when the next train is arriving with the click of a button.</Text>
+
+          <Title style={styles.heading}>Developer</Title>
+          <Text style={styles.text}>This app was made in New Haven by MJ Rossetti. The developer is not affiliated with Shore Line East or CTtransit.</Text>
+
+          <Title style={styles.heading}>Contact</Title>
+          <Text style={styles.text}>Please provide the developer with feedback!</Text>
+          <List>
+            <ListItem iconLeft style={styles.listItem}>
+              <Button transparent onPress={this.goEmail}>
+                <Icon name='md-mail' style={styles.listItemIcon}/>
+                <Text style={styles.listItemText}>Email datacreativellc@gmail.com</Text>
+              </Button>
+            </ListItem>
+            <ListItem iconLeft style={styles.listItem}>
+              <Button transparent onPress={this.goTweet}>
+                <Icon name='logo-twitter' style={styles.listItemIcon}/>
+                <Text style={styles.listItemText}>Tweet @data_creative</Text>
+              </Button>
+            </ListItem>
+          </List>
+
 
           <Title style={styles.heading}>Schedules</Title>
-          <Text style={styles.text}>This app is powered by open transit schedule data published by CTtransit. The developer has created a web service to check for new schedules once every hour and provide the results upon request.</Text>
+          <Text style={styles.text}>This app is powered by open transit schedule data published by CTtransit in General Transit Feed Specification (GTFS) format. The developer has created a web service to check for new schedules once every hour and provide the results upon request.</Text>
           <List>
             <ListItem iconLeft style={styles.listItem}>
               <Button transparent onPress={this.goGTFS}>
@@ -47,23 +68,6 @@ export default class About extends Component {
               <Button transparent onPress={this.goVenmo}>
                 <Icon name='logo-usd' style={styles.listItemIcon}/>
                 <Text style={styles.listItemText}>{"Venmo $2.99 to @data_creative"}</Text>
-              </Button>
-            </ListItem>
-          </List>
-
-          <Title style={styles.heading}>Contact</Title>
-          <Text style={styles.text}>Please provide the developer with feedback!</Text>
-          <List>
-            <ListItem iconLeft style={styles.listItem}>
-              <Button transparent onPress={this.goEmail}>
-                <Icon name='md-mail' style={styles.listItemIcon}/>
-                <Text style={styles.listItemText}>Email datacreativellc@gmail.com</Text>
-              </Button>
-            </ListItem>
-            <ListItem iconLeft style={styles.listItem}>
-              <Button transparent onPress={this.goTweet}>
-                <Icon name='logo-twitter' style={styles.listItemIcon}/>
-                <Text style={styles.listItemText}>Tweet @data_creative</Text>
               </Button>
             </ListItem>
           </List>
