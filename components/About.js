@@ -11,7 +11,7 @@ export default class About extends Component {
     this.goBack = this.goBack.bind(this);
     this.goEmail = this.goEmail.bind(this);
     this.goTweet = this.goTweet.bind(this);
-    this.goDonate = this.goDonate.bind(this);
+    this.goVenmo = this.goVenmo.bind(this);
     this.goClientRepo = this.goClientRepo.bind(this);
     this.goServerRepo = this.goServerRepo.bind(this);
     this.goGTFS = this.goGTFS.bind(this);
@@ -44,9 +44,9 @@ export default class About extends Component {
           <Text style={styles.text}>This app is free to use, but the servers cost money. Your donations keep the servers running!</Text>
           <List>
             <ListItem iconLeft style={styles.listItem}>
-              <Button transparent onPress={this.goDonate}>
+              <Button transparent onPress={this.goVenmo}>
                 <Icon name='logo-usd' style={styles.listItemIcon}/>
-                <Text style={styles.listItemText}>{"Donate $2.99"}</Text>
+                <Text style={styles.listItemText}>{"Venmo $2.99 to @data_creative"}</Text>
               </Button>
             </ListItem>
           </List>
@@ -109,8 +109,8 @@ export default class About extends Component {
     this.linkTo("https://twitter.com/data_creative")
   }
 
-  goDonate(){
-    this.linkTo("TODO")
+  goVenmo(){
+    this.linkTo("https://venmo.com/data_creative?txn=pay&amount=2.99")
   }
 
   goClientRepo(){
