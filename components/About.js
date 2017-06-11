@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Text, StyleSheet, Linking, TouchableOpacity} from 'react-native'
+import {Text, StyleSheet, Linking, TouchableOpacity} from 'react-native'
 import {
   Container, Header, Title, Content, Footer, Button, Icon, List, ListItem, Badge
 } from 'native-base';

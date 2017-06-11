@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Text, StyleSheet, AsyncStorage} from 'react-native'
+import {Text, StyleSheet, AsyncStorage} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem, Spinner} from 'native-base';
 
 import SwipeList from "./SwipeList"
