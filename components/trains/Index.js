@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native'
+import {Text, StyleSheet, Alert, NetInfo} from 'react-native'
 import {Container, Header, Title, Content, Button, Icon, Footer, Spinner} from 'native-base';
 
 import TrainsList from "./List"
@@ -17,6 +17,7 @@ export default class TrainsIndex extends Component {
     this.navigator = this.props.navigator;
     this.fetchTrainSchedule = this.fetchTrainSchedule.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.alertAndGoBack = this.alertAndGoBack.bind(this);
   }
 
   render() {
@@ -62,10 +63,26 @@ export default class TrainsIndex extends Component {
     this.navigator.pop();
   }
 
+  alertAndGoBack(){
+    this.setState({displaySpinner:false, trains: []})
+    Alert.alert(
+      "Check Internet Connection",
+      "This device is not connected to WiFi. Please connect to the Internet and try again.",
+      [
+        {
+          text: 'OK',
+          onPress: function(){
+            console.log('OK Pressed')
+            this.goBack()
+          }.bind(this)
+        }
+      ],
+      { cancelable: false }
+    )
+  }
+
   fetchTrainSchedule(){
     var requestURL = "http://next-train-production.herokuapp.com/api/v1/trains.json?origin=" + this.transitRoute.origin.toUpperCase() + "&destination=" + this.transitRoute.destination.toUpperCase() + "&date=" + this.selectedDate
-    //=> "http://next-train-production.herokuapp.com/api/v1/trains.json?origin=BRN&destination=NHV&date=2016-12-01"
-
     fetch(requestURL)
       .then(function(response) {
         //console.log("RAW RESPONSE", "STATUS", response.status, response.statusText, response.ok, "HEADERS", response.headers, response.url)
@@ -76,21 +93,29 @@ export default class TrainsIndex extends Component {
         this.setState({displaySpinner:false, trains: json.results})
       }.bind(this))
       .catch(function(err){
-        // var flash = {danger: ["There was an issue fetching schedule results from the server. Please try again or contact the developer."]}
-        console.error(err)
+        console.error("FETCH ERR", err) // alert... There was an issue fetching schedule results from the server. Please try again, or contact the developer if the issue persists."
       })
   }
 
   componentWillMount(){  console.log("TRAINS INDEX WILL MOUNT")  }
-  componentDidMount(){
-    console.log("TRAINS INDEX DID MOUNT")
-    this.fetchTrainSchedule()
+  componentDidMount(){  console.log("TRAINS INDEX DID MOUNT")
+    NetInfo.isConnected.fetch()
+      .then(function(isConnected){
+        console.log('DEVICE CONNECTED? ', isConnected)
+        if (isConnected) {
+          this.fetchTrainSchedule()
+        } else {
+          this.alertAndGoBack()
+        }
+      }.bind(this))
+      .catch(function(err){
+        console.log("NETINFO ERROR", err)
+      })
   }
   componentWillReceiveProps(nextProps){  console.log("TRAINS INDEX WILL RECEIVE PROPS")  }
   componentWillUpdate(nextProps, nextState){  console.log("TRAINS INDEX WILL UPDATE")  }
   componentDidUpdate(prevProps, prevState){  console.log("TRAINS INDEX DID UPDATE")  }
-  componentWillUnmount(){  console.log("TRAINS INDEX WILL UNMOUNT")  }
-
+  componentWillUnmount(){ console.log("TRAINS INDEX WILL UNMOUNT") }
 };
 
 const styles = StyleSheet.create({

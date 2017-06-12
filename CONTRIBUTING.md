@@ -12,6 +12,12 @@ npm install
 
 Setup a [react-native developer environment](http://data-creative.info/process-documentation/2016/07/22/react-native-android-dev-env-setup-from-scratch/).
 
+Also [enable the gradle daemon](https://docs.gradle.org/2.9/userguide/gradle_daemon.html) to speed-up build times:
+
+```` sh
+touch ~/.gradle/gradle.properties && echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
+````
+
 ## Running Locally
 
 ### On Android

@@ -17,7 +17,7 @@ public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
-    protected boolean getUseDeveloperSupport() {
+    public boolean getUseDeveloperSupport() { // changed "protected" to "public" per https://github.com/airbnb/lottie-react-native/issues/38
       return BuildConfig.DEBUG;
     }
 

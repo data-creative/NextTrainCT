@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Text, StyleSheet, AsyncStorage} from 'react-native'
+import {Text, StyleSheet, AsyncStorage} from 'react-native'
 import {Container, Header, Title, Content, Footer, Button, Icon, Card, CardItem, Spinner} from 'native-base';
 
 import SwipeList from "./SwipeList"
@@ -9,7 +9,7 @@ export default class FavsIndex extends Component {
 
   constructor(props){
     super(props)
-    console.log("INDEX PROPS FAVS", typeof(this.props.favs), this.props.favs)
+    //console.log("INDEX PROPS FAVS", typeof(this.props.favs), this.props.favs)
     this.state = {
       favs: (this.props.favs ? this.props.favs : []),
       displaySpinner:false
@@ -18,6 +18,7 @@ export default class FavsIndex extends Component {
     this.fetchAll = this.fetchAll.bind(this);
     this.removeAll = this.removeAll.bind(this);
     this.handleButtonPress = this.handleButtonPress.bind(this);
+    this.goMenu = this.goMenu.bind(this);
   }
 
   render() {
@@ -28,6 +29,9 @@ export default class FavsIndex extends Component {
     return (
       <Container>
         <Header>
+          <Button transparent onPress={this.goMenu}>
+            <Icon name="md-menu" />
+          </Button>
           <Title>NextTrain CT</Title>
         </Header>
 
@@ -46,8 +50,12 @@ export default class FavsIndex extends Component {
   }
 
   handleButtonPress(){
-    const favs = this.state.favs // todo
+    const favs = this.state.favs
     this.navigator.push({name: 'NEW_FAV', params:{favs:favs}})
+  }
+
+  goMenu(){
+    this.navigator.push({name: 'ABOUT'})
   }
 
   fetchAll(){

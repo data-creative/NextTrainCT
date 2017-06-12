@@ -43,6 +43,11 @@
   + https://github.com/xgfe/react-native-datepicker/blob/7bed2921e5e6b1044f3bc8af05ed3d54c633c81f/style.js
   + https://facebook.github.io/react-native/docs/listview.html
   + https://facebook.github.io/react/docs/reusable-components.html#prop-validation
+  + https://github.com/oblador/react-native-vector-icons/issues/480#issuecomment-304471943
+  + https://github.com/airbnb/lottie-react-native/issues/38
+  + https://facebook.github.io/react-native/releases/0.21/docs/linking.html
+  + http://facebook.github.io/react-native/releases/0.42/docs/netinfo.html
+  + https://facebook.github.io/react-native/docs/alert.html
 
 ## Styling and Design
 
@@ -63,6 +68,22 @@
   + http://nativebase.io/docs/v0.5.2/getting-started#installing-peer-dependencies
   + https://github.com/rnpm/rnpm
 
+### Releasing
+
+  + https://stackoverflow.com/a/21609757/670433
+  + https://docs.gradle.org/2.9/userguide/gradle_daemon.html
+  + https://www.garyshood.com/imageconvert/code.php
+  + https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app
+
 ## Moment
 
   + http://momentjs.com/guides/#/warnings/js-date/
+
+## Android Store
+
+  + https://facebook.github.io/react-native/docs/signed-apk-android.html
+  + https://stackoverflow.com/questions/35935060/how-can-i-generate-an-apk-that-can-run-without-server-with-react-native
+  + https://pilloxa.gitlab.io/posts/safer-passwords-in-gradle/
+  + https://stackoverflow.com/questions/22681907/you-uploaded-an-apk-that-is-not-zip-aligned-error
+  + https://developer.android.com/studio/publish/app-signing.html#releasecompile
+  + https://www.youtube.com/watch?v=1aA949H-shk
