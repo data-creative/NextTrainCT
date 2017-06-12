@@ -70,5 +70,78 @@
     "latitude":"41.354158",
     "longitude":"-72.093076",
     "url":"http://www.shorelineeast.com/service_info/stations/new_london.php"
+  },
+
+
+
+
+
+
+
+
+
+  {
+    "id":1702,
+    "abbrev":"GCS",
+    "name":"Grand Central Station",
+    "latitude":"40.753165",
+    "longitude":"-73.977379",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm",
+  },
+  {
+    "id":1712,
+    "abbrev":"GW",
+    "name":"Greenwich",
+    "latitude":"41.021705",
+    "longitude":"-73.624597",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm"
+  },
+  {
+    "id":1722,
+    "abbrev":"STM",
+    "name":"Stamford",
+    "latitude":"41.046654",
+    "longitude":"-73.542845",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm?key=226"
+  },
+  {
+    "id":1732,
+    "abbrev":"SN",
+    "name":"South Norwalk",
+    "latitude":"41.095529",
+    "longitude":"-73.421803",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm"
+  },
+  {
+    "id":1742,
+    "abbrev":"BRP",
+    "name":"Bridgeport",
+    "latitude":"41.178702",
+    "longitude":"-73.187077",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm?key=246"
+  },
+  {
+    "id":1752,
+    "abbrev":"STR",
+    "name":"Stratford",
+    "latitude":"41.194286",
+    "longitude":"-73.131566",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm?key=248"
+  },
+  {
+    "id":1762,
+    "abbrev":"MIL",
+    "name":"Milford",
+    "latitude":"41.22323",
+    "longitude":"-73.057666",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm?key=250"
+  },
+  {
+    "id":1772,
+    "abbrev":"WH",
+    "name":"West Haven",
+    "latitude":"41.271408",
+    "longitude":"-72.964722",
+    "url":"http://as0.mta.info/mnr/stations/station_detail.cfm?key=251"
   }
 ]
