@@ -72,7 +72,8 @@
 
   + https://stackoverflow.com/a/21609757/670433
   + https://docs.gradle.org/2.9/userguide/gradle_daemon.html
-  +
+  + https://www.garyshood.com/imageconvert/code.php
+  + https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app
 
 ## Moment
 

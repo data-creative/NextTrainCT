@@ -6,6 +6,8 @@ This document describes the process of releasing a new software version to the A
 
 ### Prerequisites
 
+#### Release Key
+
 ```` sh
 cd android/app
 ````
@@ -25,6 +27,15 @@ Save it somewhere secure.
   + Item Name: `next-train-ct-android-release-key`
   + Account Name: `mjr`
   + Password: HIDDEN
+
+#### Home Screen Icons
+
+Save icon images as `ic_launcher.png` in various directories within `/android/app/src/main/res/mipmap-*`:
+
+  + 72*72 in mipmap-hdpi
+  + 48*48 in mipmap-mdpi
+  + 96*96 in mipmap-xhdpi
+  + 144*144 in mipmap-xxhdpi.
 
 ### Releasing
 
