@@ -43,7 +43,7 @@ export default class About extends Component {
           <Title style={styles.heading}>Contact</Title>
           <Text style={styles.text}>
             This app was made by MJ Rossetti, a native of Branford, CT.
-            It relies on a backend web server which is operated by his software development company, Data Creative, as a free public service.
+            Feel free to contact the developer with questions or feedback.
           </Text>
           <List>
             <ListItem iconLeft style={styles.listItem}>
