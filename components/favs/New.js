@@ -6,7 +6,7 @@ import StationPicker from "../stations/Picker"
 export default class NewFav extends Component {
   constructor(props) {
     super(props);
-    this.state = {origin: 'GCS', destination: 'NHV', displaySpinner:false};
+    this.state = {origin: 'BRN', destination: 'NHV', displaySpinner:false};
     this.navigator = this.props.navigator;
     this.favs = this.props.favs;
     this.goBack = this.goBack.bind(this);
