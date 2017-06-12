@@ -39,6 +39,8 @@ Save icon images as `ic_launcher.png` in various directories within `/android/ap
 
 ### Releasing
 
+Bump the version and name in `android/app/build.gradle` and `android/app/src/main/AndroidManifest.xml`.
+
 Generate an APK:
 
 ```` sh
