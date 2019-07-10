@@ -1,5 +1,12 @@
 # Contributing
 
+## Installation
+
+```` sh
+git clone git@github.com:data-creative/NextTrainCT.git
+cd NextTrainCT/
+````
+
 ## Prerequisites
 
 > Setup instructions below adapted from:
@@ -72,22 +79,14 @@ npm --version #> 6.9.0
 
 Great, now we can use NPM to install packages.
 
-#### React Native
-
-Verify / detect React Native:
-
-```sh
-which react-native #>
-react-native --version
-```
-
-Install React Native:
-
-```sh
-npm install -g react-native-cli
-```
-
 #### Watchman
+
+Installing / updating Watchman:
+
+```sh
+brew install watchman
+#brew upgrade watchman
+```
 
 Verifying / detecting Watchman:
 
@@ -96,13 +95,30 @@ which watchman
 watchman --version
 ```
 
-Installing / updating Watchman:
+#### React and React Native
+
+Install Package dependencies from the "package.json" file, including React, and React Native:
 
 ```sh
-brew install watchman
-brew upgrade watchman
+npm install
 ```
 
+#### React Native CLI
+
+Install React Native CLI:
+
+```sh
+npm install -g react-native-cli # deprecated / legacy? https://github.com/react-native-community/cli#about
+```
+
+Verify / detect React Native:
+
+```sh
+which react-native #> /Users/YOUR_USERNAME/.nvm/versions/node/v12.6.0/bin/react-native
+react-native --version
+#> react-native-cli: 2.0.1
+#> react-native: n/a - not inside a React Native project directory
+```
 
 
 
@@ -157,39 +173,22 @@ brew install gradle
 Detect / verify:
 
 ```sh
-gradle -v #>
+which gradle #> /usr/local/bin/gradle
+gradle -v #> Gradle 5.5 ...
 ```
 
-Enable the Gradle Daemon:
+Enable the Gradle Daemon (NECESSARY?):
 
 ```sh
 touch ~/.gradle/gradle.properties
 echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
 ```
 
-
-
-
-
-
-
-
-
-
-
 <hr>
 
 
-## Installation
-
-```` sh
-git clone git@github.com:data-creative/NextTrainCT.git
-cd NextTrainCT/
-npm install
-````
 
 
-<hr>
 
 
 
