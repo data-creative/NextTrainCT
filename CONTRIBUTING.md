@@ -3,8 +3,8 @@
 ## Installation
 
 ```` sh
-git clone git@github.com:s2t2/next-train-ct.git
-cd next-train-ct/
+git clone git@github.com:data-creative/NextTrainCT.git
+cd NextTrainCT/
 npm install
 ````
 
