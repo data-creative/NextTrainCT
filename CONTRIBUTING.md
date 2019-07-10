@@ -134,6 +134,28 @@ react-native link
 javac -version #> javac 1.8.0_131
 ```
 
+#### Gradle
+
+[The gradle daemon](https://docs.gradle.org/2.9/userguide/gradle_daemon.html) speeds-up build times. [Install](https://docs.gradle.org/current/userguide/installation.html) Gradle:
+
+```sh
+brew install gradle
+```
+
+Detect / verify:
+
+```sh
+which gradle #> /usr/local/bin/gradle
+gradle -v #> Gradle 5.5 ...
+```
+
+Enable the Gradle Daemon (NECESSARY?):
+
+```sh
+touch ~/.gradle/gradle.properties
+echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
+```
+
 #### Android Studio
 
 [Download](https://developer.android.com/studio/index.html) and [install](https://developer.android.com/studio/install.html) Android Studio. Then configure the path as necessary:
@@ -160,7 +182,6 @@ which adb #> /Users/YOUR_USERNAME/Library/Android/sdk/platform-tools/adb
 adb --version #> Android Debug Bridge version 1.0.39
 ```
 
-
 ##### Android Virtual Devices
 
 If you'd like to setup an emulator, follow these instructions.
@@ -175,30 +196,7 @@ After these downloads complete, you should see the following new folders, respec
     /Users/YOUR_USERNAME/Library/Android/sdk/platforms/android-23
     /Users/YOUR_USERNAME/Library/Android/sdk/build-tools/23.0.1
 
-In Android Studio, navigate to "Tools" > "Android" > "AVD Manager", then create a new AVD with _____________ and __________.
-
-
-#### Gradle
-
-[The gradle daemon](https://docs.gradle.org/2.9/userguide/gradle_daemon.html) speeds-up build times. [Install](https://docs.gradle.org/current/userguide/installation.html) Gradle:
-
-```sh
-brew install gradle
-```
-
-Detect / verify:
-
-```sh
-which gradle #> /usr/local/bin/gradle
-gradle -v #> Gradle 5.5 ...
-```
-
-Enable the Gradle Daemon (NECESSARY?):
-
-```sh
-touch ~/.gradle/gradle.properties
-echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
-```
+In Android Studio, navigate to "Tools" > "Android" > "AVD Manager", then create a new virtual device, choosing your desired device type (e.g. "Pixel 5"), and check the version of the API you installed above.
 
 <hr>
 
