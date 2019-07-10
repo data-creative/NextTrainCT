@@ -117,15 +117,14 @@ Verify / detect React Native:
 which react-native #> /Users/YOUR_USERNAME/.nvm/versions/node/v12.6.0/bin/react-native
 react-native --version
 #> react-native-cli: 2.0.1
-#> react-native: n/a - not inside a React Native project directory
+#> react-native: 0.60.0
 ```
 
+Install and link peer dependencies, if necessary:
 
-
-
-
-
-
+```` sh
+react-native link
+````
 
 ### Android Prerequisites
 
@@ -208,12 +207,6 @@ echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
 ## Running Locally
 
 ### On Android
-
-Install and link peer dependencies, if necessary:
-
-```` sh
-react-native link
-````
 
 Ensure there is either a device or an emulator running:
 
