@@ -2,10 +2,10 @@
 
 ## Installation
 
-```` sh
+```sh
 git clone git@github.com:data-creative/NextTrainCT.git
 cd NextTrainCT/
-````
+```
 
 ## Prerequisites
 
@@ -122,9 +122,9 @@ react-native --version
 
 Install and link peer dependencies, if necessary:
 
-```` sh
+```sh
 react-native link
-````
+```
 
 ### Android Prerequisites
 
@@ -141,25 +141,42 @@ javac -version #> javac 1.8.0_131
 ```sh
 # ~/.bash_profile
 export ANDROID_HOME="/Users/YOUR_USERNAME/Library/Android/sdk"
-#export PATH=~/Library/Android/sdk/tools:$PATH # enables `android` commands
-#export PATH=~/Library/Android/sdk/platform-tools:$PATH # enables `adb` commands
-export PATH=~/Library/Android/sdk/tools/bin:$PATH # enables `android` commands
+export PATH=~/Library/Android/sdk/tools:$PATH # enables `android` commands (DEPRECATED?)
+export PATH=~/Library/Android/sdk/platform-tools:$PATH # enables `adb` commands (DEPRECATED?)
+export PATH=~/Library/Android/sdk/tools/bin:$PATH # enables `sdkmanager` and `avdmanager` commands
 ```
 
 Detecting:
 
 ```sh
-#which android #> /Users/YOUR_USERNAME/Library/Android/sdk/tools/android
+which android #> /Users/YOUR_USERNAME/Library/Android/sdk/tools/android
 ##> The "android" command is deprecated.
 ##> For manual SDK, AVD, and project management, please use Android Studio.
 ##> For command-line tools, use tools/bin/sdkmanager and tools/bin/avdmanager
-#
-#which adb #> /Users/YOUR_USERNAME/Library/Android/sdk/platform-tools/adb
-#adb --version #> Android Debug Bridge version 1.0.39
-
 which sdkmanager #> /Users/YOUR_USERNAME/Library/Android/sdk/tools/bin/sdkmanager
 which avdmanager #> /Users/YOUR_USERNAME/Library/Android/sdk/tools/bin/avdmanager
+
+which adb #> /Users/YOUR_USERNAME/Library/Android/sdk/platform-tools/adb
+adb --version #> Android Debug Bridge version 1.0.39
 ```
+
+
+##### Android Virtual Devices
+
+If you'd like to setup an emulator, follow these instructions.
+
+In Android Studio, navigate to "Tools" > "Android" > "SDK Manager":
+
+  + In the "SDK Platforms" tab, check the box for **"Android 6.0 (Marshmellow) - API level 23"**, and click "OK" to download.
+  + In the "SDK Tools" tab, check the "Show Package Details" box in the bottom right-hand corner. Expand the "Android SDK Build Tools" line to reveal numerous versions of the build tools that can be downloaded - some say they are obsolete. Check the box for **"Android SDK Build Tools 23.0.1"**, then click "Apply" to initiate a download.
+
+After these downloads complete, you should see the following new folders, respectively:
+
+    /Users/YOUR_USERNAME/Library/Android/sdk/platforms/android-23
+    /Users/YOUR_USERNAME/Library/Android/sdk/build-tools/23.0.1
+
+In Android Studio, navigate to "Tools" > "Android" > "AVD Manager", then create a new AVD with _____________ and __________.
+
 
 #### Gradle
 
@@ -185,51 +202,35 @@ echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
 
 <hr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Running Locally
 
-### On Android
+### Running on Android
+
+Can run on an emulator or on your device. To run on your device, plug in your phone to your computer via USB port. Otherwise, to run an emulator: open Android Studio, navigate to "Tools" > "Android" > "AVD Manager", then choose one of your existing AVDs and click the play button to launch.
 
 Ensure there is either a device or an emulator running:
 
-```` sh
+```sh
 adb devices
-````
+#avdmanager list avd
+```
 
 Build the application onto the device:
 
-```` sh
+```sh
 react-native run-android
-````
+```
 
 Check console logs:
 
-```` sh
+```sh
 react-native log-android
-````
+```
 
-### On iOS
+### Running on iOS
 
 Build the application onto the device:
 
-```` sh
+```sh
 react-native run-ios
-````
+```
