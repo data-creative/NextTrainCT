@@ -32,8 +32,10 @@
 
 ## React Native
 
+  + https://github.com/facebook/react-native
   + https://github.com/facebook/react-native/pull/5233#discussion_r49682279
   + https://github.com/facebook/react-native/issues/2303
+  + https://facebook.github.io/react-native/docs/getting-started.html
   + https://facebook.github.io/react-native/docs/flexbox.html
   + https://facebook.github.io/react-native/docs/view.html
   + https://facebook.github.io/react-native/docs/text.html
@@ -48,6 +50,11 @@
   + https://facebook.github.io/react-native/releases/0.21/docs/linking.html
   + http://facebook.github.io/react-native/releases/0.42/docs/netinfo.html
   + https://facebook.github.io/react-native/docs/alert.html
+  + https://stackoverflow.com/questions/55441230/unable-to-load-script-make-sure-you-are-either-running-a-metro-server-or-that-yo
+
+## React Native CLI
+
+  + https://github.com/react-native-community/cli#about
 
 ## Styling and Design
 
@@ -62,12 +69,28 @@
 
   + https://support.apple.com/en-us/HT201464
 
+## Android Studio
+
+  + [Updating Android Studio](https://stackoverflow.com/a/18980744/670433)
+  + https://developer.android.com/studio/intro/update
+  + https://developer.android.com/studio/run/managing-avds.html#createavd
+  + https://developer.android.com/studio/command-line/sdkmanager#install_packages
+
+## HAXM
+
+> Emulator: WARNING: HAXM 6.1.1 is installed. Please install HAXM >= 6.2.1 to fix compatibility issues on Mac
+
+  + [HAXM Issues](https://stackoverflow.com/a/28421395/670433)
+  + [HAXM Installation](https://stackoverflow.com/a/48078154/670433)
+  + https://github.com/intel/haxm
+  + https://github.com/intel/haxm/issues/219#issuecomment-509053176
+  + https://github.com/intel/haxm/releases/tag/v7.5.1
+
 ## Android
 
   + [Toasts](https://developer.android.com/guide/topics/ui/notifiers/toasts.html), aka flash messages
   + http://nativebase.io/docs/v0.5.2/getting-started#installing-peer-dependencies
   + https://github.com/rnpm/rnpm
-  + [Updating Android Studio](https://stackoverflow.com/a/18980744/670433)
 
 ### Releasing
 
@@ -88,3 +111,7 @@
   + https://stackoverflow.com/questions/22681907/you-uploaded-an-apk-that-is-not-zip-aligned-error
   + https://developer.android.com/studio/publish/app-signing.html#releasecompile
   + https://www.youtube.com/watch?v=1aA949H-shk
+
+## iOS
+
+  + https://www.andrewcbancroft.com/2017/04/22/solving-react-natives-no-bundle-url-present-error/

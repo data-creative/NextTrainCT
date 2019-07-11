@@ -19,7 +19,7 @@ General Prerequisites:
   + Homebrew
   + Git
   + NVM, Node.js, and NPM
-  + React Native
+  + React, React Native, React Native CLI
 
 Android Prerequisites:
 
@@ -149,7 +149,7 @@ which gradle #> /usr/local/bin/gradle
 gradle -v #> Gradle 5.5 ...
 ```
 
-Enable the Gradle Daemon (NECESSARY?):
+Enable the Gradle Daemon (MAYBE NOT NECESSARY?):
 
 ```sh
 touch ~/.gradle/gradle.properties
@@ -158,7 +158,7 @@ echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
 
 #### Android Studio
 
-[Download](https://developer.android.com/studio/index.html) and [install](https://developer.android.com/studio/install.html) Android Studio. Then configure the path as necessary:
+[Download](https://developer.android.com/studio/index.html) and [install](https://developer.android.com/studio/install.html) Android Studio 3.4.2. Then configure the path as necessary:
 
 ```sh
 # ~/.bash_profile
@@ -186,17 +186,25 @@ adb --version #> Android Debug Bridge version 1.0.39
 
 If you'd like to setup an emulator, follow these instructions.
 
-In Android Studio, navigate to "Tools" > "Android" > "SDK Manager":
+In Android Studio, navigate to "Tools" > "SDK Manager":
 
-  + In the "SDK Platforms" tab, check the box for **"Android 6.0 (Marshmellow) - API level 23"**, and click "OK" to download.
-  + In the "SDK Tools" tab, check the "Show Package Details" box in the bottom right-hand corner. Expand the "Android SDK Build Tools" line to reveal numerous versions of the build tools that can be downloaded - some say they are obsolete. Check the box for **"Android SDK Build Tools 23.0.1"**, then click "Apply" to initiate a download.
+  + In the "SDK Platforms" tab, check the box for **"Android 9.0 (Pie) - API level 28"**, and click "OK" to download.
+  + In the "SDK Tools" tab, check the "Show Package Details" box in the bottom right-hand corner. Expand the "Android SDK Build Tools" line to reveal numerous versions of the build tools that can be downloaded - some say they are obsolete. Check the box for **"Android SDK Build Tools 29.0.1"**, then click "Apply" to initiate a download.
 
 After these downloads complete, you should see the following new folders, respectively:
 
     /Users/YOUR_USERNAME/Library/Android/sdk/platforms/android-23
     /Users/YOUR_USERNAME/Library/Android/sdk/build-tools/23.0.1
 
-In Android Studio, navigate to "Tools" > "Android" > "AVD Manager", then create a new virtual device, choosing your desired device type (e.g. "Pixel 5"), and check the version of the API you installed above.
+In Android Studio, navigate to "Tools" > "AVD Manager", then create a new virtual device, choosing your desired device type (e.g. "Pixel 5"), and check the version of the API you installed above. If asked, install the "Pie (API Level 28, Android 9.0)" System Image.
+
+##### HAXM
+
+If you experience HAXM installation issues, download [version 7.5.1 from source](https://github.com/intel/haxm/releases/tag/v7.5.1) and manually extract into this directory:
+
+    /Users/YOUR_USERNAME/Library/Android/sdk/extras/intel
+
+Then run the installer.
 
 <hr>
 
